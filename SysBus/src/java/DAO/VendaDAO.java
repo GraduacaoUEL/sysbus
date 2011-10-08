@@ -1,6 +1,5 @@
 package DAO;
 
-import beans.Carro;
 import beans.Venda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -89,7 +88,7 @@ public class VendaDAO {
         try {
             String queryString = "UPDATE venda SET data_venda = ?, tipo_pagamento = ?,"
                     + "  valor_venda = ?, passagem_entregue = ?, via_web = ?,"
-                    + " vendedor = ?, carro_venda = ? WHERE codigo_carro = ?";
+                    + " vendedor = ?, carro_venda = ? WHERE codigo_venda = ?";
             
             connection = getConnection();
             
