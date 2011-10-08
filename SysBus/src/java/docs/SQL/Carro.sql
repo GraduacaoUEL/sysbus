@@ -1,4 +1,4 @@
-﻿CREATE TABLE Carro
+CREATE TABLE Carro
 (
 	codigo_carro INTEGER,
 	numero_passageiros INTEGER NOT NULL,

@@ -1,4 +1,4 @@
-﻿CREATE TABLE Possui
+CREATE TABLE Possui
 (
 	numero_itinerario INTEGER,
 	numero_trecho INTEGER,

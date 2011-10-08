@@ -1,4 +1,4 @@
-﻿CREATE TABLE Demanda
+CREATE TABLE Demanda
 (
 	codigo_demanda INTEGER,
 	nome_demanda VARCHAR(20) NOT NULL,

@@ -1,4 +1,4 @@
-﻿CREATE TABLE Itinerario
+CREATE TABLE Itinerario
 (
 	codigo_itinerario INTEGER,
 	nome_itinerario VARCHAR(40) NOT NULL,

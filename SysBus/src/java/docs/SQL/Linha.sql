@@ -1,4 +1,4 @@
-﻿CREATE TABLE Linha
+CREATE TABLE Linha
 (
 	codigo_linha INTEGER,
 	nome_linha VARCHAR(40) NOT NULL,
