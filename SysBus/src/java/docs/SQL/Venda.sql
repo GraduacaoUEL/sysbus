@@ -5,7 +5,7 @@ CREATE TABLE Venda
     tipo_pagamento VARCHAR(8) DEFAULT 'Dinheiro',
     valor_venda DECIMAL(3,2) NOT NULL,
     passagem_entregue BOOLEAN DEFAULT FALSE,
-    via_web CHAR(10),
+    via_web BOOLEAN DEFAULT FALSE,
     vendedor INTEGER,
     carro_venda INTEGER,
 PRIMARY KEY(codigo_venda),
