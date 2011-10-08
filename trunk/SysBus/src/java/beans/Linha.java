@@ -1,8 +1,9 @@
 package beans;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Linha {
+public class Linha implements Serializable{
     private int codigoLinha;
     private String nomeLinha;
     private Date horaInicioLinha;

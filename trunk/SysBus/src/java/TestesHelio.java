@@ -9,8 +9,9 @@ public class TestesHelio {
         
         Carro busao = new Carro();
                 
-        busao.setId(1);
+        busao.setCodigoCarro(1);
         busao.setNumeroDePassageiros(50);
+        busao.setLinhaCarro(1);
         
         carro.add(busao);
 
