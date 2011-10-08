@@ -1,4 +1,4 @@
-﻿CREATE TABLE Cargo
+CREATE TABLE Cargo
 (
 	codigo_cargo INTEGER,
 	nome_cargo VARCHAR(20) NOT NULL,

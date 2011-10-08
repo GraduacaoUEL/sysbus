@@ -1,4 +1,4 @@
-﻿CREATE TABLE Segue
+CREATE TABLE Segue
 (
 	numero_demanda INTEGER,
 	numero_periodo INTEGER,

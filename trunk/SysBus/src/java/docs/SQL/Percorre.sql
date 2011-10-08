@@ -1,4 +1,4 @@
-﻿CREATE TABLE Percorre
+CREATE TABLE Percorre
 (
 	numero_linha INTEGER,
 	numero_itinerario_percorrido INTEGER,

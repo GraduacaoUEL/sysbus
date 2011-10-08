@@ -1,4 +1,4 @@
-﻿CREATE TABLE Colaborador
+CREATE TABLE Colaborador
 (
 	codigo_colaborador INTEGER,
 	nome_colaborador VARCHAR(40) NOT NULL,

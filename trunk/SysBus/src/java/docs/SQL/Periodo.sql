@@ -1,4 +1,4 @@
-﻿CREATE TABLE Periodo
+CREATE TABLE Periodo
 (
 	codigo_periodo INTEGER,
 	inicio_periodo TIME NOT NULL,

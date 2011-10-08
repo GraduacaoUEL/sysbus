@@ -1,4 +1,4 @@
-﻿CREATE TABLE Trecho
+CREATE TABLE Trecho
 (
 	codigo_trecho INTEGER,
 	origem_trecho VARCHAR(20) NOT NULL,
