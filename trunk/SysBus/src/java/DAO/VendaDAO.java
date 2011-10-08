@@ -29,13 +29,13 @@ public class VendaDAO {
             connection = getConnection();
             
             pstmt = connection.prepareStatement(queryString);
-            pstmt.setDate(2, venda.getDataVenda());
-            pstmt.setString(3, venda.getTipoPagamento());
-            pstmt.setFloat(4, venda.getValorVenda());
-            pstmt.setBoolean(5, venda.isPassagemEntregue());
-            pstmt.setBoolean(6, venda.isViaWeb());
-            pstmt.setInt(7, venda.getVendedor());
-            pstmt.setInt(8, venda.getCarroVenda());
+            pstmt.setDate(1, venda.getDataVenda());
+            pstmt.setString(2, venda.getTipoPagamento());
+            pstmt.setFloat(3, venda.getValorVenda());
+            pstmt.setBoolean(4, venda.isPassagemEntregue());
+            pstmt.setBoolean(5, venda.isViaWeb());
+            pstmt.setInt(6, venda.getVendedor());
+            pstmt.setInt(7, venda.getCarroVenda());
             
             pstmt.executeUpdate();
             
