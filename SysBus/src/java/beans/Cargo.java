@@ -3,6 +3,7 @@ package beans;
 import java.io.Serializable;
 
 public class Cargo implements Serializable {
+
     private int codigoCargo;
     private String nomeCargo;
     private boolean permissaoCargos;
@@ -10,9 +11,8 @@ public class Cargo implements Serializable {
     private boolean permissaoItinerarios;
     private boolean permissaoVendas;
     private boolean permissaoCustos;
-    
+
     public Cargo() {
-        
     }
 
     public int getCodigoCargo() {
