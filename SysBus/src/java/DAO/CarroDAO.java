@@ -79,7 +79,7 @@ public class CarroDAO {
     public void update(Carro carro) {
 
         try {
-            String queryString = "UPDATE carro SET numero_passagerios = ?,"
+            String queryString = "UPDATE carro SET numero_passageiros = ?,"
                     + " linha_carro = ? WHERE codigo_carro = ?";
 
             connection = getConnection();
