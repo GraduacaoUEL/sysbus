@@ -6,7 +6,7 @@ CREATE SEQUENCE sequencia_venda
     CACHE 1;
 
 
-ALTER TABLE Venda ALTER COLUMN codigo_venda SET DEFAULT NEXTVAL('sequencia_venda'::regclass);
+ALTER TABLE venda ALTER COLUMN codigo_venda SET DEFAULT NEXTVAL('sequencia_venda'::regclass);
 
 
 CREATE SEQUENCE sequencia_colaborador
@@ -17,7 +17,7 @@ CREATE SEQUENCE sequencia_colaborador
     CACHE 1;
 
 
-ALTER TABLE Colaborador ALTER COLUMN codigo_colaborador SET DEFAULT NEXTVAL('sequencia_colaborador'::regclass);
+ALTER TABLE colaborador ALTER COLUMN codigo_colaborador SET DEFAULT NEXTVAL('sequencia_colaborador'::regclass);
 
 
 CREATE SEQUENCE sequencia_cargo
@@ -28,7 +28,7 @@ CREATE SEQUENCE sequencia_cargo
     CACHE 1;
 
 
-ALTER TABLE Cargo ALTER COLUMN codigo_cargo SET DEFAULT NEXTVAL('sequencia_cargo'::regclass);
+ALTER TABLE cargo ALTER COLUMN codigo_cargo SET DEFAULT NEXTVAL('sequencia_cargo'::regclass);
 
 
 CREATE SEQUENCE sequencia_linha
@@ -39,7 +39,7 @@ CREATE SEQUENCE sequencia_linha
     CACHE 1;
 
 
-ALTER TABLE Linha ALTER COLUMN codigo_linha SET DEFAULT NEXTVAL('sequencia_linha'::regclass);
+ALTER TABLE linha ALTER COLUMN codigo_linha SET DEFAULT NEXTVAL('sequencia_linha'::regclass);
 
 
 CREATE SEQUENCE sequencia_itinerario
@@ -50,7 +50,7 @@ CREATE SEQUENCE sequencia_itinerario
     CACHE 1;
 
 
-ALTER TABLE Itinerario ALTER COLUMN codigo_itinerario SET DEFAULT NEXTVAL('sequencia_itinerario'::regclass);
+ALTER TABLE itinerario ALTER COLUMN codigo_itinerario SET DEFAULT NEXTVAL('sequencia_itinerario'::regclass);
 
 
 CREATE SEQUENCE sequencia_trecho
@@ -61,7 +61,7 @@ CREATE SEQUENCE sequencia_trecho
     CACHE 1;
 
 
-ALTER TABLE Trecho ALTER COLUMN codigo_trecho SET DEFAULT NEXTVAL('sequencia_trecho'::regclass);
+ALTER TABLE trecho ALTER COLUMN codigo_trecho SET DEFAULT NEXTVAL('sequencia_trecho'::regclass);
 
 
 CREATE SEQUENCE sequencia_custo
@@ -72,7 +72,7 @@ CREATE SEQUENCE sequencia_custo
     CACHE 1;
 
 
-ALTER TABLE Custo ALTER COLUMN codigo_custo SET DEFAULT NEXTVAL('sequencia_custo'::regclass);
+ALTER TABLE custo ALTER COLUMN codigo_custo SET DEFAULT NEXTVAL('sequencia_custo'::regclass);
 
 
 CREATE SEQUENCE sequencia_demanda
@@ -83,7 +83,7 @@ CREATE SEQUENCE sequencia_demanda
     CACHE 1;
 
 
-ALTER TABLE Demanda ALTER COLUMN codigo_demanda SET DEFAULT NEXTVAL('sequencia_demanda'::regclass);
+ALTER TABLE demanda ALTER COLUMN codigo_demanda SET DEFAULT NEXTVAL('sequencia_demanda'::regclass);
 
 
 CREATE SEQUENCE sequencia_periodo
@@ -94,4 +94,4 @@ CREATE SEQUENCE sequencia_periodo
     CACHE 1;
 
 
-ALTER TABLE Periodo ALTER COLUMN codigo_periodo SET DEFAULT NEXTVAL('sequencia_periodo'::regclass);
+ALTER TABLE periodo ALTER COLUMN codigo_periodo SET DEFAULT NEXTVAL('sequencia_periodo'::regclass);
