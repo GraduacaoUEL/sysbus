@@ -22,8 +22,8 @@ public class ColaboradorDAO {
     public void add(Colaborador colaborador) {
         try {
             String queryString = "INSERT INTO colaborador(nome_colaborador,"
-                    + " login_colaborador, senha_colaborador, cargo_colaborador"
-                    + " VALUES(?, ?, ?, ?)";
+                    + " login_colaborador, senha_colaborador,"
+                    + " cargo_colaborador) VALUES(?, ?, ?, ?)";
             
             connection = getConnection();
             
