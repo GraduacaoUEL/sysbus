@@ -49,14 +49,14 @@ public class LinhaDAO {
         }
     }
 
-    public void delete(int codigo_linha) {
+    public void delete(int codigoLinha) {
         try {
             String queryString = "DELETE FROM linha WHERE codigo_linha = ?";
 
             connection = getConnection();
 
             pstmt = connection.prepareStatement(queryString);
-            pstmt.setInt(1, codigo_linha);
+            pstmt.setInt(1, codigoLinha);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

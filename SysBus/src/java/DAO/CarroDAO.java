@@ -49,14 +49,14 @@ public class CarroDAO {
         }
     }
 
-    public void delete(int codigo_carro) {
+    public void delete(int codigoCarro) {
         try {
             String queryString = "DELETE FROM carro WHERE codigo_carro = ?";
 
             connection = getConnection();
 
             pstmt = connection.prepareStatement(queryString);
-            pstmt.setInt(1, codigo_carro);
+            pstmt.setInt(1, codigoCarro);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
