@@ -24,9 +24,9 @@ public class VendaDAO {
             String queryString = "INSERT INTO venda(data_venda, tipo_pagamento,"
                     + " valor_venda, passagem_entregue, via_web, vendedor,"
                     + " carro_venda) VALUES(?, ?, ?, ?, ?, ?, ?)";
-            
+
             connection = getConnection();
-            
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setDate(1, venda.getDataVenda());
             pstmt.setString(2, venda.getTipoPagamento());
@@ -57,9 +57,9 @@ public class VendaDAO {
     public void delete(int codigoVenda) {
         try {
             String queryString = "DELETE FROM venda WHERE codigo_venda = ?";
-            
+
             connection = getConnection();
-            
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigoVenda);
             pstmt.executeUpdate();
@@ -88,9 +88,9 @@ public class VendaDAO {
                     + " tipo_pagamento = ?, valor_venda = ?,"
                     + " passagem_entregue = ?, via_web = ?, vendedor = ?,"
                     + " carro_venda = ? WHERE codigo_venda = ?";
-            
+
             connection = getConnection();
-            
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setDate(1, venda.getDataVenda());
             pstmt.setString(2, venda.getTipoPagamento());

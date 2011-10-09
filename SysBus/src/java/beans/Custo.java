@@ -13,6 +13,10 @@ public class Custo implements Serializable {
     public int getCodigoCusto() {
         return codigoCusto;
     }
+    
+    public void setCodigoCusto(int codigoCusto) {
+        this.codigoCusto = codigoCusto;
+    }
 
     public float getPrecoQuilometro() {
         return precoQuilometro;

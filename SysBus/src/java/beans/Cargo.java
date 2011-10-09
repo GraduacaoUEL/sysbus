@@ -18,7 +18,7 @@ public class Cargo implements Serializable {
     public int getCodigoCargo() {
         return codigoCargo;
     }
-    
+
     public void setCodigoCargo(int codigoCargo) {
         this.codigoCargo = codigoCargo;
     }

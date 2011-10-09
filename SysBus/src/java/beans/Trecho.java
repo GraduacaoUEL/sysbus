@@ -17,6 +17,10 @@ public class Trecho {
     public int getCodigoTrecho() {
         return codigoTrecho;
     }
+    
+    public void setCodigoTrecho(int codigoTrecho) {
+        this.codigoTrecho = codigoTrecho;
+    }
 
     public String getOrigemTrecho() {
         return origemTrecho;

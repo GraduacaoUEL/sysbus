@@ -1,19 +1,24 @@
 package beans;
 
+import java.io.Serializable;
 import java.sql.Time;
 
-public class Periodo {
-    
+public class Periodo implements Serializable {
+
     private int codigoPeriodo;
     private Time inicioPeriodo;
     private Time fimPeriodo;
     private float fatorMultiplicacao;
-    
-    public Periodo() {    
+
+    public Periodo() {
     }
 
     public int getCodigoPeriodo() {
         return codigoPeriodo;
+    }
+    
+    public void setCodigoPeriodo(int codigoPeriodo) {
+        this.codigoPeriodo = codigoPeriodo;
     }
 
     public Time getInicioPeriodo() {

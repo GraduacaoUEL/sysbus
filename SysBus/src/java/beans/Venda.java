@@ -20,6 +20,10 @@ public class Venda implements Serializable {
     public int getCodigoVenda() {
         return codigoVenda;
     }
+    
+    public void setCodigoVenda(int codigoVenda) {
+        this.codigoVenda = codigoVenda;
+    }
 
     public Date getDataVenda() {
         return dataVenda;
