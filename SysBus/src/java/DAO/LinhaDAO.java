@@ -28,7 +28,7 @@ public class LinhaDAO {
 
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, venda.getNomeLinha());
-            pstmt.setDate(2, venda.getHoraInicioLinha());
+            pstmt.setTime(2, venda.getHoraInicioLinha());
             pstmt.setInt(3, venda.getDemandaLinha());
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -86,7 +86,7 @@ public class LinhaDAO {
 
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, linha.getNomeLinha());
-            pstmt.setDate(2, linha.getHoraInicioLinha());
+            pstmt.setTime(2, linha.getHoraInicioLinha());
             pstmt.setInt(3, linha.getDemandaLinha());
             pstmt.setInt(4, linha.getCodigoLinha());
             pstmt.executeUpdate();
