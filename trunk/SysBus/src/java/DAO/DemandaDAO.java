@@ -46,14 +46,14 @@ public class DemandaDAO {
         }
     }
 
-    public void delete(int codigo_demanda) {
+    public void delete(int codigoDemanda) {
         try {
             String queryString = "DELETE FROM demanda WHERE codigo_demanda = ?";
             
             connection = getConnection();
             
             pstmt = connection.prepareStatement(queryString);
-            pstmt.setInt(1, codigo_demanda);
+            pstmt.setInt(1, codigoDemanda);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
