@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Colaborador implements Serializable {
 
@@ -49,9 +47,9 @@ public class Colaborador implements Serializable {
     public void setSenhaColaborador(String senhaColaborador) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(senhaColaborador.getBytes(), 0, senhaColaborador.length());
+            md.update(senhaColaborador.getBytes());
             
-            this.senhaColaborador = new BigInteger(1,md.digest()).toString(16);
+            this.senhaColaborador = new BigInteger(1, md.digest()).toString(16);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }        
