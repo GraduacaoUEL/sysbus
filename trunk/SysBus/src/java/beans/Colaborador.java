@@ -1,6 +1,11 @@
 package beans;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Colaborador implements Serializable {
 
@@ -42,7 +47,14 @@ public class Colaborador implements Serializable {
     }
 
     public void setSenhaColaborador(String senhaColaborador) {
-        this.senhaColaborador = senhaColaborador;
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(senhaColaborador.getBytes(), 0, senhaColaborador.length());
+            
+            this.senhaColaborador = new BigInteger(1,md.digest()).toString(16);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Colaborador.class.getName()).log(Level.SEVERE, null, ex);
+        }        
     }
 
     public int getCargoColaborador() {
