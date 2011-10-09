@@ -1,7 +1,6 @@
 package DAO;
 
 import beans.Demanda;
-import beans.Venda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -22,15 +21,13 @@ public class DemandaDAO {
 
     public void add(Demanda demanda) {
         try {
-            String queryString = "INSERT INTO demanda(nome_demanda) VALUES (?)";
-
+            String queryString = "INSERT INTO demanda(nome_demanda) VALUES(?)";
+            
             connection = getConnection();
             
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, demanda.getNomeDemanda());
-            
             pstmt.executeUpdate();
-            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -77,17 +74,15 @@ public class DemandaDAO {
     }
 
     public void update(Demanda demanda) {
-
         try {
-            String queryString = "UPDATE demanda SET nome_demanda = ?,"
-                    + " WHERE codigo_demanda = ?";
+            String queryString = "UPDATE demanda SET nome_demanda = ? WHERE"
+                    + " codigo_demanda = ?";
             
             connection = getConnection();
             
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, demanda.getNomeDemanda());
             pstmt.setInt(2, demanda.getCodigoDemanda());
-            
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -103,7 +98,6 @@ public class DemandaDAO {
                 e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
-
             }
         }
     }

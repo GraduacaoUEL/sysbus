@@ -25,7 +25,9 @@ public class CargoDAO {
                     + " permissao_cargos, permissao_carros,"
                     + " permissao_itinerarios, permissao_vendas,"
                     + " permissao_custos) VALUES(?, ?, ?, ?, ?, ?)";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, cargo.getNomeCargo());
             pstmt.setBoolean(2, cargo.isPermissaoCargos());
@@ -55,7 +57,9 @@ public class CargoDAO {
     public void delete(int codigoCargo) {
         try {
             String queryString = "DELETE FROM cargo WHERE codigo_cargo = ?";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigoCargo);
             pstmt.executeUpdate();
@@ -83,7 +87,9 @@ public class CargoDAO {
                     + " permissao_cargos = ?, permissao_carros = ?,"
                     + " permissao_itinerarios = ?, permissao_vendas = ?,"
                     + " permissao_custos = ? WHERE codigo_cargo = ?";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, cargo.getNomeCargo());
             pstmt.setBoolean(2, cargo.isPermissaoCargos());

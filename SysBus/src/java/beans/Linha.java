@@ -3,14 +3,14 @@ package beans;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Linha implements Serializable{
+public class Linha implements Serializable {
+
     private int codigoLinha;
     private String nomeLinha;
     private Date horaInicioLinha;
     private int demandaLinha;
-    
+
     public Linha() {
-        
     }
 
     public int getCodigoLinha() {
@@ -40,6 +40,4 @@ public class Linha implements Serializable{
     public void setDemandaLinha(int demandaLinha) {
         this.demandaLinha = demandaLinha;
     }
-    
-    
 }

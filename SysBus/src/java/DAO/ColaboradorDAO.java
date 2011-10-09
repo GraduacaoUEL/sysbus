@@ -24,7 +24,9 @@ public class ColaboradorDAO {
             String queryString = "INSERT INTO colaborador(nome_colaborador,"
                     + " login_colaborador, senha_colaborador, cargo_colaborador"
                     + " VALUES(?, ?, ?, ?)";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, colaborador.getNomeColaborador());
             pstmt.setString(2, colaborador.getLoginColaborador());
@@ -53,7 +55,9 @@ public class ColaboradorDAO {
         try {
             String queryString = "DELETE FROM colaborador WHERE"
                     + " codigo_colaborador = ?";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigoColaborador);
             pstmt.executeUpdate();
@@ -80,7 +84,9 @@ public class ColaboradorDAO {
             String queryString = "UPDATE colaborador SET nome_colaborador = ?,"
                     + " login_colaborador = ?, senha_colaborador = ?,"
                     + " cargo_colaborador = ? WHERE codigo_colaborador = ?";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, colaborador.getNomeColaborador());
             pstmt.setString(2, colaborador.getLoginColaborador());
