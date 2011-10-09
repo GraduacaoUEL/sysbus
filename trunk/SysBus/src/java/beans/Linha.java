@@ -1,13 +1,13 @@
 package beans;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Time;
 
 public class Linha implements Serializable {
 
     private int codigoLinha;
     private String nomeLinha;
-    private Date horaInicioLinha;
+    private Time horaInicioLinha;
     private int demandaLinha;
 
     public Linha() {
@@ -29,11 +29,11 @@ public class Linha implements Serializable {
         this.nomeLinha = nomeLinha;
     }
 
-    public Date getHoraInicioLinha() {
+    public Time getHoraInicioLinha() {
         return horaInicioLinha;
     }
 
-    public void setHoraInicioLinha(Date horaInicioLinha) {
+    public void setHoraInicioLinha(Time horaInicioLinha) {
         this.horaInicioLinha = horaInicioLinha;
     }
 
