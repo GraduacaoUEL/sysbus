@@ -52,8 +52,8 @@ public class Colaborador implements Serializable {
             md.update(senhaColaborador.getBytes(), 0, senhaColaborador.length());
             
             this.senhaColaborador = new BigInteger(1,md.digest()).toString(16);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Colaborador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }        
     }
 
