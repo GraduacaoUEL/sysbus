@@ -21,8 +21,8 @@ public class CustoDAO {
 
     public void add(Custo custo) {
         try {
-            String queryString = "INSERT INTO custo(preco_quilometro"
-                    + " VALUES(?, ?)";
+            String queryString = "INSERT INTO custo(preco_quilometro)"
+                    + " VALUES(?)";
             
             connection = getConnection();
             
