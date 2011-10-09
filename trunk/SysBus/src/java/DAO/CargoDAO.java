@@ -97,6 +97,7 @@ public class CargoDAO {
             pstmt.setBoolean(4, cargo.isPermissaoItinerarios());
             pstmt.setBoolean(5, cargo.isPermissaoVendas());
             pstmt.setBoolean(6, cargo.isPermissaoCustos());
+            pstmt.setInt(7, cargo.getCodigoCargo());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
