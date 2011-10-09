@@ -22,17 +22,15 @@ public class LinhaDAO {
     public void add(Linha venda) {
         try {
             String queryString = "INSERT INTO linha(nome_linha,"
-                    + " hora_inicio_linha, demanda_linha) VALUES (?, ?, ?)";
+                    + " hora_inicio_linha, demanda_linha) VALUES(?, ?, ?)";
 
             connection = getConnection();
-            
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, venda.getNomeLinha());
             pstmt.setDate(2, venda.getHoraInicioLinha());
             pstmt.setInt(3, venda.getDemandaLinha());
-            
             pstmt.executeUpdate();
-            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -54,9 +52,9 @@ public class LinhaDAO {
     public void delete(int codigo_linha) {
         try {
             String queryString = "DELETE FROM linha WHERE codigo_linha = ?";
-            
+
             connection = getConnection();
-            
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigo_linha);
             pstmt.executeUpdate();
@@ -79,14 +77,13 @@ public class LinhaDAO {
     }
 
     public void update(Linha linha) {
-
         try {
             String queryString = "UPDATE linha SET nome_linha = ?,"
                     + " hora_inicio_linha = ?, demanda_linha = ? WHERE"
                     + " codigo_linha = ?";
-            
+
             connection = getConnection();
-            
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, linha.getNomeLinha());
             pstmt.setDate(2, linha.getHoraInicioLinha());
@@ -107,7 +104,6 @@ public class LinhaDAO {
                 e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
-
             }
         }
     }

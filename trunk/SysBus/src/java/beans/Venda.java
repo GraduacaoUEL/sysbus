@@ -3,7 +3,8 @@ package beans;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Venda implements Serializable{
+public class Venda implements Serializable {
+
     private int codigoVenda;
     private Date dataVenda;
     private String tipoPagamento;
@@ -12,9 +13,8 @@ public class Venda implements Serializable{
     private boolean viaWeb;
     private int vendedor;
     private int carroVenda;
-    
+
     public Venda() {
-        
     }
 
     public int getCodigoVenda() {

@@ -23,7 +23,9 @@ public class CustoDAO {
         try {
             String queryString = "INSERT INTO custo(preco_quilometro"
                     + " VALUES(?, ?)";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setFloat(1, custo.getPrecoQuilometro());
             pstmt.executeUpdate();
@@ -47,9 +49,10 @@ public class CustoDAO {
 
     public void delete(int codigoCusto) {
         try {
-            String queryString = "DELETE FROM custo WHERE"
-                    + " codigo_custo = ?";
+            String queryString = "DELETE FROM custo WHERE codigo_custo = ?";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigoCusto);
             pstmt.executeUpdate();
@@ -75,7 +78,9 @@ public class CustoDAO {
         try {
             String queryString = "UPDATE custo SET preco_quilometro = ? WHERE"
                     + " codigo_custo = ?";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setFloat(1, custo.getPrecoQuilometro());
             pstmt.setInt(2, custo.getCodigoCusto());

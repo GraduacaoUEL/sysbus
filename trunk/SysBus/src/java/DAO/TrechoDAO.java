@@ -24,7 +24,9 @@ public class TrechoDAO {
             String queryString = "INSERT INTO trecho(origem_trecho,"
                     + " destino_trecho, tempo_trecho, distancia_trecho"
                     + " custo_trecho) VALUES(?, ?, ?, ?, ?)";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, trecho.getOrigemTrecho());
             pstmt.setString(2, trecho.getDestinoTrecho());
@@ -53,7 +55,9 @@ public class TrechoDAO {
     public void delete(int codigoTrecho) {
         try {
             String queryString = "DELETE FROM trecho WHERE codigo_trecho = ?";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigoTrecho);
             pstmt.executeUpdate();
@@ -81,7 +85,9 @@ public class TrechoDAO {
                     + " destino_trecho = ?, tempo_trecho = ?,"
                     + " distancia_trecho = ?, custo_trecho = ? WHERE"
                     + " codigo_trecho = ?";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, trecho.getOrigemTrecho());
             pstmt.setString(2, trecho.getDestinoTrecho());

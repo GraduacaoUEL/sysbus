@@ -23,8 +23,8 @@ public class VendaDAO {
         try {
             String queryString = "INSERT INTO venda(data_venda, tipo_pagamento,"
                     + " valor_venda, passagem_entregue, via_web, vendedor,"
-                    + " carro_venda) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
+                    + " carro_venda) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            
             connection = getConnection();
             
             pstmt = connection.prepareStatement(queryString);
@@ -35,9 +35,7 @@ public class VendaDAO {
             pstmt.setBoolean(5, venda.isViaWeb());
             pstmt.setInt(6, venda.getVendedor());
             pstmt.setInt(7, venda.getCarroVenda());
-            
             pstmt.executeUpdate();
-            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -86,9 +84,10 @@ public class VendaDAO {
     public void update(Venda venda) {
 
         try {
-            String queryString = "UPDATE venda SET data_venda = ?, tipo_pagamento = ?,"
-                    + "  valor_venda = ?, passagem_entregue = ?, via_web = ?,"
-                    + " vendedor = ?, carro_venda = ? WHERE codigo_venda = ?";
+            String queryString = "UPDATE venda SET data_venda = ?,"
+                    + " tipo_pagamento = ?, valor_venda = ?,"
+                    + " passagem_entregue = ?, via_web = ?, vendedor = ?,"
+                    + " carro_venda = ? WHERE codigo_venda = ?";
             
             connection = getConnection();
             
@@ -115,7 +114,6 @@ public class VendaDAO {
                 e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
-
             }
         }
     }
