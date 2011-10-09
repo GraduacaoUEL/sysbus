@@ -16,6 +16,10 @@ public class Linha implements Serializable {
     public int getCodigoLinha() {
         return codigoLinha;
     }
+    
+    public void setCodigoLinha(int codigoLinha) {
+        this.codigoLinha = codigoLinha;
+    }
 
     public String getNomeLinha() {
         return nomeLinha;

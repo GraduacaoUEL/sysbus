@@ -49,7 +49,8 @@ public class ItinerarioDAO {
 
     public void delete(int codigoItinerario) {
         try {
-            String queryString = "DELETE FROM itinerario WHERE codigo_itinerario = ?";
+            String queryString = "DELETE FROM itinerario WHERE"
+                    + " codigo_itinerario = ?";
 
             connection = getConnection();
 
@@ -76,8 +77,8 @@ public class ItinerarioDAO {
 
     public void update(Itinerario itinerario) {
         try {
-            String queryString = "UPDATE itinerario SET nome_itinerario = ?)"
-                    + "  WHERE codigo_itinerario = ?";
+            String queryString = "UPDATE itinerario SET nome_itinerario = ?"
+                    + " WHERE codigo_itinerario = ?";
 
             connection = getConnection();
 

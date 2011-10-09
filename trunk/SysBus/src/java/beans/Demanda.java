@@ -13,6 +13,10 @@ public class Demanda implements Serializable {
     public int getCodigoDemanda() {
         return codigoDemanda;
     }
+    
+    public void setCodigoDemanda(int codigoDemanda) {
+        this.codigoDemanda = codigoDemanda;
+    }
 
     public String getNomeDemanda() {
         return nomeDemanda;

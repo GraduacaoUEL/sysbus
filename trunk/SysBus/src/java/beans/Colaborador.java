@@ -16,6 +16,10 @@ public class Colaborador implements Serializable {
     public int getCodigoColaborador() {
         return codigoColaborador;
     }
+    
+    public void setCodigoColaborador(int codigoColaborador) {
+        this.codigoColaborador = codigoColaborador;
+    }
 
     public String getNomeColaborador() {
         return nomeColaborador;
