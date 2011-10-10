@@ -1,8 +1,9 @@
 package beans;
 
+import java.io.Serializable;
 import java.sql.Time;
 
-public class Trecho {
+public class Trecho implements Serializable {
 
     private int codigoTrecho;
     private String origemTrecho;
