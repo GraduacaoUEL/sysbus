@@ -10,6 +10,7 @@ public class Itinerario implements Serializable {
     public Itinerario() {
     }
 
+    /**@return O código do itinerário.*/
     public int getCodigoItinerario() {
         return codigoItinerario;
     }
@@ -18,6 +19,7 @@ public class Itinerario implements Serializable {
         this.codigoItinerario = codigoItinerario;
     }
 
+    /**@return O nome do itinerário.*/
     public String getNomeItinerario() {
         return nomeItinerario;
     }

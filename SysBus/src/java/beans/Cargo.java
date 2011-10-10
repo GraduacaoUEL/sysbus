@@ -15,6 +15,7 @@ public class Cargo implements Serializable {
     public Cargo() {
     }
 
+    /**@return O código do cargo.*/
     public int getCodigoCargo() {
         return codigoCargo;
     }
@@ -23,6 +24,7 @@ public class Cargo implements Serializable {
         this.codigoCargo = codigoCargo;
     }
 
+    /**@return O nome do cargo.*/
     public String getNomeCargo() {
         return nomeCargo;
     }
@@ -31,6 +33,8 @@ public class Cargo implements Serializable {
         this.nomeCargo = nomeCargo;
     }
 
+    /**@return <code>true</code> caso o cargo tem permissão no módulo "cargo", 
+     * caso contrário o retorno <code>false</code>.*/
     public boolean isPermissaoCargos() {
         return permissaoCargos;
     }
@@ -39,6 +43,8 @@ public class Cargo implements Serializable {
         this.permissaoCargos = permissaoCargos;
     }
 
+    /**@return <code>true</code> caso o cargo tenha permissão no módulo "carro", 
+     * caso contrário retorna <code>false</code>.*/
     public boolean isPermissaoCarros() {
         return permissaoCarros;
     }
@@ -47,6 +53,8 @@ public class Cargo implements Serializable {
         this.permissaoCarros = permissaoCarros;
     }
 
+    /**@return <code>true</code> caso o cargo tem permissão no módulo
+     * "itinerarios", caso contrário retorna <code>false</code>.*/
     public boolean isPermissaoItinerarios() {
         return permissaoItinerarios;
     }
@@ -55,6 +63,8 @@ public class Cargo implements Serializable {
         this.permissaoItinerarios = permissaoItinerarios;
     }
 
+    /**@return <code>true</code> caso o cargo tem permissão no módulo "vendas", 
+     * caso contrário retorna <code>false</code>.*/
     public boolean isPermissaoVendas() {
         return permissaoVendas;
     }
@@ -63,6 +73,8 @@ public class Cargo implements Serializable {
         this.permissaoVendas = permissaoVendas;
     }
 
+    /**@return <code>true</code> caso o cargo tem permissão no módulo "custos", 
+     * caso contrário retorna <code>false</code>.*/
     public boolean isPermissaoCustos() {
         return permissaoCustos;
     }

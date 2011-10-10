@@ -13,6 +13,7 @@ public class Linha implements Serializable {
     public Linha() {
     }
 
+    /**@return O código da linha.*/
     public int getCodigoLinha() {
         return codigoLinha;
     }
@@ -21,6 +22,7 @@ public class Linha implements Serializable {
         this.codigoLinha = codigoLinha;
     }
 
+    /**@return O nome da linha.*/
     public String getNomeLinha() {
         return nomeLinha;
     }
@@ -29,6 +31,7 @@ public class Linha implements Serializable {
         this.nomeLinha = nomeLinha;
     }
 
+    /**@return O hora de início da linha.*/
     public Time getHoraInicioLinha() {
         return horaInicioLinha;
     }
@@ -37,6 +40,7 @@ public class Linha implements Serializable {
         this.horaInicioLinha = horaInicioLinha;
     }
 
+    /**@return O código da demanda à qual a linha está associada.*/
     public int getDemandaLinha() {
         return demandaLinha;
     }

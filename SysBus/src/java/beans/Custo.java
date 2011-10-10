@@ -10,6 +10,7 @@ public class Custo implements Serializable {
     public Custo() {
     }
 
+    /**@return O código do custo.*/
     public int getCodigoCusto() {
         return codigoCusto;
     }
@@ -18,6 +19,7 @@ public class Custo implements Serializable {
         this.codigoCusto = codigoCusto;
     }
 
+    /**@return O custo do km.*/
     public float getPrecoQuilometro() {
         return precoQuilometro;
     }

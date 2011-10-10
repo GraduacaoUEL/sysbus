@@ -16,6 +16,7 @@ public class Colaborador implements Serializable {
     public Colaborador() {
     }
 
+    /**@return O código do colaborador.*/
     public int getCodigoColaborador() {
         return codigoColaborador;
     }
@@ -24,6 +25,7 @@ public class Colaborador implements Serializable {
         this.codigoColaborador = codigoColaborador;
     }
 
+    /**@return O nome do colaborador.*/
     public String getNomeColaborador() {
         return nomeColaborador;
     }
@@ -32,6 +34,7 @@ public class Colaborador implements Serializable {
         this.nomeColaborador = nomeColaborador;
     }
 
+    /**@return O login do colaborador.*/
     public String getLoginColaborador() {
         return loginColaborador;
     }
@@ -40,10 +43,19 @@ public class Colaborador implements Serializable {
         this.loginColaborador = loginColaborador;
     }
 
+    /**@return A senha do colaborador. A senha é um hash MD5 gerado a partir
+      da senha.*/
     public String getSenhaColaborador() {
         return senhaColaborador;
     }
 
+    /**
+     * Atribui uma senha ao colaborador. Antes de ser armazenada no banco, 
+     * a senha passa por um hash MD5
+     *
+     * @param senhaColaborador Senha que será armazenada no banco.
+     *            A senha não poderá ser <code>null</code>.
+     */
     public void setSenhaColaborador(String senhaColaborador) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -55,6 +67,7 @@ public class Colaborador implements Serializable {
         }        
     }
 
+    /** @return O código do cargo ao qual o colaborador está associado.*/
     public int getCargoColaborador() {
         return cargoColaborador;
     }

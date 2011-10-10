@@ -10,6 +10,7 @@ public class Demanda implements Serializable {
     public Demanda() {
     }
 
+    /**@return O código da demanda.*/
     public int getCodigoDemanda() {
         return codigoDemanda;
     }
@@ -18,6 +19,7 @@ public class Demanda implements Serializable {
         this.codigoDemanda = codigoDemanda;
     }
 
+    /**@return O nome da demanda.*/
     public String getNomeDemanda() {
         return nomeDemanda;
     }

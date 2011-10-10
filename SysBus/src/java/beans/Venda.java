@@ -16,7 +16,8 @@ public class Venda implements Serializable {
 
     public Venda() {
     }
-
+    
+    /**@return  O código da venda.*/
     public int getCodigoVenda() {
         return codigoVenda;
     }
@@ -24,7 +25,8 @@ public class Venda implements Serializable {
     public void setCodigoVenda(int codigoVenda) {
         this.codigoVenda = codigoVenda;
     }
-
+    
+    /**@return  A data da venda.*/
     public Date getDataVenda() {
         return dataVenda;
     }
@@ -32,7 +34,8 @@ public class Venda implements Serializable {
     public void setDataVenda(Date dataVenda) {
         this.dataVenda = dataVenda;
     }
-
+    
+    /**@return  O tipo de pagamento usado na venda.*/
     public String getTipoPagamento() {
         return tipoPagamento;
     }
@@ -41,6 +44,7 @@ public class Venda implements Serializable {
         this.tipoPagamento = tipoPagamento;
     }
 
+    /**@return  o valor da venda.*/
     public float getValorVenda() {
         return valorVenda;
     }
@@ -49,6 +53,8 @@ public class Venda implements Serializable {
         this.valorVenda = valorVenda;
     }
 
+    /**@return  <code>true</code> se a passagem foi entregue, caso contrário
+     * retorna <code>false</code>.*/
     public boolean isPassagemEntregue() {
         return passagemEntregue;
     }
@@ -57,6 +63,8 @@ public class Venda implements Serializable {
         this.passagemEntregue = passagemEntregue;
     }
 
+    /**@return  <code>true</code> se a venda foi efetuada via web, caso contrário
+     * retorna <code>false</code>.*/
     public boolean isViaWeb() {
         return viaWeb;
     }
@@ -65,6 +73,7 @@ public class Venda implements Serializable {
         this.viaWeb = viaWeb;
     }
 
+    /**@return  o código do vendedor responsável pela venda.*/
     public int getVendedor() {
         return vendedor;
     }
@@ -72,7 +81,8 @@ public class Venda implements Serializable {
     public void setVendedor(int vendedor) {
         this.vendedor = vendedor;
     }
-
+    
+    /**@return o código do carro que será usado na viagem.*/
     public int getCarroVenda() {
         return carroVenda;
     }
