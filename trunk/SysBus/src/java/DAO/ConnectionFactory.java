@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-    String driverClassName = "org.postgresql.Driver";
-    String connectionUrl = "jdbc:postgresql://localhost:5432/sysbus";
-    String dbUser = "sysbus";
-    String dbPwd = "bd17";
+    private String driverClassName = "org.postgresql.Driver";
+    private String connectionUrl = "jdbc:postgresql://localhost:5432/sysbus";
+    private String dbUser = "sysbus";
+    private String dbPwd = "bd17";
     private static ConnectionFactory connectionFactory = null;
 
     private ConnectionFactory() {
