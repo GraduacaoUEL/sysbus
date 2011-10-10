@@ -13,6 +13,7 @@ public class Periodo implements Serializable {
     public Periodo() {
     }
 
+    /**@return O código do período.*/
     public int getCodigoPeriodo() {
         return codigoPeriodo;
     }
@@ -21,6 +22,7 @@ public class Periodo implements Serializable {
         this.codigoPeriodo = codigoPeriodo;
     }
 
+    /**@return A hora de início do período. O formato da hora é "hh:mm:ss".*/
     public Time getInicioPeriodo() {
         return inicioPeriodo;
     }
@@ -29,6 +31,7 @@ public class Periodo implements Serializable {
         this.inicioPeriodo = inicioPeriodo;
     }
 
+    /**@return A hora de fim do período. O formato da hora é "hh:mm:ss".*/
     public Time getFimPeriodo() {
         return fimPeriodo;
     }
@@ -37,6 +40,8 @@ public class Periodo implements Serializable {
         this.fimPeriodo = fimPeriodo;
     }
 
+    /**@return O fator de múltiplicação do período. 
+     O Fator de múltiplicação sempre será maior que zero.*/
     public float getFatorMultiplicacao() {
         return fatorMultiplicacao;
     }

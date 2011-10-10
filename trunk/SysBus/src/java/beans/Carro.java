@@ -11,6 +11,7 @@ public class Carro implements Serializable {
     public Carro() {
     }
 
+    /** @return O código do carro*/
     public int getCodigoCarro() {
         return codigoCarro;
     }
@@ -19,6 +20,7 @@ public class Carro implements Serializable {
         this.codigoCarro = codigoCarro;
     }
 
+    /**@return O número de passageiros (sentados) que o ônibus suporta.*/
     public int getNumeroDePassageiros() {
         return numeroDePassageiros;
     }
@@ -27,6 +29,7 @@ public class Carro implements Serializable {
         this.numeroDePassageiros = numeroDePassageiros;
     }
 
+    /**@return O código da linha à qual o carro está vinculado.*/
     public int getLinhaCarro() {
         return linhaCarro;
     }

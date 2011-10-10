@@ -15,6 +15,7 @@ public class Trecho implements Serializable {
     public Trecho() {
     }
 
+    /**@return O código do trecho.*/
     public int getCodigoTrecho() {
         return codigoTrecho;
     }
@@ -23,6 +24,7 @@ public class Trecho implements Serializable {
         this.codigoTrecho = codigoTrecho;
     }
 
+    /**@return A cidade de origem do trecho.*/
     public String getOrigemTrecho() {
         return origemTrecho;
     }
@@ -31,6 +33,7 @@ public class Trecho implements Serializable {
         this.origemTrecho = origemTrecho;
     }
 
+    /**@return A cidade de destino do trecho.*/
     public String getDestinoTrecho() {
         return destinoTrecho;
     }
@@ -39,6 +42,7 @@ public class Trecho implements Serializable {
         this.destinoTrecho = destinoTrecho;
     }
 
+    /**@return O tempo usado para percorrer o trecho. O formato é "hh:mm:ss"*/
     public Time getTempoTrecho() {
         return tempoTrecho;
     }
@@ -47,6 +51,8 @@ public class Trecho implements Serializable {
         this.tempoTrecho = tempoTrecho;
     }
 
+    /**@return A distância entre a cidade de origem à cidade de origem.
+     * A distância é medida em km.*/
     public float getDistanciaTrecho() {
         return distanciaTrecho;
     }
@@ -55,6 +61,7 @@ public class Trecho implements Serializable {
         this.distanciaTrecho = distanciaTrecho;
     }
 
+    /**@return O custo para para se percorrer o trecho, o custo é dado em R$.*/
     public int getCustoTrecho() {
         return custoTrecho;
     }
