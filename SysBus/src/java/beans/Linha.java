@@ -40,7 +40,7 @@ public class Linha implements Serializable {
         this.horaInicioLinha = horaInicioLinha;
     }
 
-    /**@return O código da demanda à qual a linha está associada.*/
+    /**@return O código da demanda à qual a linha está vinculada.*/
     public int getDemandaLinha() {
         return demandaLinha;
     }
