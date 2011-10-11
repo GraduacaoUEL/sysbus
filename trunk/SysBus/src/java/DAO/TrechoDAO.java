@@ -19,7 +19,7 @@ public class TrechoDAO {
         return conn;
     }
 
-    public void add(Trecho trecho) {
+    public void insert(Trecho trecho) {
         try {
             String queryString = "INSERT INTO trecho(origem_trecho,"
                     + " destino_trecho, tempo_trecho, distancia_trecho"

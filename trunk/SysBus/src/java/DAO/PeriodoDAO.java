@@ -19,7 +19,7 @@ public class PeriodoDAO {
         return conn;
     }
 
-    public void add(Periodo periodo ) {
+    public void insert(Periodo periodo ) {
         try {
             String queryString = "INSERT INTO periodo(inicio_periodo,"
                     + " fim_periodo, fator_multiplicacao) VALUES(?, ?, ?)";

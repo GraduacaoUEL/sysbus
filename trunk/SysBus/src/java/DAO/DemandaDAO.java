@@ -19,7 +19,7 @@ public class DemandaDAO {
         return conn;
     }
 
-    public void add(Demanda demanda) {
+    public void insert(Demanda demanda) {
         try {
             String queryString = "INSERT INTO demanda(nome_demanda) VALUES(?)";
             

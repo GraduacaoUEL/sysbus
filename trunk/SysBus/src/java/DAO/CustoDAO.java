@@ -19,7 +19,7 @@ public class CustoDAO {
         return conn;
     }
 
-    public void add(Custo custo) {
+    public void insert(Custo custo) {
         try {
             String queryString = "INSERT INTO custo(preco_quilometro)"
                     + " VALUES(?)";

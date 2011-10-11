@@ -19,7 +19,7 @@ public class ColaboradorDAO {
         return conn;
     }
 
-    public void add(Colaborador colaborador) {
+    public void insert(Colaborador colaborador) {
         try {
             String queryString = "INSERT INTO colaborador(nome_colaborador,"
                     + " login_colaborador, senha_colaborador,"

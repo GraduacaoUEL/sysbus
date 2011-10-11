@@ -19,7 +19,7 @@ public class LinhaDAO {
         return conn;
     }
 
-    public void add(Linha venda) {
+    public void insert(Linha venda) {
         try {
             String queryString = "INSERT INTO linha(nome_linha,"
                     + " hora_inicio_linha, demanda_linha) VALUES(?, ?, ?)";

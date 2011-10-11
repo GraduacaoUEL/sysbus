@@ -19,7 +19,7 @@ public class CarroDAO {
         return conn;
     }
 
-    public void add(Carro carro) {
+    public void insert(Carro carro) {
         try {
             String queryString = "INSERT INTO carro(codigo_carro,"
                     + " numero_passageiros, linha_carro) VALUES(?, ?, ?)";
