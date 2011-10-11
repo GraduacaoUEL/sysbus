@@ -1,12 +1,12 @@
 package beans;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Venda implements Serializable {
 
     private int codigoVenda;
-    private Date dataVenda;
+    private Timestamp dataHoraVenda;
     private String tipoPagamento;
     private float valorVenda;
     private boolean passagemEntregue;
@@ -37,19 +37,19 @@ public class Venda implements Serializable {
     }
     
     /**
-     * Retorna a data da venda.
-     * @return Data da venda.
+     * Retorna a data e a hora da venda.
+     * @return Data e hora da venda.
      */
-    public Date getDataVenda() {
-        return dataVenda;
+    public Timestamp getDataHoraVenda() {
+        return dataHoraVenda;
     }
     
     /**
-     * Atribui a data da venda.
-     * @param dataVenda Data da venda.
+     * Atribui a data e a hora da venda.
+     * @param dataVenda Data e hora da venda.
      */
-    public void setDataVenda(Date dataVenda) {
-        this.dataVenda = dataVenda;
+    public void setDataHoraVenda(Timestamp dataHoraVenda) {
+        this.dataHoraVenda = dataHoraVenda;
     }
     
     /**
