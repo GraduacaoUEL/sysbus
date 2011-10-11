@@ -9,43 +9,73 @@ public class Periodo implements Serializable {
     private Time inicioPeriodo;
     private Time fimPeriodo;
     private float fatorMultiplicacao;
-
+    
+    /**
+     * Construtor vazio.
+     */
     public Periodo() {
     }
-
-    /**@return O código do período.*/
+    
+    /**
+     * Retorna o código do período.
+     * @return Código do período.
+     */
     public int getCodigoPeriodo() {
         return codigoPeriodo;
     }
     
+    /**
+     * Atribui o código do período.
+     * @param codigoPeriodo Código do período.
+     */
     public void setCodigoPeriodo(int codigoPeriodo) {
         this.codigoPeriodo = codigoPeriodo;
     }
-
-    /**@return A hora de início do período. O formato da hora é "hh:mm:ss".*/
+    
+    /**
+     * Retorna a hora de início do período no formato "hh:mm:ss".
+     * @return Hora de início do período.
+     */
     public Time getInicioPeriodo() {
         return inicioPeriodo;
     }
-
+    
+    /**
+     * Atribui a hora de início do período no formato "hh:mm:ss".
+     * @param inicioPeriodo Hora de início do período.
+     */
     public void setInicioPeriodo(Time inicioPeriodo) {
         this.inicioPeriodo = inicioPeriodo;
     }
-
-    /**@return A hora de fim do período. O formato da hora é "hh:mm:ss".*/
+    
+    /**
+     * Retorna a hora de fim do período no formato "hh:mm:ss".
+     * @return Hora de fim do período.
+     */
     public Time getFimPeriodo() {
         return fimPeriodo;
     }
-
+    
+    /**
+     * Atribui a hora de fim do período no formato "hh:mm:ss".
+     * @param fimPeriodo Hora de fim do período.
+     */
     public void setFimPeriodo(Time fimPeriodo) {
         this.fimPeriodo = fimPeriodo;
     }
 
-    /**@return O fator de multiplicação do período. O fator de multiplicação
-     * sempre será maior que zero.*/
+    /**
+     * Retorna o fator de multiplicação.
+     * @return Fator de multiplicação.
+     */
     public float getFatorMultiplicacao() {
         return fatorMultiplicacao;
     }
-
+    
+    /**
+     * Atribui o fator de multiplicação.
+     * @param fatorMultiplicacao Fator de multiplicação.
+     */
     public void setFatorMultiplicacao(float fatorMultiplicacao) {
         this.fatorMultiplicacao = fatorMultiplicacao;
     }
