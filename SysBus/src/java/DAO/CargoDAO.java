@@ -19,7 +19,7 @@ public class CargoDAO {
         return conn;
     }
 
-    public void add(Cargo cargo) {
+    public void insert(Cargo cargo) {
         try {
             String queryString = "INSERT INTO cargo(nome_cargo,"
                     + " permissao_cargos, permissao_carros,"

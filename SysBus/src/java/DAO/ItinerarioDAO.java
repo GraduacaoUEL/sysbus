@@ -19,7 +19,7 @@ public class ItinerarioDAO {
         return conn;
     }
 
-    public void add(Itinerario itinerario) {
+    public void insert(Itinerario itinerario) {
         try {
             String queryString = "INSERT INTO itinerario(nome_itinerario)"
                     + " VALUES(?)";

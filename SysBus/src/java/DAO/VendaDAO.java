@@ -19,7 +19,7 @@ public class VendaDAO {
         return conn;
     }
 
-    public void add(Venda venda) {
+    public void insert(Venda venda) {
         try {
             String queryString = "INSERT INTO venda(data_venda, tipo_pagamento,"
                     + " valor_venda, passagem_entregue, via_web, vendedor,"
