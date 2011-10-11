@@ -28,7 +28,7 @@ public class VendaDAO {
             connection = getConnection();
 
             pstmt = connection.prepareStatement(queryString);
-            pstmt.setDate(1, venda.getDataVenda());
+            pstmt.setTimestamp(1, venda.getDataHoraVenda());
             pstmt.setString(2, venda.getTipoPagamento());
             pstmt.setFloat(3, venda.getValorVenda());
             pstmt.setBoolean(4, venda.isPassagemEntregue());
@@ -92,7 +92,7 @@ public class VendaDAO {
             connection = getConnection();
 
             pstmt = connection.prepareStatement(queryString);
-            pstmt.setDate(1, venda.getDataVenda());
+            pstmt.setTimestamp(1, venda.getDataHoraVenda());
             pstmt.setString(2, venda.getTipoPagamento());
             pstmt.setFloat(3, venda.getValorVenda());
             pstmt.setBoolean(4, venda.isPassagemEntregue());

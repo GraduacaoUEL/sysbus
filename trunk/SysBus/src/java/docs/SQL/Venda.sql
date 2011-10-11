@@ -3,7 +3,7 @@ CREATE TABLE Venda
     codigo_venda INTEGER,
     data_venda TIMESTAMP NOT NULL,
     tipo_pagamento VARCHAR(8) DEFAULT 'Dinheiro',
-    valor_venda DECIMAL(3,2) NOT NULL,
+    valor_venda NUMERIC(5,2) NOT NULL,
     passagem_entregue BOOLEAN DEFAULT FALSE,
     via_web BOOLEAN DEFAULT FALSE,
     vendedor INTEGER,
