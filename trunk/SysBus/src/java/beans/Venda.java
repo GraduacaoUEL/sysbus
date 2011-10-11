@@ -17,7 +17,7 @@ public class Venda implements Serializable {
     public Venda() {
     }
     
-    /**@return  O código da venda.*/
+    /**@return O código da venda.*/
     public int getCodigoVenda() {
         return codigoVenda;
     }
@@ -26,7 +26,7 @@ public class Venda implements Serializable {
         this.codigoVenda = codigoVenda;
     }
     
-    /**@return  A data da venda.*/
+    /**@return A data da venda.*/
     public Date getDataVenda() {
         return dataVenda;
     }
@@ -35,7 +35,7 @@ public class Venda implements Serializable {
         this.dataVenda = dataVenda;
     }
     
-    /**@return  O tipo de pagamento usado na venda.*/
+    /**@return O tipo de pagamento usado na venda.*/
     public String getTipoPagamento() {
         return tipoPagamento;
     }
@@ -44,7 +44,7 @@ public class Venda implements Serializable {
         this.tipoPagamento = tipoPagamento;
     }
 
-    /**@return  o valor da venda.*/
+    /**@return O valor da venda.*/
     public float getValorVenda() {
         return valorVenda;
     }
@@ -53,8 +53,7 @@ public class Venda implements Serializable {
         this.valorVenda = valorVenda;
     }
 
-    /**@return  <code>true</code> se a passagem foi entregue, caso contrário
-     * retorna <code>false</code>.*/
+    /**@return <code>true</code> se a passagem foi entregue.*/
     public boolean isPassagemEntregue() {
         return passagemEntregue;
     }
@@ -63,8 +62,7 @@ public class Venda implements Serializable {
         this.passagemEntregue = passagemEntregue;
     }
 
-    /**@return  <code>true</code> se a venda foi efetuada via web, caso contrário
-     * retorna <code>false</code>.*/
+    /**@return <code>true</code> se a venda foi efetuada via web.*/
     public boolean isViaWeb() {
         return viaWeb;
     }
@@ -73,7 +71,7 @@ public class Venda implements Serializable {
         this.viaWeb = viaWeb;
     }
 
-    /**@return  o código do vendedor responsável pela venda.*/
+    /**@return O código do vendedor responsável pela venda.*/
     public int getVendedor() {
         return vendedor;
     }
@@ -82,7 +80,7 @@ public class Venda implements Serializable {
         this.vendedor = vendedor;
     }
     
-    /**@return o código do carro que será usado na viagem.*/
+    /**@return O código do carro que será usado na viagem.*/
     public int getCarroVenda() {
         return carroVenda;
     }

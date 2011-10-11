@@ -40,8 +40,8 @@ public class Periodo implements Serializable {
         this.fimPeriodo = fimPeriodo;
     }
 
-    /**@return O fator de múltiplicação do período. 
-     O Fator de múltiplicação sempre será maior que zero.*/
+    /**@return O fator de multiplicação do período. O fator de multiplicação
+     * sempre será maior que zero.*/
     public float getFatorMultiplicacao() {
         return fatorMultiplicacao;
     }
