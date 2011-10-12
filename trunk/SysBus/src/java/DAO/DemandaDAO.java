@@ -9,7 +9,10 @@ public class DemandaDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-
+    
+    /**
+     * Construtor vazio.
+     */
     public DemandaDAO() {
     }
 
@@ -18,7 +21,11 @@ public class DemandaDAO {
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-
+    
+    /**
+     * Insere uma demanda no banco de dados.
+     * @param demanda Demanda a ser inserida.
+     */
     public void insert(Demanda demanda) {
         try {
             String queryString = "INSERT INTO demanda(nome_demanda) VALUES(?)";
@@ -45,7 +52,11 @@ public class DemandaDAO {
             }
         }
     }
-
+    
+    /**
+     * Remove uma demanda do banco de dados.
+     * @param codigoDemanda Código da demanda a ser removida.
+     */
     public void delete(int codigoDemanda) {
         try {
             String queryString = "DELETE FROM demanda WHERE codigo_demanda = ?";
@@ -72,7 +83,11 @@ public class DemandaDAO {
             }
         }
     }
-
+    
+    /**
+     * Atualiza uma demanda no banco de dados.
+     * @param demanda Demanda a ser atualizada.
+     */
     public void update(Demanda demanda) {
         try {
             String queryString = "UPDATE demanda SET nome_demanda = ? WHERE"

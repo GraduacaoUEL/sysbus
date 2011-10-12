@@ -9,7 +9,10 @@ public class VendaDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-
+    
+    /**
+     * Construtor vazio.
+     */
     public VendaDAO() {
     }
 
@@ -18,7 +21,11 @@ public class VendaDAO {
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-
+    
+    /**
+     * Insere uma venda no banco de dados.
+     * @param venda Venda a ser inserida.
+     */
     public void insert(Venda venda) {
         try {
             String queryString = "INSERT INTO venda(data_venda, tipo_pagamento,"
@@ -53,7 +60,11 @@ public class VendaDAO {
             }
         }
     }
-
+    
+    /**
+     * Remove uma venda do banco de dados.
+     * @param codigoVenda Código da venda a ser removida.
+     */
     public void delete(int codigoVenda) {
         try {
             String queryString = "DELETE FROM venda WHERE codigo_venda = ?";
@@ -80,9 +91,12 @@ public class VendaDAO {
             }
         }
     }
-
+    
+    /**
+     * Atualiza uma venda no banco de dados.
+     * @param venda Venda a ser atualizada.
+     */
     public void update(Venda venda) {
-
         try {
             String queryString = "UPDATE venda SET data_venda = ?,"
                     + " tipo_pagamento = ?, valor_venda = ?,"

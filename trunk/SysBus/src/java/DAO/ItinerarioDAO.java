@@ -9,7 +9,10 @@ public class ItinerarioDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-
+    
+    /**
+     * Construtor vazio.
+     */
     public ItinerarioDAO() {
     }
 
@@ -18,7 +21,11 @@ public class ItinerarioDAO {
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-
+    
+    /**
+     * Insere um itinerário no banco de dados.
+     * @param itinerario Itinerário a ser inserido.
+     */
     public void insert(Itinerario itinerario) {
         try {
             String queryString = "INSERT INTO itinerario(nome_itinerario)"
@@ -46,7 +53,11 @@ public class ItinerarioDAO {
             }
         }
     }
-
+    
+    /**
+     * Remove um itinerário do banco de dados.
+     * @param codigoItinerario Código do itinerário a ser removido.
+     */
     public void delete(int codigoItinerario) {
         try {
             String queryString = "DELETE FROM itinerario WHERE"
@@ -74,7 +85,11 @@ public class ItinerarioDAO {
             }
         }
     }
-
+    
+    /**
+     * Atualiza um itinerário no banco de dados.
+     * @param itinerario Itinerário a ser atualizado.
+     */
     public void update(Itinerario itinerario) {
         try {
             String queryString = "UPDATE itinerario SET nome_itinerario = ?"

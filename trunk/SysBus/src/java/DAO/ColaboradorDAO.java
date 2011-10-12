@@ -9,7 +9,10 @@ public class ColaboradorDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-
+    
+    /**
+     * Construtor vazio.
+     */
     public ColaboradorDAO() {
     }
 
@@ -18,7 +21,11 @@ public class ColaboradorDAO {
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-
+    
+    /**
+     * Insere um colaborador no banco de dados.
+     * @param colaborador Colaborador a ser inserido.
+     */
     public void insert(Colaborador colaborador) {
         try {
             String queryString = "INSERT INTO colaborador(nome_colaborador,"
@@ -50,7 +57,11 @@ public class ColaboradorDAO {
             }
         }
     }
-
+    
+    /**
+     * Remove um colaborador do banco de dados.
+     * @param codigoColaborador Código do colaborador a ser removido.
+     */
     public void delete(int codigoColaborador) {
         try {
             String queryString = "DELETE FROM colaborador WHERE"
@@ -78,7 +89,11 @@ public class ColaboradorDAO {
             }
         }
     }
-
+    
+    /**
+     * Atualiza um colaborador no banco de dados.
+     * @param colaborador Colaborador a ser atualizado.
+     */
     public void update(Colaborador colaborador) {
         try {
             String queryString = "UPDATE colaborador SET nome_colaborador = ?,"

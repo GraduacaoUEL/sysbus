@@ -20,14 +20,20 @@ public class ConnectionFactory {
         }
     }
 
-    /**@return Um objeto de conexão.*/
+    /**
+     * Retorna um objeto de conexão.
+     * @return Objeto de conexão.
+     */
     public Connection getConnection() throws SQLException {
         Connection conn = null;
         conn = DriverManager.getConnection(connectionUrl, dbUser, dbPwd);
         return conn;
     }
 
-    /**@return Uma instância única de <code>ConnectionFactory</code>.*/
+    /**
+     * Retorna uma instância única de <code>ConnectionFactory</code>.
+     * @return Instância única de <code>ConnectionFactory</code>.
+     */
     public static ConnectionFactory getInstance() {
         if (connectionFactory == null) {
             connectionFactory = new ConnectionFactory();

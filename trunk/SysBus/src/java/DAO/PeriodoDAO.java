@@ -9,7 +9,10 @@ public class PeriodoDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-
+    
+    /**
+     * Construtor vazio.
+     */
     public PeriodoDAO() {
     }
 
@@ -18,8 +21,12 @@ public class PeriodoDAO {
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-
-    public void insert(Periodo periodo ) {
+    
+    /**
+     * Insere um período no banco de dados.
+     * @param periodo Período a ser inserido.
+     */
+    public void insert(Periodo periodo) {
         try {
             String queryString = "INSERT INTO periodo(inicio_periodo,"
                     + " fim_periodo, fator_multiplicacao) VALUES(?, ?, ?)";
@@ -48,7 +55,11 @@ public class PeriodoDAO {
             }
         }
     }
-
+    
+    /**
+     * Remove um período do banco de dados.
+     * @param codigoPeriodo Código do período a ser removido.
+     */
     public void delete(int codigoPeriodo) {
         try {
             String queryString = "DELETE FROM periodo WHERE codigo_periodo = ?";
@@ -75,7 +86,11 @@ public class PeriodoDAO {
             }
         }
     }
-
+    
+    /**
+     * Atualiza um período no banco de dados.
+     * @param periodo Período a ser atualizado.
+     */
     public void update(Periodo periodo) {
         try {
             String queryString = "UPDATE periodo SET inicio_periodo = ?,"

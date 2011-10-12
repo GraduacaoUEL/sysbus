@@ -9,16 +9,23 @@ public class CargoDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-
+    
+    /**
+     * Construtor vazio.
+     */
     public CargoDAO() {
     }
-
+    
     private Connection getConnection() throws SQLException {
         Connection conn;
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-
+    
+    /**
+     * Insere um cargo no banco de dados.
+     * @param cargo Cargo a ser inserido.
+     */
     public void insert(Cargo cargo) {
         try {
             String queryString = "INSERT INTO cargo(nome_cargo,"
@@ -53,7 +60,11 @@ public class CargoDAO {
             }
         }
     }
-
+    
+    /**
+     * Remove um cargo do banco de dados.
+     * @param codigoCargo Código do cargo a ser removido.
+     */
     public void delete(int codigoCargo) {
         try {
             String queryString = "DELETE FROM cargo WHERE codigo_cargo = ?";
@@ -80,7 +91,11 @@ public class CargoDAO {
             }
         }
     }
-
+    
+    /**
+     * Atualiza um cargo no banco de dados.
+     * @param cargo Cargo a ser atualizado.
+     */
     public void update(Cargo cargo) {
         try {
             String queryString = "UPDATE cargo SET nome_cargo = ?,"
