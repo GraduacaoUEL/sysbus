@@ -9,7 +9,10 @@ public class LinhaDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-
+    
+    /**
+     * Construtor vazio.
+     */
     public LinhaDAO() {
     }
 
@@ -18,8 +21,12 @@ public class LinhaDAO {
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-
-    public void insert(Linha venda) {
+    
+    /**
+     * Insere uma linha no banco de dados.
+     * @param linha Linha a ser inserida.
+     */
+    public void insert(Linha linha) {
         try {
             String queryString = "INSERT INTO linha(nome_linha,"
                     + " hora_inicio_linha, demanda_linha) VALUES(?, ?, ?)";
@@ -27,9 +34,9 @@ public class LinhaDAO {
             connection = getConnection();
 
             pstmt = connection.prepareStatement(queryString);
-            pstmt.setString(1, venda.getNomeLinha());
-            pstmt.setTime(2, venda.getHoraInicioLinha());
-            pstmt.setInt(3, venda.getDemandaLinha());
+            pstmt.setString(1, linha.getNomeLinha());
+            pstmt.setTime(2, linha.getHoraInicioLinha());
+            pstmt.setInt(3, linha.getDemandaLinha());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,7 +55,11 @@ public class LinhaDAO {
             }
         }
     }
-
+    
+    /**
+     * Remove uma linha do banco de dados.
+     * @param codigoLinha Código da linha a ser removida.
+     */
     public void delete(int codigoLinha) {
         try {
             String queryString = "DELETE FROM linha WHERE codigo_linha = ?";
@@ -75,7 +86,11 @@ public class LinhaDAO {
             }
         }
     }
-
+    
+    /**
+     * Atualiza uma linha no banco de dados.
+     * @param linha Linha a ser atualizada.
+     */
     public void update(Linha linha) {
         try {
             String queryString = "UPDATE linha SET nome_linha = ?,"

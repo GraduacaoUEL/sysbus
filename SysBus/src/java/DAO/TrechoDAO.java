@@ -9,7 +9,10 @@ public class TrechoDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-
+    
+    /**
+     * Construtor vazio.
+     */
     public TrechoDAO() {
     }
 
@@ -18,7 +21,11 @@ public class TrechoDAO {
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-
+    
+    /**
+     * Insere um trecho no banco de dados.
+     * @param trecho Trecho a ser inserido.
+     */
     public void insert(Trecho trecho) {
         try {
             String queryString = "INSERT INTO trecho(origem_trecho,"
@@ -51,7 +58,11 @@ public class TrechoDAO {
             }
         }
     }
-
+    
+    /**
+     * Remove um trecho do banco de dados.
+     * @param codigoTrecho Código do trecho a ser removido.
+     */
     public void delete(int codigoTrecho) {
         try {
             String queryString = "DELETE FROM trecho WHERE codigo_trecho = ?";
@@ -78,7 +89,11 @@ public class TrechoDAO {
             }
         }
     }
-
+    
+    /**
+     * Atualiza um trecho no banco de dados.
+     * @param trecho Trecho a ser atualizado.
+     */
     public void update(Trecho trecho) {
         try {
             String queryString = "UPDATE trecho SET origem_trecho = ?,"

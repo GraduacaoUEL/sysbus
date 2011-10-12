@@ -9,7 +9,10 @@ public class CustoDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-
+    
+    /**
+     * Construtor vazio.
+     */
     public CustoDAO() {
     }
 
@@ -18,7 +21,11 @@ public class CustoDAO {
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-
+    
+    /**
+     * Insere um custo no banco de dados.
+     * @param custo Custo a ser inserido.
+     */
     public void insert(Custo custo) {
         try {
             String queryString = "INSERT INTO custo(preco_quilometro)"
@@ -46,7 +53,11 @@ public class CustoDAO {
             }
         }
     }
-
+    
+    /**
+     * Remove um custo do banco de dados.
+     * @param codigoCusto Código do custo a ser removido.
+     */
     public void delete(int codigoCusto) {
         try {
             String queryString = "DELETE FROM custo WHERE codigo_custo = ?";
@@ -73,7 +84,11 @@ public class CustoDAO {
             }
         }
     }
-
+    
+    /**
+     * Atualiza um custo no banco de dados.
+     * @param custo Custo a ser atualizado.
+     */
     public void update(Custo custo) {
         try {
             String queryString = "UPDATE custo SET preco_quilometro = ? WHERE"
