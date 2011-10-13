@@ -46,7 +46,7 @@ public class Venda implements Serializable {
     
     /**
      * Atribui a data e a hora da venda.
-     * @param dataVenda Data e hora da venda.
+     * @param dataHoraVenda Data e hora da venda.
      */
     public void setDataHoraVenda(Timestamp dataHoraVenda) {
         this.dataHoraVenda = dataHoraVenda;
