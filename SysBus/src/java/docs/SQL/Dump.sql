@@ -5,7 +5,7 @@
 -- Started on 2011-10-13 16:49:15 BRT
 
 SET statement_timeout = 0;
-SET client_encoding = 'UTF8';
+SET client_encoding = 'UNICODE';
 SET standard_conforming_strings = off;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
