@@ -1,15 +1,16 @@
 package servlets;
 
-import DAO.DemandaDAO;
-import beans.Demanda;
+import DAO.PeriodoDAO;
+import beans.Periodo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Time;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class DemandaServlet extends HttpServlet {
+public class PeriodoServlet extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -26,10 +27,10 @@ public class DemandaServlet extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DemandaServlet</title>");  
+            out.println("<title>Servlet PeriodoServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DemandaServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet PeriodoServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
@@ -64,13 +65,15 @@ public class DemandaServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
-        DemandaDAO demandaDAO = new DemandaDAO();
+        Periodo periodo = new Periodo();
         
-        Demanda demanda = new Demanda();
+        periodo.setInicioPeriodo(Time.valueOf(request.getParameter("inicioPeriodo")));
+        periodo.setFimPeriodo(Time.valueOf(request.getParameter("fimPeriodo")));
+        periodo.setFatorMultiplicacao(Float.parseFloat(request.getParameter("fatorMultiplicacao")));
         
-        demanda.setNomeDemanda(request.getParameter("nomeDemanda"));
+        PeriodoDAO periodoDAO = new PeriodoDAO();
         
-        demandaDAO.insert(demanda);
+        periodoDAO.insert(periodo);
     }
 
     /** 
