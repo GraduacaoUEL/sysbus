@@ -29,7 +29,7 @@ public class TrechoDAO {
     public void insert(Trecho trecho) {
         try {
             String queryString = "INSERT INTO trecho(origem_trecho,"
-                    + " destino_trecho, tempo_trecho, distancia_trecho"
+                    + " destino_trecho, tempo_trecho, distancia_trecho,"
                     + " custo_trecho) VALUES(?, ?, ?, ?, ?)";
             
             connection = getConnection();
