@@ -11,6 +11,20 @@
             Login: <input type="text" name="loginColaborador"/><br/>
             Senha: <input type="password" name="senhaColaborador"/><br/>
             Cargo: <input type="text" name="cargoColaborador"/><br/>
+            
+            
+            <UL>
+
+      <LI><B>attribute2:</B> ${Cargo[0].nomeCargo} <!--Second value-->
+</UL>
+            
+            
+            <table border="1">
+                <tr>
+                    <td>${Cargo[0].nomeCargo}</td>
+                    
+                </tr>
+            </table>
             <input type="submit" value="Enviar"/>
         </form>
     </body>
