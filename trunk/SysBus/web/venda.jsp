@@ -6,14 +6,14 @@
         <title>Venda</title>
     </head>
     <body>
-        <form name="cadastroItinerario" action="servletItinerario" method="post">
-            Data e hora: <input type="text" name="nomeItinerario"/><br/>
-            Tipo de pagamento: <input type="text" name="codigoCarro"/><br/>
-            Valor: <input type="text" name="codigoCarro"/><br/>
-            Vendedor: <input type="text" name="codigoCarro"/><br/>
-            Carro: <input type="text" name="codigoCarro"/><br/>
-            <input type="checkbox" name="passagemEntregue" value="passagemEntregue"/>Passagem entregue
-            <input type="checkbox" name="viaWeb" value="viaWeb"/>Via Web<br/>
+        <form name="cadastroItinerario" action="VendaServlet" method="post">
+            Data e hora: <input type="text" name="dataHoraVenda"/><br/>
+            Tipo de pagamento: <input type="text" name="tipoPagamento"/><br/>
+            Valor: <input type="text" name="valorVenda"/><br/>
+            Vendedor: <input type="text" name="vendedor"/><br/>
+            Carro: <input type="text" name="carroVenda"/><br/>
+            <input type="checkbox" name="passagemEntregue" value="true"/>Passagem entregue
+            <input type="checkbox" name="viaWeb" value="true"/>Via Web<br/>
             <input type="submit" value="Enviar"/>
         </form>
     </body>
