@@ -1,7 +1,7 @@
 package servlets;
 
-import DAO.ItinerarioDAO;
-import beans.Itinerario;
+import DAO.CarroDAO;
+import beans.Carro;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ItinerarioServlet extends HttpServlet {
+public class CarroServlet extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -26,10 +26,10 @@ public class ItinerarioServlet extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ItinerarioServlet</title>");  
+            out.println("<title>Servlet CarroServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ItinerarioServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet CarroServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
@@ -63,14 +63,16 @@ public class ItinerarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-
-        Itinerario itinerario = new Itinerario();
         
-        itinerario.setNomeItinerario(request.getParameter("nomeItinerario"));
+        Carro carro = new Carro();
         
-        ItinerarioDAO itinerarioDAO = new ItinerarioDAO();
+        carro.setCodigoCarro(Integer.parseInt(request.getParameter("codigoCarro")));
+        carro.setNumeroDePassageiros(Integer.parseInt(request.getParameter("numeroDePassageiros")));
+        carro.setLinhaCarro(Integer.parseInt(request.getParameter("linhaCarro")));
         
-        itinerarioDAO.insert(itinerario);
+        CarroDAO carroDAO = new CarroDAO();
+        
+        carroDAO.insert(carro);
     }
 
     /** 
