@@ -1,7 +1,7 @@
 package servlets;
 
-import DAO.CargoDAO;
-import beans.Cargo;
+import DAO.CustoDAO;
+import beans.Custo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CargoServlet extends HttpServlet {
+public class CustoServlet extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -26,10 +26,10 @@ public class CargoServlet extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CargoServlet</title>");  
+            out.println("<title>Servlet CustoServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CargoServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet CustoServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
@@ -64,18 +64,13 @@ public class CargoServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
-        CargoDAO cargoDAO = new CargoDAO();
+        Custo custo = new Custo();
         
-        Cargo cargo = new Cargo();
+        custo.setPrecoQuilometro(Float.parseFloat(request.getParameter("precoQuilometro")));
         
-        cargo.setNomeCargo(request.getParameter("nomeCargo"));
-        cargo.setPermissaoCargos(Boolean.valueOf(request.getParameter("permissaoCargos")));
-        cargo.setPermissaoCarros(Boolean.valueOf(request.getParameter("permissaoCarros")));
-        cargo.setPermissaoCustos(Boolean.valueOf(request.getParameter("permissaoCustos")));
-        cargo.setPermissaoItinerarios(Boolean.valueOf(request.getParameter("permissaoItinerarios")));
-        cargo.setPermissaoVendas(Boolean.valueOf(request.getParameter("permissaoVendas")));
+        CustoDAO custoDAO = new CustoDAO();
         
-        cargoDAO.insert(cargo);
+        custoDAO.insert(custo);
     }
 
     /** 
