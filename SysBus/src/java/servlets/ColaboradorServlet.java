@@ -46,10 +46,12 @@ public class ColaboradorServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+    
     }
 
     /** 
@@ -62,8 +64,9 @@ public class ColaboradorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
         
+        request.getRequestDispatcher("colaborador.jsp").forward(request, response);
+
         Colaborador colaborador = new Colaborador();
         
         colaborador.setNomeColaborador(request.getParameter("nomeColaborador"));
@@ -74,6 +77,7 @@ public class ColaboradorServlet extends HttpServlet {
         ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
         
         colaboradorDAO.insert(colaborador);
+
     }
 
     /** 
