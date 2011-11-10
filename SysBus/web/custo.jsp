@@ -3,11 +3,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Itinerário</title>
+        <title>Custo</title>
     </head>
     <body>
-        <form name="cadastroItinerario" action="ItinerarioServlet" method="post">
-            Nome: <input type="text" name="nomeItinerario"/><br/>
+        <form name="cadastroCusto" action="CustoServlet" method="post">
+            Preço do quilômetro: <input type="text" name="precoQuilometro"/><br/>
             <input type="submit" value="Enviar"/>
         </form>
     </body>

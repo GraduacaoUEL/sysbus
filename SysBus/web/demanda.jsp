@@ -3,11 +3,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Itinerário</title>
+        <title>Demanda</title>
     </head>
     <body>
-        <form name="cadastroItinerario" action="ItinerarioServlet" method="post">
-            Nome: <input type="text" name="nomeItinerario"/><br/>
+        <form name="cadastroDemanda" action="DemandaServlet" method="post">
+            Nome: <input type="text" name="nomeDemanda"/><br/>
             <input type="submit" value="Enviar"/>
         </form>
     </body>
