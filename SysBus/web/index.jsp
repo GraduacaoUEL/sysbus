@@ -9,7 +9,7 @@
         <ul>
             <li><a href="cargo.jsp">Cargo</a></li>
             <li><a href="carro.jsp">Carro</a></li>
-            <li><a href="colaborador.jsp">Colaborador</a></li>
+            <li><a href="ColaboradorServlet">Colaborador</a></li>
             <li><a href="custo.jsp">Custo</a></li>
             <li><a href="demanda.jsp">Demanda</a></li>
             <li><a href="itinerario.jsp">Itinerário</a></li>

@@ -1,9 +1,11 @@
 package servlets;
 
 import DAO.ColaboradorDAO;
+import beans.Cargo;
 import beans.Colaborador;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,8 +52,28 @@ public class ColaboradorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-    
+        ArrayList<Cargo> cargos = new ArrayList<Cargo>();
+        
+        Cargo cargo1 = new Cargo();
+        cargo1.setNomeCargo("Gerente");
+        cargo1.setCodigoCargo(1);
+        
+        cargos.add(cargo1);
+        
+        Cargo cargo2 = new Cargo();
+        cargo2.setNomeCargo("Vendedor");
+        cargo2.setCodigoCargo(2);
+        
+        Cargo cargo3 = new Cargo();
+        cargo3.setNomeCargo("Programador");
+        cargo3.setCodigoCargo(3);
+        
+        cargos.add(cargo2);
+        cargos.add(cargo3);
+        
+        request.setAttribute("Cargos", cargos);
+        
+        request.getRequestDispatcher("/colaborador.jsp").forward(request, response);
     }
 
     /** 
@@ -64,9 +86,28 @@ public class ColaboradorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ArrayList<Cargo> cargos = new ArrayList<Cargo>();
         
-        request.getRequestDispatcher("colaborador.jsp").forward(request, response);
-
+        Cargo cargo1 = new Cargo();
+        cargo1.setNomeCargo("Gerente");
+        cargo1.setCodigoCargo(1);
+        
+        cargos.add(cargo1);
+        
+        Cargo cargo2 = new Cargo();
+        cargo2.setNomeCargo("Vendedor");
+        cargo2.setCodigoCargo(2);
+        
+        Cargo cargo3 = new Cargo();
+        cargo3.setNomeCargo("Programador");
+        cargo3.setCodigoCargo(3);
+        
+        cargos.add(cargo2);
+        cargos.add(cargo3);
+        
+        request.setAttribute("Cargos", cargos);
+        
+        //Pôr um try/catch
         Colaborador colaborador = new Colaborador();
         
         colaborador.setNomeColaborador(request.getParameter("nomeColaborador"));
@@ -77,7 +118,10 @@ public class ColaboradorServlet extends HttpServlet {
         ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
         
         colaboradorDAO.insert(colaborador);
-
+        
+        request.setAttribute("Colaborador", colaborador);
+        
+        request.getRequestDispatcher("/colaborador.jsp").forward(request, response);
     }
 
     /** 

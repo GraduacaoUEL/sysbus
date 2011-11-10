@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
-        <servlet-name>ItinerarioServlet</servlet-name>
-        <servlet-class>servlets.ItinerarioServlet</servlet-class>
+        <servlet-name>CargoServlet</servlet-name>
+        <servlet-class>servlets.CargoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CarroServlet</servlet-name>
@@ -12,9 +12,37 @@
         <servlet-name>ColaboradorServlet</servlet-name>
         <servlet-class>servlets.ColaboradorServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
+        <servlet-name>CustoServlet</servlet-name>
+        <servlet-class>servlets.CustoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DemandaServlet</servlet-name>
+        <servlet-class>servlets.DemandaServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ItinerarioServlet</servlet-name>
-        <url-pattern>/ItinerarioServlet</url-pattern>
+        <servlet-class>servlets.ItinerarioServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LinhaServlet</servlet-name>
+        <servlet-class>servlets.LinhaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PeriodoServlet</servlet-name>
+        <servlet-class>servlets.PeriodoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TrechoServlet</servlet-name>
+        <servlet-class>servlets.TrechoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VendaServlet</servlet-name>
+        <servlet-class>servlets.VendaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CargoServlet</servlet-name>
+        <url-pattern>/CargoServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CarroServlet</servlet-name>
@@ -23,6 +51,34 @@
     <servlet-mapping>
         <servlet-name>ColaboradorServlet</servlet-name>
         <url-pattern>/ColaboradorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustoServlet</servlet-name>
+        <url-pattern>/CustoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DemandaServlet</servlet-name>
+        <url-pattern>/DemandaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ItinerarioServlet</servlet-name>
+        <url-pattern>/ItinerarioServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LinhaServlet</servlet-name>
+        <url-pattern>/LinhaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PeriodoServlet</servlet-name>
+        <url-pattern>/PeriodoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrechoServlet</servlet-name>
+        <url-pattern>/TrechoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VendaServlet</servlet-name>
+        <url-pattern>/VendaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
