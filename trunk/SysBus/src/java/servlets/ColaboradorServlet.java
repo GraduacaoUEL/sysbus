@@ -1,7 +1,7 @@
 package servlets;
 
-import DAO.ItinerarioDAO;
-import beans.Itinerario;
+import DAO.ColaboradorDAO;
+import beans.Colaborador;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ItinerarioServlet extends HttpServlet {
+public class ColaboradorServlet extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -26,10 +26,10 @@ public class ItinerarioServlet extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ItinerarioServlet</title>");  
+            out.println("<title>Servlet ColaboradorServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ItinerarioServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ColaboradorServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
@@ -63,14 +63,17 @@ public class ItinerarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-
-        Itinerario itinerario = new Itinerario();
         
-        itinerario.setNomeItinerario(request.getParameter("nomeItinerario"));
+        Colaborador colaborador = new Colaborador();
         
-        ItinerarioDAO itinerarioDAO = new ItinerarioDAO();
+        colaborador.setNomeColaborador(request.getParameter("nomeColaborador"));
+        colaborador.setLoginColaborador(request.getParameter("loginColaborador"));
+        colaborador.setSenhaColaborador(request.getParameter("senhaColaborador"));
+        colaborador.setCargoColaborador(Integer.parseInt(request.getParameter("cargoColaborador")));
         
-        itinerarioDAO.insert(itinerario);
+        ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
+        
+        colaboradorDAO.insert(colaborador);
     }
 
     /** 

@@ -4,9 +4,25 @@
         <servlet-name>ItinerarioServlet</servlet-name>
         <servlet-class>servlets.ItinerarioServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CarroServlet</servlet-name>
+        <servlet-class>servlets.CarroServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ColaboradorServlet</servlet-name>
+        <servlet-class>servlets.ColaboradorServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ItinerarioServlet</servlet-name>
         <url-pattern>/ItinerarioServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CarroServlet</servlet-name>
+        <url-pattern>/CarroServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ColaboradorServlet</servlet-name>
+        <url-pattern>/ColaboradorServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
