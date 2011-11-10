@@ -9,11 +9,11 @@
         <form name="cadastroCargo" action="CargoServlet" method="post">
             Nome: <input type="text" name="nomeCargo"/><br/>
             Permissões:
-            <input type="checkbox" name="permissoes" value="cargos"/>Cargos
-            <input type="checkbox" name="permissoes" value="carros"/>Carros
-            <input type="checkbox" name="permissoes" value="itinerarios"/>Itinerários
-            <input type="checkbox" name="permissoes" value="vendas"/>Vendas
-            <input type="checkbox" name="permissoes" value="custos"/>Custos<br/>
+            <input type="checkbox" name="permissaoCargos" value="true"/>Cargos
+            <input type="checkbox" name="permissaoCarros" value="true"/>Carros
+            <input type="checkbox" name="permissaoItinerarios" value="true"/>Itinerários
+            <input type="checkbox" name="permissaoVendas" value="true"/>Vendas
+            <input type="checkbox" name="permissaoCustos" value="true"/>Custos<br/>
             <input type="submit" value="Enviar"/>
         </form>
     </body>
