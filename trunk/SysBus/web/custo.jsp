@@ -10,7 +10,7 @@
             Preço do quilômetro: <input type="text" name="precoQuilometro" value="${Custo.precoQuilometro}"/><br/>
             <input type="submit" value="Enviar"/>
         </form>
-        
-        
+        <!-- Tentar fazer essa chamada no servlet de forma mais inteligente-->
+        <a href="/SysBus/index.jsp">Página Inicial</a>                
     </body>
 </html>
