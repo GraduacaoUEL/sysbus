@@ -10,7 +10,7 @@
             <li><a href="CargoServlet">Cargo</a></li>
             <li><a href="CarroServlet">Carro</a></li>
             <li><a href="ColaboradorServlet">Colaborador</a></li>
-            <li><a href="custo.jsp">Custo</a></li>
+            <li><a href="CustoServlet">Custo</a></li>
             <li><a href="DemandaServlet">Demanda</a></li>
             <li><a href="ItinerarioServlet">Itinerário</a></li>
             <li><a href="LinhaServlet">Linha</a></li>

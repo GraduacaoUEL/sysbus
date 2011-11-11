@@ -1,6 +1,8 @@
 package servlets;
 
+import DAO.ColaboradorDAO;
 import DAO.CustoDAO;
+import beans.Colaborador;
 import beans.Custo;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,7 +51,18 @@ public class CustoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        Custo custo = new Custo();
+        
+        CustoDAO custoDAO = new CustoDAO();
+        
+        custo = custoDAO.selectCusto();
+        
+        request.setAttribute("Custo", custo);
+        
+        
+        request.getRequestDispatcher("/custo.jsp").forward(request, response);
+
     }
 
     /** 
@@ -67,10 +80,10 @@ public class CustoServlet extends HttpServlet {
         Custo custo = new Custo();
         
         custo.setPrecoQuilometro(Float.parseFloat(request.getParameter("precoQuilometro")));
-        
+        custo.setCodigoCusto(1);
         CustoDAO custoDAO = new CustoDAO();
-        
-        custoDAO.insert(custo);
+      
+        custoDAO.update(custo);
     }
 
     /** 

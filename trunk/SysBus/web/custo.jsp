@@ -7,8 +7,10 @@
     </head>
     <body>
         <form name="cadastroCusto" action="CustoServlet" method="post">
-            Preço do quilômetro: <input type="text" name="precoQuilometro"/><br/>
+            Preço do quilômetro: <input type="text" name="precoQuilometro" value="${Custo.precoQuilometro}"/><br/>
             <input type="submit" value="Enviar"/>
         </form>
+        
+        
     </body>
 </html>
