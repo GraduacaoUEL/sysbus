@@ -19,12 +19,28 @@
                     </option>
                 </c:forEach>
             </select>
-            
             <input type="submit" value="Enviar"/>
         </form>
-        
+
+                <table border="1">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Numero de Passageiros</th>
+                    <th>Linha do Carro</th>
+                </tr>
+            </thead>
+            <tbody>                
+                <c:forEach var="carros" items="${Carros}">
+                <tr>
+                    <td><c:out value="${carros.codigoCarro}"/></td>
+                    <td><c:out value="${carros.numeroDePassageiros}"/></td>
+                    <td><c:out value="${carros.linhaCarro}"/></td>
+                </tr>
+                </c:forEach>
+            </tbody>
+        </table>
         <!-- Tentar fazer essa chamada no servlet de forma mais inteligente-->
         <a href="/SysBus/index.jsp">Página Inicial</a>
-
     </body>
 </html>

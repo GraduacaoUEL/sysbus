@@ -3,7 +3,9 @@ package DAO;
 import beans.Carro;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CarroDAO {
 
@@ -120,4 +122,47 @@ public class CarroDAO {
             }
         }
     }
+    
+    public ArrayList<Carro> selectAll() {
+    
+    ResultSet resultSet = null;
+    ArrayList<Carro> carros = new ArrayList<Carro>();
+    
+    try {
+                        String queryString = "SELECT * FROM carro";
+                        connection = getConnection();
+                        pstmt = connection.prepareStatement(queryString);
+                        resultSet = pstmt.executeQuery();
+                        while (resultSet.next()) {
+                            
+                            Carro carro = new Carro();
+                            
+                            carro.setCodigoCarro(resultSet.getInt("codigo_carro"));
+                            carro.setNumeroDePassageiros(resultSet.getInt("numero_passageiros"));
+                            carro.setLinhaCarro(resultSet.getInt("linha_carro"));
+                         
+                            carros.add(carro);
+                        }
+                        
+                        
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                } finally {
+                        try {
+                                if (resultSet != null)
+                                        resultSet.close();
+                                if (pstmt != null)
+                                        pstmt.close();
+                                if (connection != null)
+                                        connection.close();
+                        } catch (SQLException e) {
+                                e.printStackTrace();
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+
+                }
+                return carros;
+        }
+
 }

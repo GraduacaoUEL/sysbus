@@ -61,6 +61,15 @@ public class CarroServlet extends HttpServlet {
 
         request.setAttribute("Linhas", linhas);
         
+    
+        ArrayList<Carro> carros = new ArrayList<Carro>();
+        
+        CarroDAO carro = new CarroDAO();
+        
+        carros = carro.selectAll();
+        
+        request.setAttribute("Carros", carros);
+        
         request.getRequestDispatcher("/carro.jsp").forward(request, response);
         
     }
