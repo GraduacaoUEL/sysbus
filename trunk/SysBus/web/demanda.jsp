@@ -17,6 +17,8 @@
                 <tr>
                     <th>Codigo</th>
                     <th>Nome da Demanda</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
                 </tr>
             </thead>
             <tbody>                
@@ -24,6 +26,8 @@
                 <tr>
                     <td><c:out value="${demandas.codigoDemanda}"/></td>
                     <td><c:out value="${demandas.nomeDemanda}"/></td>
+                    <td>TODO</td>
+                    <td>TODO</td>
                 </tr>
                 </c:forEach>
             </tbody>

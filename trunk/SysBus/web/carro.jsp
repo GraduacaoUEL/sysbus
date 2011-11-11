@@ -28,6 +28,8 @@
                     <th>Codigo</th>
                     <th>Numero de Passageiros</th>
                     <th>Linha do Carro</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
                 </tr>
             </thead>
             <tbody>                
@@ -36,6 +38,8 @@
                     <td><c:out value="${carros.codigoCarro}"/></td>
                     <td><c:out value="${carros.numeroDePassageiros}"/></td>
                     <td><c:out value="${carros.nomeLinha}"/></td>
+                    <td>TODO</td>
+                    <td>TODO</td>
                 </tr>
                 </c:forEach>
             </tbody>

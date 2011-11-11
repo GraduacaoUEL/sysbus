@@ -28,6 +28,8 @@
                     <th>Itinerários</th>
                     <th>Vendas</th>
                     <th>Custos</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
                 </tr>
             </thead>
             <tbody>                
@@ -40,6 +42,8 @@
                     <td><c:out value="${cargos.permissaoCustos ? 'sim' : 'não'}"/></td>
                     <td><c:out value="${cargos.permissaoItinerarios ? 'sim' : 'não'}"/></td>
                     <td><c:out value="${cargos.permissaoVendas ? 'sim' : 'não'}"/></td>
+                    <td>TODO</td>
+                    <td>TODO</td>
                 </tr>
                 </c:forEach>
             </tbody>
