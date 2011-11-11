@@ -3,6 +3,7 @@ package DAO;
 import beans.Custo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CustoDAO {
@@ -117,4 +118,40 @@ public class CustoDAO {
             }
         }
     }
+    
+    public Custo selectCusto() {
+    
+    ResultSet resultSet = null;
+    Custo custo = new Custo();
+    
+    try {
+                        String queryString = "SELECT * FROM custo";
+                        connection = getConnection();
+                        pstmt = connection.prepareStatement(queryString);
+                        resultSet = pstmt.executeQuery();
+                        
+                        resultSet.next();
+                        
+                        custo.setCodigoCusto(resultSet.getInt("codigo_custo"));
+                        custo.setPrecoQuilometro(resultSet.getFloat("preco_quilometro"));
+                        
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                } finally {
+                        try {
+                                if (resultSet != null)
+                                        resultSet.close();
+                                if (pstmt != null)
+                                        pstmt.close();
+                                if (connection != null)
+                                        connection.close();
+                        } catch (SQLException e) {
+                                e.printStackTrace();
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+
+                }
+                return custo;
+        }
 }
