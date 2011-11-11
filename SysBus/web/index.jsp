@@ -12,8 +12,8 @@
             <li><a href="ColaboradorServlet">Colaborador</a></li>
             <li><a href="custo.jsp">Custo</a></li>
             <li><a href="demanda.jsp">Demanda</a></li>
-            <li><a href="itinerario.jsp">Itinerário</a></li>
-            <li><a href="linha.jsp">Linha</a></li>
+            <li><a href="ItinerarioServlet">Itinerário</a></li>
+            <li><a href="LinhaServlet">Linha</a></li>
             <li><a href="periodo.jsp">Período</a></li>
             <li><a href="trecho.jsp">Trecho</a></li>
             <li><a href="venda.jsp">Venda</a></li>

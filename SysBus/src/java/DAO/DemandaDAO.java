@@ -3,7 +3,9 @@ package DAO;
 import beans.Demanda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DemandaDAO {
 
@@ -116,4 +118,49 @@ public class DemandaDAO {
             }
         }
     }
+    
+     /**
+     * Retorna todos as tupas da entidade Cargo
+     * @param cargo Cargo a ser atualizado.
+     */
+    public ArrayList<Demanda> selectAll() {
+    
+    ResultSet resultSet = null;
+    ArrayList<Demanda> demandas = new ArrayList<Demanda>();
+    
+    try {
+                        String queryString = "SELECT * FROM demanda";
+                        connection = getConnection();
+                        pstmt = connection.prepareStatement(queryString);
+                        resultSet = pstmt.executeQuery();
+                        while (resultSet.next()) {
+                            
+                            Demanda demanda = new Demanda();
+                            
+                            demanda.setCodigoDemanda(resultSet.getInt("codigo_demanda"));
+                            demanda.setNomeDemanda(resultSet.getString("nome_demanda"));
+                            
+                            demandas.add(demanda);
+                        }
+                        
+                        
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                } finally {
+                        try {
+                                if (resultSet != null)
+                                        resultSet.close();
+                                if (pstmt != null)
+                                        pstmt.close();
+                                if (connection != null)
+                                        connection.close();
+                        } catch (SQLException e) {
+                                e.printStackTrace();
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+
+                }
+                return demandas;
+        }
 }
