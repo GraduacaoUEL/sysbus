@@ -2,7 +2,6 @@ package servlets;
 
 import DAO.CargoDAO;
 import beans.Cargo;
-import com.sun.xml.internal.bind.v2.TODO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;

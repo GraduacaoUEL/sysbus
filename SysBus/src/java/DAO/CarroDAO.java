@@ -1,6 +1,7 @@
 package DAO;
 
 import beans.Carro;
+import beans.CarroInnerJoinLinha;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -165,4 +166,45 @@ public class CarroDAO {
                 return carros;
         }
 
+    public ArrayList<CarroInnerJoinLinha> selectAllWithJoin() {
+    
+    ResultSet resultSet = null;
+    ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
+    
+    try {
+                        String queryString = "select c.codigo_carro, c.numero_passageiros, l.nome_linha from carro as c inner join linha as l on c.linha_carro = l.codigo_linha";
+                        connection = getConnection();
+                        pstmt = connection.prepareStatement(queryString);
+                        resultSet = pstmt.executeQuery();
+                        while (resultSet.next()) {
+                            
+                            CarroInnerJoinLinha carro = new CarroInnerJoinLinha();
+                            
+                            carro.setCodigoCarro(resultSet.getInt("codigo_carro"));
+                            carro.setNumeroPassageiros(resultSet.getInt("numero_passageiros"));
+                            carro.setNomeLinha(resultSet.getString("nome_linha"));
+                            carros.add(carro);
+                        }
+                        
+                        
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                } finally {
+                        try {
+                                if (resultSet != null)
+                                        resultSet.close();
+                                if (pstmt != null)
+                                        pstmt.close();
+                                if (connection != null)
+                                        connection.close();
+                        } catch (SQLException e) {
+                                e.printStackTrace();
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+
+                }
+                return carros;
+        }
+    
 }

@@ -35,7 +35,7 @@
                 <tr>
                     <td><c:out value="${carros.codigoCarro}"/></td>
                     <td><c:out value="${carros.numeroDePassageiros}"/></td>
-                    <td><c:out value="${carros.linhaCarro}"/></td>
+                    <td><c:out value="${carros.nomeLinha}"/></td>
                 </tr>
                 </c:forEach>
             </tbody>
