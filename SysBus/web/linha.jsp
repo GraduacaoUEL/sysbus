@@ -32,6 +32,8 @@
                     <th>Nome da Linha</th>
                     <th>Hora de início</th>
                     <th>Demanda da Linha</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>                    
                 </tr>
             </thead>
             <tbody>                
@@ -41,6 +43,8 @@
                     <td><c:out value="${linhas.nomeLinha}"/></td>
                     <td><c:out value="${linhas.horaInicioLinha}"/></td>
                     <td><c:out value="${linhas.demandaLinha}"/></td>
+                    <td>TODO</td>
+                    <td>TODO</td>
                 </tr>
                 </c:forEach>
             </tbody>

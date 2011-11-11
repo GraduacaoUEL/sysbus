@@ -33,6 +33,8 @@
                     <th>Numero do Colaborador</th>
                     <th>Login do Colaborador</th>
                     <th>Cargo do Colaborador</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>                    
                 </tr>
             </thead>
             <tbody>                
@@ -42,6 +44,8 @@
                     <td><c:out value="${colaboradores.nomeColaborador}"/></td>
                     <td><c:out value="${colaboradores.loginColaborador}"/></td>
                     <td><c:out value="${colaboradores.cargoColaborador}"/></td>
+                    <td>TODO</td>
+                    <td>TODO</td>
                 </tr>
                 </c:forEach>
             </tbody>
