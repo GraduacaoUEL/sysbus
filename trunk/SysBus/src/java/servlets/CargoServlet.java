@@ -2,8 +2,10 @@ package servlets;
 
 import DAO.CargoDAO;
 import beans.Cargo;
+import com.sun.xml.internal.bind.v2.TODO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +51,18 @@ public class CargoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        ArrayList<Cargo> cargos = new ArrayList<Cargo>();
+        
+        CargoDAO cargoDAO = new CargoDAO();
+        
+        /*A variável cargos recebe todos os cargos que estão no banco de dados*/        
+        cargos = cargoDAO.selectAll();
+
+        request.setAttribute("Cargos", cargos);
+        
+        request.getRequestDispatcher("/cargo.jsp").forward(request, response);
+
     }
 
     /** 
@@ -76,6 +89,8 @@ public class CargoServlet extends HttpServlet {
         cargo.setPermissaoVendas(Boolean.valueOf(request.getParameter("permissaoVendas")));
         
         cargoDAO.insert(cargo);
+        
+        //TODO fazer retorno para a página
     }
 
     /** 

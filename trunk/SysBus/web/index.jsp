@@ -7,7 +7,7 @@
     <body>
         <h3>Cadastro</h3>
         <ul>
-            <li><a href="cargo.jsp">Cargo</a></li>
+            <li><a href="CargoServlet">Cargo</a></li>
             <li><a href="carro.jsp">Carro</a></li>
             <li><a href="ColaboradorServlet">Colaborador</a></li>
             <li><a href="custo.jsp">Custo</a></li>
