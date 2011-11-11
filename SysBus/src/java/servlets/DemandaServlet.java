@@ -4,6 +4,7 @@ import DAO.DemandaDAO;
 import beans.Demanda;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +50,18 @@ public class DemandaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        ArrayList<Demanda> demandas = new ArrayList<Demanda>();
+        
+        DemandaDAO demandaDAO = new DemandaDAO();
+        
+        
+        demandas = demandaDAO.selectAll();
+
+        request.setAttribute("Demandas", demandas);
+        
+        request.getRequestDispatcher("/demanda.jsp").forward(request, response);
+
     }
 
     /** 
