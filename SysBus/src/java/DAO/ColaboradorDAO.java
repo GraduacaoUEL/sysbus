@@ -3,7 +3,9 @@ package DAO;
 import beans.Colaborador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ColaboradorDAO {
 
@@ -126,4 +128,49 @@ public class ColaboradorDAO {
             }
         }
     }
+    
+    public ArrayList<Colaborador> selectAll() {
+    
+    ResultSet resultSet = null;
+    ArrayList<Colaborador> colaboradores = new ArrayList<Colaborador>();
+    
+    try {
+                        String queryString = "SELECT * FROM colaborador";
+                        connection = getConnection();
+                        pstmt = connection.prepareStatement(queryString);
+                        resultSet = pstmt.executeQuery();
+                        while (resultSet.next()) {
+                            
+                            Colaborador colaborador = new Colaborador();
+                                
+                            colaborador.setCodigoColaborador(resultSet.getInt("codigo_colaborador"));
+                            colaborador.setNomeColaborador(resultSet.getString("nome_colaborador"));
+                            colaborador.setLoginColaborador(resultSet.getString("login_colaborador"));
+                            colaborador.setSenhaColaborador(resultSet.getString("senha_colaborador"));
+                            colaborador.setCargoColaborador(resultSet.getInt("cargo_colaborador"));
+                            
+                            colaboradores.add(colaborador);
+                        }
+                        
+                        
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                } finally {
+                        try {
+                                if (resultSet != null)
+                                        resultSet.close();
+                                if (pstmt != null)
+                                        pstmt.close();
+                                if (connection != null)
+                                        connection.close();
+                        } catch (SQLException e) {
+                                e.printStackTrace();
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+
+                }
+                return colaboradores;
+        }
+    
 }

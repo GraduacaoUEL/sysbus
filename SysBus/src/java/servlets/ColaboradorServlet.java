@@ -62,6 +62,15 @@ public class ColaboradorServlet extends HttpServlet {
         cargos = cargoDAO.selectAll();
 
         request.setAttribute("Cargos", cargos);
+    
+        ArrayList<Colaborador> colaboradores = new ArrayList<Colaborador>();
+        
+        ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
+        
+        colaboradores = colaboradorDAO.selectAll();
+        
+        request.setAttribute("Colaboradores", colaboradores);
+        
         
         request.getRequestDispatcher("/colaborador.jsp").forward(request, response);
     }

@@ -25,5 +25,28 @@
             
             <input type="submit" value="Enviar"/>
         </form>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Numero do Colaborador</th>
+                    <th>Login do Colaborador</th>
+                    <th>Cargo do Colaborador</th>
+                </tr>
+            </thead>
+            <tbody>                
+                <c:forEach var="colaboradores" items="${Colaboradores}">
+                <tr>
+                    <td><c:out value="${colaboradores.codigoColaborador}"/></td>
+                    <td><c:out value="${colaboradores.nomeColaborador}"/></td>
+                    <td><c:out value="${colaboradores.loginColaborador}"/></td>
+                    <td><c:out value="${colaboradores.cargoColaborador}"/></td>
+                </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        <!-- Tentar fazer essa chamada no servlet de forma mais inteligente-->
+        <a href="/SysBus/index.jsp">Página Inicial</a>
     </body>
 </html>
