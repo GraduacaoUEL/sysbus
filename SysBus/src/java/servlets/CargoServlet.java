@@ -88,8 +88,15 @@ public class CargoServlet extends HttpServlet {
         cargo.setPermissaoVendas(Boolean.valueOf(request.getParameter("permissaoVendas")));
         
         cargoDAO.insert(cargo);
+
+        ArrayList<Cargo> cargos = new ArrayList<Cargo>();
+                
+        /*A variável cargos recebe todos os cargos que estão no banco de dados*/        
+        cargos = cargoDAO.selectAll();
+
+        request.setAttribute("Cargos", cargos);
         
-        //TODO fazer retorno para a página
+        request.getRequestDispatcher("/cargo.jsp").forward(request, response);
     }
 
     /** 

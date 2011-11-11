@@ -65,9 +65,9 @@ public class CarroServlet extends HttpServlet {
     
         ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
         
-        CarroDAO carro = new CarroDAO();
+        CarroDAO carroDAO = new CarroDAO();
         
-        carros = carro.selectAllWithJoin();
+        carros = carroDAO.selectAllWithJoin();
         
         request.setAttribute("Carros", carros);
         
@@ -96,6 +96,24 @@ public class CarroServlet extends HttpServlet {
         CarroDAO carroDAO = new CarroDAO();
         
         carroDAO.insert(carro);
+        
+                ArrayList<Linha> linhas = new ArrayList<Linha>();
+        
+        LinhaDAO linhaDAO = new LinhaDAO();
+        
+        linhas = linhaDAO.selectAll();
+
+        request.setAttribute("Linhas", linhas);
+        
+    
+        ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
+                
+        carros = carroDAO.selectAllWithJoin();
+        
+        request.setAttribute("Carros", carros);
+        
+        request.getRequestDispatcher("/carro.jsp").forward(request, response);
+
     }
 
     /** 
