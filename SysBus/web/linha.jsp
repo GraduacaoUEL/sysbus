@@ -24,8 +24,29 @@
 
             <input type="submit" value="Enviar"/>
         </form>
-        
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nome da Linha</th>
+                    <th>Hora de início</th>
+                    <th>Demanda da Linha</th>
+                </tr>
+            </thead>
+            <tbody>                
+                <c:forEach var="linhas" items="${Linhas}">
+                <tr>
+                    <td><c:out value="${linhas.codigoLinha}"/></td>
+                    <td><c:out value="${linhas.nomeLinha}"/></td>
+                    <td><c:out value="${linhas.horaInicioLinha}"/></td>
+                    <td><c:out value="${linhas.demandaLinha}"/></td>
+                </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+
         <!-- Tentar fazer essa chamada no servlet de forma mais inteligente-->
-        <a href="/SysBus/index.jsp">Página Inicial</a>
+        <a href="/SysBus/index.jsp">Página Inicial</a>       
     </body>
 </html>

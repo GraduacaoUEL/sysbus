@@ -63,7 +63,14 @@ public class LinhaServlet extends HttpServlet {
         demandas = demandaDAO.selectAll();
         
         request.setAttribute("Demandas", demandas);
+    
+        ArrayList<Linha> linhas = new ArrayList<Linha>();
         
+        LinhaDAO linhasDAO = new LinhaDAO();
+        
+        linhas = linhasDAO.selectAll();
+        
+        request.setAttribute("Linhas", linhas);
         request.getRequestDispatcher("/linha.jsp").forward(request, response);
 
     }
