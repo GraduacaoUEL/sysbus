@@ -1,10 +1,13 @@
 package servlets;
 
+import DAO.DemandaDAO;
 import DAO.LinhaDAO;
+import beans.Demanda;
 import beans.Linha;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Time;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,7 +53,19 @@ public class LinhaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+
+        
+        ArrayList<Demanda> demandas = new ArrayList<Demanda>();
+        
+        DemandaDAO demandaDAO = new DemandaDAO();
+        
+        demandas = demandaDAO.selectAll();
+        
+        request.setAttribute("Demandas", demandas);
+        
+        request.getRequestDispatcher("/linha.jsp").forward(request, response);
+
     }
 
     /** 
