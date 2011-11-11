@@ -84,8 +84,7 @@ public class ColaboradorServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+            throws ServletException, IOException {    
     
         ArrayList<Cargo> cargos = new ArrayList<Cargo>();
         

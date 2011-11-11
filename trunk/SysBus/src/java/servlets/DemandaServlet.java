@@ -54,14 +54,12 @@ public class DemandaServlet extends HttpServlet {
         ArrayList<Demanda> demandas = new ArrayList<Demanda>();
         
         DemandaDAO demandaDAO = new DemandaDAO();
-        
-        
+            
         demandas = demandaDAO.selectAll();
 
         request.setAttribute("Demandas", demandas);
         
         request.getRequestDispatcher("/demanda.jsp").forward(request, response);
-
     }
 
     /** 
@@ -83,6 +81,14 @@ public class DemandaServlet extends HttpServlet {
         demanda.setNomeDemanda(request.getParameter("nomeDemanda"));
         
         demandaDAO.insert(demanda);
+        
+        ArrayList<Demanda> demandas = new ArrayList<Demanda>();
+                    
+        demandas = demandaDAO.selectAll();
+
+        request.setAttribute("Demandas", demandas);
+        
+        request.getRequestDispatcher("/demanda.jsp").forward(request, response);
     }
 
     /** 
