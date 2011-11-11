@@ -3,7 +3,9 @@ package DAO;
 import beans.Linha;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class LinhaDAO {
 
@@ -122,4 +124,49 @@ public class LinhaDAO {
             }
         }
     }
+    
+public ArrayList<Linha> selectAll() {
+    
+    ResultSet resultSet = null;
+    ArrayList<Linha> linhas = new ArrayList<Linha>();
+    
+    try {
+                        String queryString = "SELECT * FROM linha";
+                        connection = getConnection();
+                        pstmt = connection.prepareStatement(queryString);
+                        resultSet = pstmt.executeQuery();
+                        while (resultSet.next()) {
+                     
+                            Linha linha = new Linha();
+                            
+                            linha.setCodigoLinha(resultSet.getInt("codigo_linha"));
+                            linha.setNomeLinha(resultSet.getString("nome_linha"));
+                            linha.setHoraInicioLinha(resultSet.getTime("hora_inicio_linha"));
+                            linha.setDemandaLinha(resultSet.getInt("demanda_linha"));
+                            
+                            linhas.add(linha);
+                        }
+                        
+                        
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                } finally {
+                        try {
+                                if (resultSet != null)
+                                        resultSet.close();
+                                if (pstmt != null)
+                                        pstmt.close();
+                                if (connection != null)
+                                        connection.close();
+                        } catch (SQLException e) {
+                                e.printStackTrace();
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+
+                }
+                /*Retorna um ArrayList contendo todos os cargos cadastrados*/
+                return linhas;
+        }
+    
 }

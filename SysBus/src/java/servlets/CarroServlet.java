@@ -1,9 +1,12 @@
 package servlets;
 
 import DAO.CarroDAO;
+import DAO.LinhaDAO;
 import beans.Carro;
+import beans.Linha;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +52,17 @@ public class CarroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        ArrayList<Linha> linhas = new ArrayList<Linha>();
+        
+        LinhaDAO linhaDAO = new LinhaDAO();
+        
+        linhas = linhaDAO.selectAll();
+
+        request.setAttribute("Linhas", linhas);
+        
+        request.getRequestDispatcher("/carro.jsp").forward(request, response);
+        
     }
 
     /** 
