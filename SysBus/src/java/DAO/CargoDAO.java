@@ -3,7 +3,9 @@ package DAO;
 import beans.Cargo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CargoDAO {
 
@@ -131,4 +133,64 @@ public class CargoDAO {
             }
         }
     }
+
+        /**
+     * Retorna todos as tupas da entidade Cargo
+     * @param cargo Cargo a ser atualizado.
+     */
+
+public ArrayList<Cargo> selectAll() {
+    
+    ResultSet resultSet = null;
+    ArrayList<Cargo> cargos = new ArrayList<Cargo>();
+    
+    try {
+                        String queryString = "SELECT * FROM cargo";
+                        connection = getConnection();
+                        pstmt = connection.prepareStatement(queryString);
+                        resultSet = pstmt.executeQuery();
+                        while (resultSet.next()) {
+                            
+                            /*Para cada iteração do while é criado um novo cargo
+                             que terá seus atributos setados de acordo com os
+                             dados que estão vindo do banco de dados. O fato de
+                             a cada iteração ser feito um novo "new" não é
+                             problema, visto que o java faz coleta de lixo
+                             automaticamente.*/
+                            Cargo cargo = new Cargo();
+                            
+                            cargo.setCodigoCargo(resultSet.getInt("codigo_cargo"));
+                            cargo.setNomeCargo(resultSet.getString("nome_cargo"));
+                            cargo.setPermissaoCargos(resultSet.getBoolean("permissao_cargos"));
+                            cargo.setPermissaoCarros(resultSet.getBoolean("permissao_carros"));
+                            cargo.setPermissaoCustos(resultSet.getBoolean("permissao_custos"));
+                            cargo.setPermissaoItinerarios(resultSet.getBoolean("permissao_itinerarios"));
+                            cargo.setPermissaoVendas(resultSet.getBoolean("permissao_vendas"));
+                            
+                            /*Adiciona o cargo ao ArrayList que será retornado*/
+                            cargos.add(cargo);
+                        }
+                        
+                        
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                } finally {
+                        try {
+                                if (resultSet != null)
+                                        resultSet.close();
+                                if (pstmt != null)
+                                        pstmt.close();
+                                if (connection != null)
+                                        connection.close();
+                        } catch (SQLException e) {
+                                e.printStackTrace();
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+
+                }
+                /*Retorna um ArrayList contendo todos os cargos cadastrados*/
+                return cargos;
+        }
+
 }
