@@ -31,7 +31,12 @@ public class Cargo implements Serializable {
      * @param codigoCargo Código do cargo.
      */
     public void setCodigoCargo(int codigoCargo) {
+        try{
+            
         this.codigoCargo = codigoCargo;
+        } catch(NumberFormatException n){
+            this.codigoCargo = 0;
+        }
     }
 
     /**

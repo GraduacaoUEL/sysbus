@@ -24,11 +24,7 @@ public class CargoDAO {
         return conn;
     }
     
-    /**
-     * Insere um cargo no banco de dados.
-     * @param cargo Cargo a ser inserido.
-     */
-    public void insert(Cargo cargo) {
+    private void insert(Cargo cargo) {
         try {
             String queryString = "INSERT INTO cargo(nome_cargo,"
                     + " permissao_cargos, permissao_carros,"
@@ -59,6 +55,61 @@ public class CargoDAO {
                 e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+            
+            
+            
+        }
+    }
+    
+    
+    /**
+     * Insere ou atualiza cargo no banco de dados.
+     * @param cargo Cargo a ser inserido.
+     */
+    public void save(Cargo cargo) {
+
+        if (cargo.getCodigoCargo() == 0) {
+            insert(cargo);
+        } else {
+            ResultSet resultSet = null;
+
+            try {
+
+                String queryString = "SELECT COUNT(codigo_cargo) FROM cargo"
+                        + " WHERE codigo_cargo = ?";
+
+                connection = getConnection();
+                pstmt = connection.prepareStatement(queryString);
+                pstmt.setInt(1, cargo.getCodigoCargo());
+
+                resultSet = pstmt.executeQuery();
+                resultSet.next();
+                //Transparencia marota
+                if (resultSet.getInt("count") != 0) {
+                    update(cargo);
+                } else {
+                    insert(cargo);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
         }
     }
@@ -98,7 +149,7 @@ public class CargoDAO {
      * Atualiza um cargo no banco de dados.
      * @param cargo Cargo a ser atualizado.
      */
-    public void update(Cargo cargo) {
+    private void update(Cargo cargo) {
         try {
             String queryString = "UPDATE cargo SET nome_cargo = ?,"
                     + " permissao_cargos = ?, permissao_carros = ?,"
@@ -145,7 +196,7 @@ public ArrayList<Cargo> selectAll() {
     ArrayList<Cargo> cargos = new ArrayList<Cargo>();
     
     try {
-                        String queryString = "SELECT * FROM cargo";
+                        String queryString = "SELECT * FROM cargo ORDER BY nome_cargo";
                         connection = getConnection();
                         pstmt = connection.prepareStatement(queryString);
                         resultSet = pstmt.executeQuery();
@@ -192,5 +243,53 @@ public ArrayList<Cargo> selectAll() {
                 /*Retorna um ArrayList contendo todos os cargos cadastrados*/
                 return cargos;
         }
+
+    public Cargo selectForId(int codigoCargo) {
+
+        ResultSet resultSet = null;
+        Cargo cargo = new Cargo();
+
+        try {
+
+            String queryString = "SELECT * FROM cargo"
+                    + " WHERE codigo_cargo = ?";
+            connection = getConnection();
+            pstmt = connection.prepareStatement(queryString);
+            pstmt.setInt(1, codigoCargo);
+
+            resultSet = pstmt.executeQuery();
+
+            resultSet.next();
+
+            cargo.setCodigoCargo(resultSet.getInt("codigo_cargo"));
+            cargo.setNomeCargo(resultSet.getString("nome_cargo"));
+            cargo.setPermissaoCargos(resultSet.getBoolean("permissao_cargos"));
+            cargo.setPermissaoCarros(resultSet.getBoolean("permissao_carros"));
+            cargo.setPermissaoCustos(resultSet.getBoolean("permissao_custos"));
+            cargo.setPermissaoItinerarios(resultSet.getBoolean("permissao_itinerarios"));
+            cargo.setPermissaoVendas(resultSet.getBoolean("permissao_vendas"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return cargo;
+    }
 
 }

@@ -76,6 +76,8 @@ public class TrechoServlet extends HttpServlet {
         TrechoDAO trechoDAO = new TrechoDAO();
         
         trechoDAO.insert(trecho);
+        
+        doGet(request, response);
     }
 
     /** 

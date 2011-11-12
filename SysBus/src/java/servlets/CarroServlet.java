@@ -97,23 +97,7 @@ public class CarroServlet extends HttpServlet {
         
         carroDAO.insert(carro);
         
-                ArrayList<Linha> linhas = new ArrayList<Linha>();
-        
-        LinhaDAO linhaDAO = new LinhaDAO();
-        
-        linhas = linhaDAO.selectAll();
-
-        request.setAttribute("Linhas", linhas);
-        
-    
-        ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
-                
-        carros = carroDAO.selectAllWithJoin();
-        
-        request.setAttribute("Carros", carros);
-        
-        request.getRequestDispatcher("/carro.jsp").forward(request, response);
-
+    doGet(request, response);
     }
 
     /** 
