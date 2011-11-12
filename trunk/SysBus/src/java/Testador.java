@@ -15,6 +15,6 @@ public class Testador {
         vendedor.setPermissaoItinerarios(false);
         vendedor.setPermissaoVendas(true);
 
-        cargoDAO.insert(vendedor);
+        cargoDAO.save(vendedor);
     }
 }

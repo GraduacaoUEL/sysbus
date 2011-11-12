@@ -74,6 +74,8 @@ public class ItinerarioServlet extends HttpServlet {
         ItinerarioDAO itinerarioDAO = new ItinerarioDAO();
         
         itinerarioDAO.insert(itinerario);
+        
+        doGet(request, response);
     }
 
     /** 

@@ -18,5 +18,7 @@
             <li><a href="trecho.jsp">Trecho</a></li>
             <li><a href="venda.jsp">Venda</a></li>
         </ul>
+        
+        <a href="login.html">Login - Testes</a>
     </body>
 </html>

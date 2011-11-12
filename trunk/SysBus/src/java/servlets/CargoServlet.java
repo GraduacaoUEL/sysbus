@@ -50,11 +50,33 @@ public class CargoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    
+        String opcao = request.getParameter("op");
+        Integer id;
         
-        ArrayList<Cargo> cargos = new ArrayList<Cargo>();
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException n) {
+            id = 0;
+        }
         
         CargoDAO cargoDAO = new CargoDAO();
         
+        
+        if("excluir".equals(opcao))
+        {
+            cargoDAO.delete(id);
+        }
+        else if("editar".equals(opcao))
+        {
+            Cargo cargoParaEdicao = new Cargo();
+            cargoParaEdicao = cargoDAO.selectForId(id);
+            
+            request.setAttribute("CargoEdicao", cargoParaEdicao);
+        }
+        
+        ArrayList<Cargo> cargos = new ArrayList<Cargo>();
+                
         /*A variável cargos recebe todos os cargos que estão no banco de dados*/        
         cargos = cargoDAO.selectAll();
 
@@ -80,23 +102,16 @@ public class CargoServlet extends HttpServlet {
         
         Cargo cargo = new Cargo();
         
+        cargo.setCodigoCargo(Integer.parseInt((request.getParameter("codigoCargo").equals("") ? "0" : request.getParameter("codigoCargo"))));
         cargo.setNomeCargo(request.getParameter("nomeCargo"));
         cargo.setPermissaoCargos(Boolean.valueOf(request.getParameter("permissaoCargos")));
         cargo.setPermissaoCarros(Boolean.valueOf(request.getParameter("permissaoCarros")));
         cargo.setPermissaoCustos(Boolean.valueOf(request.getParameter("permissaoCustos")));
         cargo.setPermissaoItinerarios(Boolean.valueOf(request.getParameter("permissaoItinerarios")));
         cargo.setPermissaoVendas(Boolean.valueOf(request.getParameter("permissaoVendas")));
-        
-        cargoDAO.insert(cargo);
 
-        ArrayList<Cargo> cargos = new ArrayList<Cargo>();
-                
-        /*A variável cargos recebe todos os cargos que estão no banco de dados*/        
-        cargos = cargoDAO.selectAll();
-
-        request.setAttribute("Cargos", cargos);
-        
-        request.getRequestDispatcher("/cargo.jsp").forward(request, response);
+        cargoDAO.save(cargo);
+        doGet(request, response);
     }
 
     /** 

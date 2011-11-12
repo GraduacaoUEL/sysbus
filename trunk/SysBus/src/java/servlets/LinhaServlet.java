@@ -96,6 +96,8 @@ public class LinhaServlet extends HttpServlet {
         LinhaDAO linhaDAO = new LinhaDAO();
         
         linhaDAO.insert(linha);
+        
+        doGet(request, response);
     }
 
     /** 

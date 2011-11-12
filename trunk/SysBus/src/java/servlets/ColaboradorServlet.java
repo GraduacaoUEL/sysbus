@@ -106,10 +106,8 @@ public class ColaboradorServlet extends HttpServlet {
         ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
         
         colaboradorDAO.insert(colaborador);
-        
-        request.setAttribute("Colaborador", colaborador);
-        
-        request.getRequestDispatcher("/colaborador.jsp").forward(request, response);
+
+        doGet(request, response);
     }
 
     /** 

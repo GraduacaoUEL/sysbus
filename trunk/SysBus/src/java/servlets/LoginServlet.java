@@ -1,9 +1,12 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package servlets;
 
 import DAO.ColaboradorDAO;
-import DAO.CustoDAO;
 import beans.Colaborador;
-import beans.Custo;
+import beans.ColaboradorInnerJoinCargo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,7 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CustoServlet extends HttpServlet {
+/**
+ *
+ * @author helioalb
+ */
+public class LoginServlet extends HttpServlet {
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -28,10 +35,10 @@ public class CustoServlet extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CustoServlet</title>");  
+            out.println("<title>Servlet LoginServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CustoServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet LoginServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
              */
@@ -51,17 +58,9 @@ public class CustoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         
-        Custo custo = new Custo();
-        
-        CustoDAO custoDAO = new CustoDAO();
-        
-        custo = custoDAO.selectCusto();
-        
-        request.setAttribute("Custo", custo);
-        
-        
-        request.getRequestDispatcher("/custo.jsp").forward(request, response);
+        request.getRequestDispatcher("/menu.jsp").forward(request, response);
 
     }
 
@@ -76,15 +75,25 @@ public class CustoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Custo custo = new Custo();
+        Colaborador colaboradorAux = new Colaborador();
         
-        custo.setPrecoQuilometro(Float.parseFloat(request.getParameter("precoQuilometro")));
-        custo.setCodigoCusto(1);
-        CustoDAO custoDAO = new CustoDAO();
-      
-        custoDAO.update(custo);
+        colaboradorAux.setSenhaColaborador(request.getParameter("senha"));
         
-        doGet(request, response);
+        ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
+        Colaborador colaborador = new Colaborador();
+        
+        colaborador = colaboradorDAO.selectForLogin(request.getParameter("login"));
+        
+        if(colaborador.getSenhaColaborador().equals(colaboradorAux.getSenhaColaborador())){
+            System.out.println("Volta pro login");
+        } else {
+            ColaboradorInnerJoinCargo colaboradorInnerJoinCargo = new ColaboradorInnerJoinCargo();
+            colaboradorInnerJoinCargo = colaboradorDAO.selectWithJoin(request.getParameter("login"));
+            request.setAttribute("Colaborador", colaboradorInnerJoinCargo);
+            
+            doGet(request, response);
+        }
+                
     }
 
     /** 

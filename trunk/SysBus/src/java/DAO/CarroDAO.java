@@ -172,7 +172,10 @@ public class CarroDAO {
     ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
     
     try {
-                        String queryString = "select c.codigo_carro, c.numero_passageiros, l.nome_linha from carro as c inner join linha as l on c.linha_carro = l.codigo_linha";
+                        String queryString = "SELECT c.codigo_carro, "
+                                + "c.numero_passageiros, l.nome_linha FROM "
+                                + "carro AS c INNER JOIN linha AS l ON "
+                                + "c.linha_carro = l.codigo_linha";
                         connection = getConnection();
                         pstmt = connection.prepareStatement(queryString);
                         resultSet = pstmt.executeQuery();

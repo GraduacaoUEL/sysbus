@@ -74,6 +74,8 @@ public class PeriodoServlet extends HttpServlet {
         PeriodoDAO periodoDAO = new PeriodoDAO();
         
         periodoDAO.insert(periodo);
+        
+        doGet(request, response);
     }
 
     /** 
