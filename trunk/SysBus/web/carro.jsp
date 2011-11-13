@@ -8,9 +8,8 @@
     </head>
     <body>
         <form name="cadastroCarro" action="CarroServlet" method="post">
-            Código: <input type="text" name="codigoCarro"/><br/>
-            Número de passageiros: <input type="text" name="numeroDePassageiros"/><br/>
-            <!-- Linha: <input type="text" name="linhaCarro"/><br/> -->
+            Código: <input type="text" name="codigoCarro" value="${CarroEdicao.codigoCarro}"/><br/>
+            Número de passageiros: <input type="text" name="numeroDePassageiros" value="${CarroEdicao.numeroDePassageiros}"/><br/>
             
             Linha: <select name="linhaCarro">
                 <c:forEach var="linhas" items="${Linhas}">
@@ -19,7 +18,7 @@
                     </option>
                 </c:forEach>
             </select>
-            <input type="submit" value="Enviar"/>
+            <input type="submit" value="Salvar"/>
         </form>
 
                 <table border="1">
@@ -38,8 +37,8 @@
                     <td><c:out value="${carros.codigoCarro}"/></td>
                     <td><c:out value="${carros.numeroDePassageiros}"/></td>
                     <td><c:out value="${carros.nomeLinha}"/></td>
-                    <td>TODO</td>
-                    <td>TODO</td>
+                    <td><a href="CarroServlet?op=editar&id=<c:out value="${carros.codigoCarro}"/>">Editar</a></td>
+                    <td><a href="CarroServlet?op=excluir&id=<c:out value="${carros.codigoCarro}"/>">Excluir</a></td>
                 </tr>
                 </c:forEach>
             </tbody>

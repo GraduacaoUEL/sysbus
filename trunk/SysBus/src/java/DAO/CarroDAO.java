@@ -29,7 +29,7 @@ public class CarroDAO {
      * Insere um carro no banco de dados.
      * @param carro Carro a ser inserido.
      */
-    public void insert(Carro carro) {
+    private void insert(Carro carro) {
         try {
             String queryString = "INSERT INTO carro(codigo_carro,"
                     + " numero_passageiros, linha_carro) VALUES(?, ?, ?)";
@@ -94,7 +94,7 @@ public class CarroDAO {
      * Atualiza um carro no banco de dados.
      * @param carro Carro a ser atualizado.
      */
-    public void update(Carro carro) {
+    private void update(Carro carro) {
         try {
             String queryString = "UPDATE carro SET numero_passageiros = ?,"
                     + " linha_carro = ? WHERE codigo_carro = ?";
@@ -175,7 +175,8 @@ public class CarroDAO {
                         String queryString = "SELECT c.codigo_carro, "
                                 + "c.numero_passageiros, l.nome_linha FROM "
                                 + "carro AS c INNER JOIN linha AS l ON "
-                                + "c.linha_carro = l.codigo_linha";
+                                + "c.linha_carro = l.codigo_linha ORDER BY "
+                                + "c.codigo_carro";
                         connection = getConnection();
                         pstmt = connection.prepareStatement(queryString);
                         resultSet = pstmt.executeQuery();
@@ -210,4 +211,95 @@ public class CarroDAO {
                 return carros;
         }
     
+        public Carro selectForId(int codigoCarro) {
+
+        ResultSet resultSet = null;
+        Carro carro = new Carro();
+
+        try {
+
+            String queryString = "SELECT * FROM carro"
+                    + " WHERE codigo_carro = ?";
+            connection = getConnection();
+            pstmt = connection.prepareStatement(queryString);
+            pstmt.setInt(1, codigoCarro);
+
+            resultSet = pstmt.executeQuery();
+
+            resultSet.next();
+
+            carro.setCodigoCarro(resultSet.getInt("codigo_carro"));
+            carro.setLinhaCarro(resultSet.getInt("linha_carro"));
+            carro.setNumeroDePassageiros(resultSet.getInt("numero_passageiros"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return carro;
+    }
+
+    public void save(Carro carro) {
+
+        if (carro.getCodigoCarro() == 0) {
+            insert(carro);
+        } else {
+            ResultSet resultSet = null;
+
+            try {
+
+                String queryString = "SELECT COUNT(codigo_carro) FROM carro"
+                        + " WHERE codigo_carro = ?";
+
+                connection = getConnection();
+                pstmt = connection.prepareStatement(queryString);
+                pstmt.setInt(1, carro.getCodigoCarro());
+
+                resultSet = pstmt.executeQuery();
+                resultSet.next();
+                //Transparencia marota
+                if (resultSet.getInt("count") != 0) {
+                    update(carro);
+                } else {
+                    insert(carro);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
+
 }
