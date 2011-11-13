@@ -60,7 +60,6 @@ public class CustoServlet extends HttpServlet {
         
         request.setAttribute("Custo", custo);
         
-        
         request.getRequestDispatcher("/custo.jsp").forward(request, response);
 
     }

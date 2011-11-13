@@ -8,7 +8,7 @@
     <body>
         <form name="cadastroCusto" action="CustoServlet" method="post">
             Preço do quilômetro: <input type="text" name="precoQuilometro" value="${Custo.precoQuilometro}"/><br/>
-            <input type="submit" value="Enviar"/>
+            <input type="submit" value="Atualizar Custo"/>
         </form>
         <!-- Tentar fazer essa chamada no servlet de forma mais inteligente-->
         <a href="/SysBus/index.jsp">Página Inicial</a>                
