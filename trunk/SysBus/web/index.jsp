@@ -14,7 +14,7 @@
             <li><a href="DemandaServlet">Demanda</a></li>
             <li><a href="ItinerarioServlet">Itinerário</a></li>
             <li><a href="LinhaServlet">Linha</a></li>
-            <li><a href="periodo.jsp">Período</a></li>
+            <li><a href="PeriodoServlet">Período</a></li>
             <li><a href="trecho.jsp">Trecho</a></li>
             <li><a href="venda.jsp">Venda</a></li>
         </ul>
