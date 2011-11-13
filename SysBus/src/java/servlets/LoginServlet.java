@@ -74,26 +74,37 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        Colaborador colaboradorAux = new Colaborador();
-        
-        colaboradorAux.setSenhaColaborador(request.getParameter("senha"));
-        
+                
         ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
         Colaborador colaborador = new Colaborador();
         
         colaborador = colaboradorDAO.selectForLogin(request.getParameter("login"));
         
-        if(colaborador.getSenhaColaborador().equals(colaboradorAux.getSenhaColaborador())){
-            System.out.println("Volta pro login");
-        } else {
-            ColaboradorInnerJoinCargo colaboradorInnerJoinCargo = new ColaboradorInnerJoinCargo();
-            colaboradorInnerJoinCargo = colaboradorDAO.selectWithJoin(request.getParameter("login"));
-            request.setAttribute("Colaborador", colaboradorInnerJoinCargo);
-            
-            doGet(request, response);
-        }
+        String senhaBanco = colaborador.getSenhaColaborador();
+        senhaBanco = senhaBanco.toString();
+        
+        String senhaForm = request.getParameter("senha");
+        senhaForm = senhaForm.toString();
+        
+        System.out.println("Senha do Banco: " + senhaBanco);
+        System.out.println("Senha do Form: " + senhaForm);
+        
+    //Esse if/else não tem sentido, mas funciona só funciona assim
+//        if(senhaForm.toString().equals(senhaBanco.toString())){
+//            ColaboradorInnerJoinCargo colaboradorInnerJoinCargo = new ColaboradorInnerJoinCargo();
+//            colaboradorInnerJoinCargo = colaboradorDAO.selectWithJoin(request.getParameter("login"));
+//            request.setAttribute("Colaborador", colaboradorInnerJoinCargo);
+//            
+//            doGet(request, response);
+//            
+//        } else {
+//            System.out.println("Volta pro login");
+//        }
                 
+        if(senhaBanco.equals(senhaForm))
+            System.out.println("É igual");
+        else
+            System.out.println("não igual");
     }
 
     /** 
