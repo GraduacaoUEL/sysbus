@@ -9,6 +9,13 @@
     <body>
         <form name="cadastroDemanda" action="DemandaServlet" method="post">
             Nome: <input type="text" name="nomeDemanda"/><br/>
+            
+            <div>
+                
+                <c:forEach var="periodos" items="${Periodos}">
+                    <input type="checkbox" name="periodo" value="${periodos.inicioPeriodo}" />${periodos.inicioPeriodo} às ${periodos.fimPeriodo}<br>
+                </c:forEach>
+            </div>
             <input type="submit" value="Enviar"/>
         </form>
         

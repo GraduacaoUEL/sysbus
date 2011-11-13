@@ -52,16 +52,12 @@ public class CustoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Custo custo = new Custo();
-        
+        Custo custo = new Custo();    
         CustoDAO custoDAO = new CustoDAO();
-        
         custo = custoDAO.selectCusto();
-        
         request.setAttribute("Custo", custo);
         
         request.getRequestDispatcher("/custo.jsp").forward(request, response);
-
     }
 
     /** 

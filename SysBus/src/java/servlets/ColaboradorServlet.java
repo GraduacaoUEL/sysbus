@@ -56,12 +56,8 @@ public class ColaboradorServlet extends HttpServlet {
             throws ServletException, IOException {
         
         ArrayList<Cargo> cargos = new ArrayList<Cargo>();
-        
         CargoDAO cargoDAO = new CargoDAO();
-        
-        /*A variável cargos recebe todos os cargos que estão no banco de dados*/        
         cargos = cargoDAO.selectAll();
-
         request.setAttribute("Cargos", cargos);
     
         ArrayList<ColaboradorInnerJoinCargo> colaboradoresInnerJoinCargos = 
@@ -91,7 +87,6 @@ public class ColaboradorServlet extends HttpServlet {
         }
         
         colaboradoresInnerJoinCargos = colaboradorDAO.selectAllWithJoin();
-        
         request.setAttribute("Colaboradores", colaboradoresInnerJoinCargos);
         
         

@@ -54,15 +54,12 @@ public class CarroServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<Linha> linhas = new ArrayList<Linha>();
-        
+        ArrayList<Linha> linhas = new ArrayList<Linha>();    
         LinhaDAO linhaDAO = new LinhaDAO();
-        
         linhas = linhaDAO.selectAll();
-
         request.setAttribute("Linhas", linhas);
         
-            CarroDAO carroDAO = new CarroDAO();
+        CarroDAO carroDAO = new CarroDAO();
         String opcao = request.getParameter("op");
         Integer id;
         
@@ -89,14 +86,12 @@ public class CarroServlet extends HttpServlet {
             request.setAttribute("CarroEdicao", carroParaEdicao);
         }
 
-        ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
-                
-        carros = carroDAO.selectAllWithJoin();
-        
+        ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();        
+        carros = carroDAO.selectAllWithJoin();        
         request.setAttribute("Carros", carros);
         
-        request.getRequestDispatcher("/carro.jsp").forward(request, response);
         
+        request.getRequestDispatcher("/carro.jsp").forward(request, response);
     }
 
     /** 

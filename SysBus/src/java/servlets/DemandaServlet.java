@@ -1,7 +1,9 @@
 package servlets;
 
 import DAO.DemandaDAO;
+import DAO.PeriodoDAO;
 import beans.Demanda;
+import beans.Periodo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -51,12 +53,15 @@ public class DemandaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<Demanda> demandas = new ArrayList<Demanda>();
+    
+        ArrayList<Periodo> periodos = new ArrayList<Periodo>();     
+        PeriodoDAO periodoDAO = new PeriodoDAO();
+        periodos = periodoDAO.selectAll();
+        request.setAttribute("Periodos", periodos);
         
+        ArrayList<Demanda> demandas = new ArrayList<Demanda>();
         DemandaDAO demandaDAO = new DemandaDAO();
-            
         demandas = demandaDAO.selectAll();
-
         request.setAttribute("Demandas", demandas);
         
         request.getRequestDispatcher("/demanda.jsp").forward(request, response);

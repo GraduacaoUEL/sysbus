@@ -76,14 +76,10 @@ public class CargoServlet extends HttpServlet {
         }
         
         ArrayList<Cargo> cargos = new ArrayList<Cargo>();
-                
         /*A variável cargos recebe todos os cargos que estão no banco de dados*/        
         cargos = cargoDAO.selectAll();
-
         request.setAttribute("Cargos", cargos);
-        
         request.getRequestDispatcher("/cargo.jsp").forward(request, response);
-
     }
 
     /** 
