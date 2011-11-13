@@ -5,6 +5,7 @@ import beans.Periodo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Time;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,7 +51,38 @@ public class PeriodoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String opcao = request.getParameter("op");
+        Integer id;
+        
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException n) {
+            id = 0;
+        }
+        
+        PeriodoDAO periodoDAO = new PeriodoDAO();
+        
+        
+        if("excluir".equals(opcao))
+        {
+            periodoDAO.delete(id);
+        }
+        else if("editar".equals(opcao))
+        {
+            Periodo periodoParaEdicao = new Periodo();
+            periodoParaEdicao = periodoDAO.selectForId(id);
+            
+            request.setAttribute("PeriodoEdicao", periodoParaEdicao);
+        }
+        
+        ArrayList<Periodo> periodos = new ArrayList<Periodo>();
+        
+        periodos = periodoDAO.selectAll();
+        
+        request.setAttribute("Periodos", periodos);
+                
+        request.getRequestDispatcher("/periodo.jsp").forward(request, response);
     }
 
     /** 
@@ -63,17 +95,17 @@ public class PeriodoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
         
         Periodo periodo = new Periodo();
-        
+    
+        periodo.setCodigoPeriodo(Integer.parseInt(request.getParameter("codigoPeriodo")));
         periodo.setInicioPeriodo(Time.valueOf(request.getParameter("inicioPeriodo")));
         periodo.setFimPeriodo(Time.valueOf(request.getParameter("fimPeriodo")));
         periodo.setFatorMultiplicacao(Float.parseFloat(request.getParameter("fatorMultiplicacao")));
         
         PeriodoDAO periodoDAO = new PeriodoDAO();
         
-        periodoDAO.insert(periodo);
+        periodoDAO.save(periodo);
         
         doGet(request, response);
     }

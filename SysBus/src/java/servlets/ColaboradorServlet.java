@@ -69,9 +69,6 @@ public class ColaboradorServlet extends HttpServlet {
         
         ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
         
- ///////////////////////////////////////////////////////////////////////
-//////////////////            Edit e Delete               //////////////
-////////////////////////////////////////////////////////////////////////
         String opcao = request.getParameter("op");
         Integer id;
                 
@@ -92,7 +89,7 @@ public class ColaboradorServlet extends HttpServlet {
             
             request.setAttribute("ColaboradorEdicao", colaboradorParaEdicao);
         }
-
+        
         colaboradoresInnerJoinCargos = colaboradorDAO.selectAllWithJoin();
         
         request.setAttribute("Colaboradores", colaboradoresInnerJoinCargos);
