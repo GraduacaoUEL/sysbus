@@ -62,11 +62,35 @@ public class CarroServlet extends HttpServlet {
 
         request.setAttribute("Linhas", linhas);
         
-    
+            CarroDAO carroDAO = new CarroDAO();
+        String opcao = request.getParameter("op");
+        Integer id;
+        
+        //Debug
+        System.out.println("opcao: " + opcao);
+        
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException n) {
+            id = 0;
+        }
+        
+        //Debug
+        System.out.println("id: " + id);
+        if("excluir".equals(opcao))
+        {
+            carroDAO.delete(id);
+        }
+        else if("editar".equals(opcao))
+        {
+            Carro carroParaEdicao = new Carro();
+            carroParaEdicao = carroDAO.selectForId(id);
+            
+            request.setAttribute("CarroEdicao", carroParaEdicao);
+        }
+
         ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
-        
-        CarroDAO carroDAO = new CarroDAO();
-        
+                
         carros = carroDAO.selectAllWithJoin();
         
         request.setAttribute("Carros", carros);
@@ -85,17 +109,15 @@ public class CarroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
         
+        CarroDAO carroDAO = new CarroDAO();
         Carro carro = new Carro();
         
         carro.setCodigoCarro(Integer.parseInt(request.getParameter("codigoCarro")));
         carro.setNumeroDePassageiros(Integer.parseInt(request.getParameter("numeroDePassageiros")));
         carro.setLinhaCarro(Integer.parseInt(request.getParameter("linhaCarro")));
-        
-        CarroDAO carroDAO = new CarroDAO();
-        
-        carroDAO.insert(carro);
+                
+        carroDAO.save(carro);
         
     doGet(request, response);
     }
