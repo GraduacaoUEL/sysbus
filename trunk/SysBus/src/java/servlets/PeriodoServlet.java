@@ -76,10 +76,8 @@ public class PeriodoServlet extends HttpServlet {
             request.setAttribute("PeriodoEdicao", periodoParaEdicao);
         }
         
-        ArrayList<Periodo> periodos = new ArrayList<Periodo>();
-        
+        ArrayList<Periodo> periodos = new ArrayList<Periodo>();    
         periodos = periodoDAO.selectAll();
-        
         request.setAttribute("Periodos", periodos);
                 
         request.getRequestDispatcher("/periodo.jsp").forward(request, response);
