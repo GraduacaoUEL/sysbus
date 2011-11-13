@@ -2,6 +2,7 @@ package beans;
 
 public class ColaboradorInnerJoinCargo {
 
+    private int codigoColaborador;
     private String nomeColaborador;
     private String loginColaborador;
     private String nomeCargo;
@@ -121,6 +122,20 @@ public class ColaboradorInnerJoinCargo {
      */
     public void setNomeCargo(String nomeCargo) {
         this.nomeCargo = nomeCargo;
+    }
+
+    /**
+     * @return the codigoColaborador
+     */
+    public int getCodigoColaborador() {
+        return codigoColaborador;
+    }
+
+    /**
+     * @param codigoColaborador the codigoColaborador to set
+     */
+    public void setCodigoColaborador(int codigoColaborador) {
+        this.codigoColaborador = codigoColaborador;
     }
     
     

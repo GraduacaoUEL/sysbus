@@ -11,9 +11,6 @@
             <input type="text" name="codigoCargo" value="${CargoEdicao.codigoCargo}" size="3" hidden=/>
             Nome: <input type="text" name="nomeCargo" value="${CargoEdicao.nomeCargo}"/><br/>
             Permissões:
-            
-            
-            
             <input type="checkbox" name="permissaoCargos" value="true" ${CargoEdicao.permissaoCargos ? "CHECKED" : ""}/>Cargos
             <input type="checkbox" name="permissaoCarros" value="true" ${CargoEdicao.permissaoCarros ? "CHECKED" : ""}/>Carros
             <input type="checkbox" name="permissaoItinerarios" value="true" ${CargoEdicao.permissaoItinerarios ? "CHECKED" : ""}/>Itinerários

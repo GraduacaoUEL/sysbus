@@ -87,7 +87,6 @@ public class Colaborador implements Serializable {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }        
-        this.senhaColaborador = senhaColaborador;
     }
 
     /**
