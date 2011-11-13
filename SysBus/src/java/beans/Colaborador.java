@@ -80,13 +80,13 @@ public class Colaborador implements Serializable {
      * @param senhaColaborador Senha do colaborador.
      */
     public void setSenhaColaborador(String senhaColaborador) {
-//        try {
-//            MessageDigest md = MessageDigest.getInstance("MD5");
-//            md.update(senhaColaborador.getBytes());
-//            this.senhaColaborador = new BigInteger(1, md.digest()).toString(16);
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        }        
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(senhaColaborador.getBytes());
+            this.senhaColaborador = new BigInteger(1, md.digest()).toString(16);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }        
         this.senhaColaborador = senhaColaborador;
     }
 
