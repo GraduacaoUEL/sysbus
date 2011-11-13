@@ -4,6 +4,7 @@ import DAO.CargoDAO;
 import DAO.ColaboradorDAO;
 import beans.Cargo;
 import beans.Colaborador;
+import beans.ColaboradorInnerJoinCargo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -63,13 +64,38 @@ public class ColaboradorServlet extends HttpServlet {
 
         request.setAttribute("Cargos", cargos);
     
-        ArrayList<Colaborador> colaboradores = new ArrayList<Colaborador>();
+        ArrayList<ColaboradorInnerJoinCargo> colaboradoresInnerJoinCargos = 
+                new ArrayList<ColaboradorInnerJoinCargo>();
         
         ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
         
-        colaboradores = colaboradorDAO.selectAll();
+ ///////////////////////////////////////////////////////////////////////
+//////////////////            Edit e Delete               //////////////
+////////////////////////////////////////////////////////////////////////
+        String opcao = request.getParameter("op");
+        Integer id;
+                
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException n) {
+            id = 0;
+        }
         
-        request.setAttribute("Colaboradores", colaboradores);
+        if("excluir".equals(opcao))
+        {
+            colaboradorDAO.delete(id);
+        }
+        else if("editar".equals(opcao))
+        {
+            Colaborador colaboradorParaEdicao = new Colaborador();
+            colaboradorParaEdicao = colaboradorDAO.selectForId(id);
+            
+            request.setAttribute("ColaboradorEdicao", colaboradorParaEdicao);
+        }
+
+        colaboradoresInnerJoinCargos = colaboradorDAO.selectAllWithJoin();
+        
+        request.setAttribute("Colaboradores", colaboradoresInnerJoinCargos);
         
         
         request.getRequestDispatcher("/colaborador.jsp").forward(request, response);
@@ -98,6 +124,7 @@ public class ColaboradorServlet extends HttpServlet {
         //Pôr um try/catch
         Colaborador colaborador = new Colaborador();
         
+        colaborador.setCodigoColaborador(Integer.parseInt(request.getParameter("codigoColaborador")));
         colaborador.setNomeColaborador(request.getParameter("nomeColaborador"));
         colaborador.setLoginColaborador(request.getParameter("loginColaborador"));
         colaborador.setSenhaColaborador(request.getParameter("senhaColaborador"));
@@ -105,7 +132,7 @@ public class ColaboradorServlet extends HttpServlet {
         
         ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
         
-        colaboradorDAO.insert(colaborador);
+        colaboradorDAO.save(colaborador);
 
         doGet(request, response);
     }

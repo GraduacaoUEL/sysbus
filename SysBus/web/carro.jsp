@@ -13,9 +13,7 @@
             
             Linha: <select name="linhaCarro">
                 <c:forEach var="linhas" items="${Linhas}">
-                    <option value ="<c:out value="${linhas.codigoLinha}"/>">
-                        <c:out value="${linhas.nomeLinha}" />
-                    </option>
+                    <option value ="<c:out value="${linhas.codigoLinha}"/>"><c:out value="${linhas.nomeLinha}"/></option>
                 </c:forEach>
             </select>
             <input type="submit" value="Salvar"/>

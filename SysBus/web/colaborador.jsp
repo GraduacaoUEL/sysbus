@@ -10,26 +10,23 @@
     <body>
         <h1>${Colaborador.nomeColaborador}</h1>
         <form name="cadastroColaborador" action="ColaboradorServlet" method="post">
-            Nome: <input type="text" name="nomeColaborador"/><br/>
-            Login: <input type="text" name="loginColaborador"/><br/>
+            <input type="text" name="codigoColaborador" value="${ColaboradorEdicao.codigoColaborador}" hidden/>
+            Nome: <input type="text" name="nomeColaborador" value="${ColaboradorEdicao.nomeColaborador}"/><br/>
+            Login: <input type="text" name="loginColaborador" value="${ColaboradorEdicao.loginColaborador}"/><br/>
             Senha: <input type="password" name="senhaColaborador"/><br/>
-            <!-- Cargo: <input type="text" name="cargoColaborador"/><br/> -->
             
             Cargo: <select name="cargoColaborador">
                 <c:forEach var="cargos" items="${Cargos}">
-                    <option value ="<c:out value="${cargos.codigoCargo}"/>">
-                        <c:out value="${cargos.nomeCargo}" />
-                    </option>
+                    <option value ="<c:out value="${cargos.codigoCargo}"/>"><c:out value="${cargos.nomeCargo}"/></option>
                 </c:forEach>
             </select>
             
-            <input type="submit" value="Enviar"/>
+            <input type="submit" value="Salvar"/>
         </form>
         
         <table border="1">
             <thead>
                 <tr>
-                    <th>Codigo</th>
                     <th>Numero do Colaborador</th>
                     <th>Login do Colaborador</th>
                     <th>Cargo do Colaborador</th>
@@ -40,12 +37,11 @@
             <tbody>                
                 <c:forEach var="colaboradores" items="${Colaboradores}">
                 <tr>
-                    <td><c:out value="${colaboradores.codigoColaborador}"/></td>
                     <td><c:out value="${colaboradores.nomeColaborador}"/></td>
                     <td><c:out value="${colaboradores.loginColaborador}"/></td>
-                    <td><c:out value="${colaboradores.cargoColaborador}"/></td>
-                    <td>TODO</td>
-                    <td>TODO</td>
+                    <td><c:out value="${colaboradores.nomeCargo}"/></td>
+                    <td><a href="ColaboradorServlet?op=editar&id=<c:out value="${colaboradores.codigoColaborador}"/>">Editar</a></td>
+                    <td><a href="ColaboradorServlet?op=excluir&id=<c:out value="${colaboradores.codigoColaborador}"/>">Excluir</a></td>
                 </tr>
                 </c:forEach>
             </tbody>

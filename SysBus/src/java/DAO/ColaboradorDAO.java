@@ -29,7 +29,7 @@ public class ColaboradorDAO {
      * Insere um colaborador no banco de dados.
      * @param colaborador Colaborador a ser inserido.
      */
-    public void insert(Colaborador colaborador) {
+    private void insert(Colaborador colaborador) {
         try {
             String queryString = "INSERT INTO colaborador(nome_colaborador,"
                     + " login_colaborador, senha_colaborador,"
@@ -97,7 +97,7 @@ public class ColaboradorDAO {
      * Atualiza um colaborador no banco de dados.
      * @param colaborador Colaborador a ser atualizado.
      */
-    public void update(Colaborador colaborador) {
+    private void update(Colaborador colaborador) {
         try {
             String queryString = "UPDATE colaborador SET nome_colaborador = ?,"
                     + " login_colaborador = ?, senha_colaborador = ?,"
@@ -267,4 +267,146 @@ public class ColaboradorDAO {
         return colaborador;
     }
 
+    public ArrayList<ColaboradorInnerJoinCargo> selectAllWithJoin() {
+
+        ResultSet resultSet = null;
+        ArrayList<ColaboradorInnerJoinCargo> colaboradores =
+                new ArrayList<ColaboradorInnerJoinCargo>();
+
+        try {
+            String queryString = "SELECT co.codigo_colaborador, co.nome_colaborador, "
+                    + "co.login_colaborador, ca.nome_cargo FROM colaborador AS "
+                    + "co INNER JOIN cargo AS ca ON "
+                    + "co.cargo_colaborador = ca.codigo_cargo "
+                    + "ORDER BY co.nome_colaborador";
+            connection = getConnection();
+            pstmt = connection.prepareStatement(queryString);
+            resultSet = pstmt.executeQuery();
+            
+            while(resultSet.next()){
+                ColaboradorInnerJoinCargo colaboradorInnerJoinCargo = 
+                        new ColaboradorInnerJoinCargo();
+                colaboradorInnerJoinCargo.setCodigoColaborador(resultSet.getInt(1));
+                colaboradorInnerJoinCargo.setNomeColaborador(resultSet.getString(2));
+                colaboradorInnerJoinCargo.setLoginColaborador(resultSet.getString(3));
+                colaboradorInnerJoinCargo.setNomeCargo(resultSet.getString(4));
+            
+                colaboradores.add(colaboradorInnerJoinCargo);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return colaboradores;
+    }
+
+    public Colaborador selectForId(int codigoColaborador) {
+
+        ResultSet resultSet = null;
+        Colaborador colaborador = new Colaborador();
+
+        try {
+
+            String queryString = "SELECT * FROM colaborador"
+                    + " WHERE codigo_colaborador = ?";
+            connection = getConnection();
+            pstmt = connection.prepareStatement(queryString);
+            pstmt.setInt(1, codigoColaborador);
+
+            resultSet = pstmt.executeQuery();
+
+            resultSet.next();
+
+            colaborador.setCodigoColaborador(resultSet.getInt("codigo_colaborador"));
+            colaborador.setNomeColaborador(resultSet.getString("nome_colaborador"));
+            colaborador.setLoginColaborador(resultSet.getString("login_colaborador"));
+            colaborador.setSenhaColaborador(resultSet.getString("senha_colaborador"));
+            colaborador.setCargoColaborador(resultSet.getInt("cargo_colaborador"));
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return colaborador;
+    }
+    
+    public void save(Colaborador colaborador) {
+
+        if (colaborador.getCodigoColaborador() == 0) {
+            insert(colaborador);
+        } else {
+            ResultSet resultSet = null;
+
+            try {
+
+                String queryString = "SELECT COUNT(codigo_colaborador) FROM "
+                        + "colaborador WHERE codigo_colaborador = ?";
+
+                connection = getConnection();
+                pstmt = connection.prepareStatement(queryString);
+                pstmt.setInt(1, colaborador.getCodigoColaborador());
+
+                resultSet = pstmt.executeQuery();
+                resultSet.next();
+                //Transparencia marota
+                if (resultSet.getInt("count") != 0) {
+                    update(colaborador);
+                } else {
+                    insert(colaborador);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (resultSet != null) {
+                        resultSet.close();
+                    }
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
+    
 }
