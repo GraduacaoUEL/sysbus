@@ -14,7 +14,7 @@
             <p>Inserção/Atualização</p>
             <form name="cadastroCusto" action="CustoServlet" method="post">
                 <label>Preço do quilômetro:</label><br/><input type="text" name="precoQuilometro" value="${Custo.precoQuilometro}"/><br/><br/>
-                <input type="submit" value="Salvar"/>
+                <input type="submit" value="Atualizar"/>
             </form>
         </div>
     </body>
