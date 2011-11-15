@@ -1,14 +1,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
+        <link rel=StyleSheet href="itinerario.css" type="text/css" media=screen/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Itinerário</title>
+        <title>SysBus: Gerenciamento de itinerários</title>
     </head>
     <body>
-        <form name="cadastroItinerario" action="ItinerarioServlet" method="post">
-            Nome: <input type="text" name="nomeItinerario"/><br/>
-            <input type="submit" value="Enviar"/>
-        </form>
+        <div id="titulo">
+            <p>SysBus: Gerenciamento de itinerários</p>
+        </div>
+        <jsp:include page="menu.html" flush="true"/>
+        <div id="form">
+            <p>Inserção/Atualização</p>
+            <form name="cadastroItinerario" action="ItinerarioServlet" method="post">
+                <label>Nome:</label><br/><input type="text" name="nomeItinerario"/><br/><br/>
+                <input type="submit" value="Salvar"/>
+            </form>
+        </div>
     </body>
 </html>

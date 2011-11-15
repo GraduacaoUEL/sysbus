@@ -17,17 +17,17 @@
                 <input type="text" name="codigoCargo" value="${CargoEdicao.codigoCargo}" size="3" hidden=/>
                 <label>Nome:</label><br/><input type="text" name="nomeCargo" value="${CargoEdicao.nomeCargo}"/><br/><br/>
                 <label>Permissões:</label><br/>
-                <input type="checkbox" name="permissaoCargos" value="true" ${CargoEdicao.permissaoCargos ? "CHECKED" : ""}/>Cargos
-                <input type="checkbox" name="permissaoCarros" value="true" ${CargoEdicao.permissaoCarros ? "CHECKED" : ""}/>Carros
-                <input type="checkbox" name="permissaoItinerarios" value="true" ${CargoEdicao.permissaoItinerarios ? "CHECKED" : ""}/>Itinerários
-                <input type="checkbox" name="permissaoVendas" value="true" ${CargoEdicao.permissaoVendas ? "CHECKED" : ""}/>Vendas
+                <input type="checkbox" name="permissaoCargos" value="true" ${CargoEdicao.permissaoCargos ? "CHECKED" : ""}/>Cargos<br/>
+                <input type="checkbox" name="permissaoCarros" value="true" ${CargoEdicao.permissaoCarros ? "CHECKED" : ""}/>Carros<br/>
+                <input type="checkbox" name="permissaoItinerarios" value="true" ${CargoEdicao.permissaoItinerarios ? "CHECKED" : ""}/>Itinerários<br/>
+                <input type="checkbox" name="permissaoVendas" value="true" ${CargoEdicao.permissaoVendas ? "CHECKED" : ""}/>Vendas<br/>
                 <input type="checkbox" name="permissaoCustos" value="true" ${CargoEdicao.permissaoCustos ? "CHECKED" : ""}/>Custos<br/><br/>
                 <input type="submit" value="Salvar"/>
             </form>
         </div>
         <div id="tabela">
             <p>Cargos existentes</p>
-            <table border="1">
+            <table>
                 <thead>
                     <tr>
                         <th>Nome</th>

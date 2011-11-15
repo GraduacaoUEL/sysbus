@@ -27,7 +27,7 @@
 
         <div id="tabela">
             <p>Carros existentes</p>
-            <table border="1">
+            <table>
                 <thead>
                     <tr>
                         <th>Código</th>
