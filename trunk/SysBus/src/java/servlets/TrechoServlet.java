@@ -5,6 +5,7 @@ import beans.Trecho;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Time;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,7 +51,32 @@ public class TrechoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String opcao = request.getParameter("op");
+        Integer id;
+
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException n) {
+            id = 0;
+        }
+
+        TrechoDAO trechoDAO = new TrechoDAO();
+
+        if ("excluir".equals(opcao)) {
+            trechoDAO.delete(id);
+        } else if ("editar".equals(opcao)) {
+            Trecho trechoParaEdicao = new Trecho();
+            trechoParaEdicao = trechoDAO.selectForId(id);
+
+            request.setAttribute("TrechoEdicao", trechoParaEdicao);
+        }
+
+        ArrayList<Trecho> trechos = new ArrayList<Trecho>();
+        
+        trechos = trechoDAO.selectAll();
+        request.setAttribute("Trechos", trechos);
+        request.getRequestDispatcher("/trecho.jsp").forward(request, response);
     }
 
     /** 
@@ -63,19 +89,23 @@ public class TrechoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
         
         Trecho trecho = new Trecho();
         
+        try{
+            trecho.setCodigoTrecho(Integer.parseInt(request.getParameter("codigoTrecho")));
+        }catch(NumberFormatException n){
+            trecho.setCodigoTrecho(0);
+        }
+
         trecho.setOrigemTrecho(request.getParameter("origemTrecho"));
         trecho.setDestinoTrecho(request.getParameter("destinoTrecho"));
         trecho.setTempoTrecho(Time.valueOf(request.getParameter("tempoTrecho")));
         trecho.setDistanciaTrecho(Float.parseFloat(request.getParameter("distanciaTrecho")));
-        trecho.setCustoTrecho(Integer.parseInt(request.getParameter("custoTrecho")));
         
         TrechoDAO trechoDAO = new TrechoDAO();
         
-        trechoDAO.insert(trecho);
+        trechoDAO.save(trecho);
         
         doGet(request, response);
     }
