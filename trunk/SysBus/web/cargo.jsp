@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
-        <link rel=StyleSheet href="cargo.css" type="text/css" media=screen/>
+        <link rel=StyleSheet href="estilo.css" type="text/css" media=screen/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SysBus: Gerenciamento de cargos</title>
     </head>
@@ -14,7 +14,7 @@
         <div id="form">
             <p>Inserção/Atualização</p>
             <form name="cadastroCargo" action="CargoServlet" method="post">
-                <input type="text" name="codigoCargo" value="${CargoEdicao.codigoCargo}" size="3" hidden=/>
+                <input type="text" name="codigoCargo" value="${CargoEdicao.codigoCargo}" size="3" hidden/>
                 <label>Nome:</label><br/><input type="text" name="nomeCargo" value="${CargoEdicao.nomeCargo}"/><br/><br/>
                 <label>Permissões:</label><br/>
                 <input type="checkbox" name="permissaoCargos" value="true" ${CargoEdicao.permissaoCargos ? "CHECKED" : ""}/>Cargos<br/>

@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
-        <link rel=StyleSheet href="cargo.css" type="text/css" media=screen/>
+        <link rel=StyleSheet href="estilo.css" type="text/css" media=screen/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SysBus: Gerenciamento de carros</title>
     </head>
