@@ -13,7 +13,7 @@
             <div>
                 
                 <c:forEach var="periodos" items="${Periodos}">
-                    <input type="checkbox" name="periodo" value="${periodos.inicioPeriodo}" />${periodos.inicioPeriodo} às ${periodos.fimPeriodo}<br>
+                    <input type="checkbox" name="periodo[]" value="${periodos.codigoPeriodo}" />${periodos.inicioPeriodo} às ${periodos.fimPeriodo}<br>
                 </c:forEach>
             </div>
             <input type="submit" value="Enviar"/>

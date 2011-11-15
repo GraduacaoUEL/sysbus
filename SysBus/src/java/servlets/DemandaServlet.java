@@ -78,22 +78,37 @@ public class DemandaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
+            
         DemandaDAO demandaDAO = new DemandaDAO();
         
         Demanda demanda = new Demanda();
         
+        try{
+            demanda.setCodigoDemanda(Integer.parseInt(request.getParameter("codigoDemanda")));
+        }catch(NumberFormatException n){
+            demanda.setCodigoDemanda(0);
+        }
+        
+        /*Carrega todos os periodos no bean Demanda*/
+        //Captura todos os checbox marcados no formulario
+        String periodoForm[] = request.getParameterValues("periodo[]");
+        
+        //Esse array irá guardar todos os períodos pertencentes à essa demanda.
+        ArrayList<Periodo> periodosDemanda = 
+                new ArrayList<Periodo>();
+        
+        for(int i = 0; i < periodoForm.length; i++){
+            Periodo periodo = new Periodo();
+            periodo.setCodigoPeriodo(Integer.parseInt(periodoForm[i]));
+            periodosDemanda.add(periodo);
+        }
+
         demanda.setNomeDemanda(request.getParameter("nomeDemanda"));
+        demanda.setPeriodosDemanda(periodosDemanda);
         
         demandaDAO.insert(demanda);
         
-        ArrayList<Demanda> demandas = new ArrayList<Demanda>();
-                    
-        demandas = demandaDAO.selectAll();
-
-        request.setAttribute("Demandas", demandas);
-        
-        request.getRequestDispatcher("/demanda.jsp").forward(request, response);
+        doGet(request, response);
     }
 
     /** 
