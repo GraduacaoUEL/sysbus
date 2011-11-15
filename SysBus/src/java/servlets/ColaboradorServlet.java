@@ -37,7 +37,7 @@ public class ColaboradorServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
              */
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -50,11 +50,10 @@ public class ColaboradorServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         ArrayList<Cargo> cargos = new ArrayList<Cargo>();
         CargoDAO cargoDAO = new CargoDAO();
         cargos = cargoDAO.selectAll();
@@ -105,25 +104,25 @@ public class ColaboradorServlet extends HttpServlet {
             throws ServletException, IOException {    
     
         ArrayList<Cargo> cargos = new ArrayList<Cargo>();
-        
+
         CargoDAO cargoDAO = new CargoDAO();
 
-        /*A variável cargos recebe todos os cargos que estão no banco de dados*/
+        /* A variável cargos recebe todos os cargos que estão no banco de dados. */
         cargos = cargoDAO.selectAll();
-        
+
         request.setAttribute("Cargos", cargos);
-        
-        //Pôr um try/catch
+
+        /* Pôr um try/catch. */
         Colaborador colaborador = new Colaborador();
-        
+
         colaborador.setCodigoColaborador(Integer.parseInt(request.getParameter("codigoColaborador")));
         colaborador.setNomeColaborador(request.getParameter("nomeColaborador"));
         colaborador.setLoginColaborador(request.getParameter("loginColaborador"));
         colaborador.setSenhaColaborador(request.getParameter("senhaColaborador"));
         colaborador.setCargoColaborador(Integer.parseInt(request.getParameter("cargoColaborador")));
-        
+
         ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
-        
+
         colaboradorDAO.save(colaborador);
 
         doGet(request, response);

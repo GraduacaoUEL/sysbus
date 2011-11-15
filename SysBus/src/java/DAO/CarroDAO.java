@@ -12,19 +12,19 @@ public class CarroDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-    
+
     /**
      * Construtor vazio.
      */
     public CarroDAO() {
     }
-    
+
     private Connection getConnection() throws SQLException {
         Connection conn;
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-    
+
     /**
      * Insere um carro no banco de dados.
      * @param carro Carro a ser inserido.
@@ -58,7 +58,7 @@ public class CarroDAO {
             }
         }
     }
-    
+
     /**
      * Remove um carro do banco de dados.
      * @param codigoCarro Código do carro a ser removido.
@@ -89,7 +89,7 @@ public class CarroDAO {
             }
         }
     }
-    
+
     /**
      * Atualiza um carro no banco de dados.
      * @param carro Carro a ser atualizado.
@@ -123,95 +123,101 @@ public class CarroDAO {
             }
         }
     }
-    
-    public ArrayList<Carro> selectAll() {
-    
-    ResultSet resultSet = null;
-    ArrayList<Carro> carros = new ArrayList<Carro>();
-    
-    try {
-                        String queryString = "SELECT * FROM carro";
-                        connection = getConnection();
-                        pstmt = connection.prepareStatement(queryString);
-                        resultSet = pstmt.executeQuery();
-                        while (resultSet.next()) {
-                            
-                            Carro carro = new Carro();
-                            
-                            carro.setCodigoCarro(resultSet.getInt("codigo_carro"));
-                            carro.setNumeroDePassageiros(resultSet.getInt("numero_passageiros"));
-                            carro.setLinhaCarro(resultSet.getInt("linha_carro"));
-                         
-                            carros.add(carro);
-                        }
-                        
-                        
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                } finally {
-                        try {
-                                if (resultSet != null)
-                                        resultSet.close();
-                                if (pstmt != null)
-                                        pstmt.close();
-                                if (connection != null)
-                                        connection.close();
-                        } catch (SQLException e) {
-                                e.printStackTrace();
-                        } catch (Exception e) {
-                                e.printStackTrace();
-                        }
 
+    public ArrayList<Carro> selectAll() {
+
+        ResultSet resultSet = null;
+        ArrayList<Carro> carros = new ArrayList<Carro>();
+
+        try {
+            String queryString = "SELECT * FROM carro";
+            connection = getConnection();
+            pstmt = connection.prepareStatement(queryString);
+            resultSet = pstmt.executeQuery();
+            while (resultSet.next()) {
+
+                Carro carro = new Carro();
+
+                carro.setCodigoCarro(resultSet.getInt("codigo_carro"));
+                carro.setNumeroDePassageiros(resultSet.getInt("numero_passageiros"));
+                carro.setLinhaCarro(resultSet.getInt("linha_carro"));
+
+                carros.add(carro);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
                 }
-                return carros;
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
+        return carros;
+    }
 
     public ArrayList<CarroInnerJoinLinha> selectAllWithJoin() {
-    
-    ResultSet resultSet = null;
-    ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
-    
-    try {
-                        String queryString = "SELECT c.codigo_carro, "
-                                + "c.numero_passageiros, l.nome_linha FROM "
-                                + "carro AS c INNER JOIN linha AS l ON "
-                                + "c.linha_carro = l.codigo_linha ORDER BY "
-                                + "c.codigo_carro";
-                        connection = getConnection();
-                        pstmt = connection.prepareStatement(queryString);
-                        resultSet = pstmt.executeQuery();
-                        while (resultSet.next()) {
-                            
-                            CarroInnerJoinLinha carro = new CarroInnerJoinLinha();
-                            
-                            carro.setCodigoCarro(resultSet.getInt("codigo_carro"));
-                            carro.setNumeroPassageiros(resultSet.getInt("numero_passageiros"));
-                            carro.setNomeLinha(resultSet.getString("nome_linha"));
-                            carros.add(carro);
-                        }
-                        
-                        
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                } finally {
-                        try {
-                                if (resultSet != null)
-                                        resultSet.close();
-                                if (pstmt != null)
-                                        pstmt.close();
-                                if (connection != null)
-                                        connection.close();
-                        } catch (SQLException e) {
-                                e.printStackTrace();
-                        } catch (Exception e) {
-                                e.printStackTrace();
-                        }
 
+        ResultSet resultSet = null;
+        ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
+
+        try {
+            String queryString = "SELECT c.codigo_carro, "
+                    + "c.numero_passageiros, l.nome_linha FROM "
+                    + "carro AS c INNER JOIN linha AS l ON "
+                    + "c.linha_carro = l.codigo_linha ORDER BY "
+                    + "c.codigo_carro";
+            connection = getConnection();
+            pstmt = connection.prepareStatement(queryString);
+            resultSet = pstmt.executeQuery();
+            while (resultSet.next()) {
+
+                CarroInnerJoinLinha carro = new CarroInnerJoinLinha();
+
+                carro.setCodigoCarro(resultSet.getInt("codigo_carro"));
+                carro.setNumeroPassageiros(resultSet.getInt("numero_passageiros"));
+                carro.setNomeLinha(resultSet.getString("nome_linha"));
+                carros.add(carro);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
                 }
-                return carros;
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
-    
-        public Carro selectForId(int codigoCarro) {
+        return carros;
+    }
+
+    public Carro selectForId(int codigoCarro) {
 
         ResultSet resultSet = null;
         Carro carro = new Carro();

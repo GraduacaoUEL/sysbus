@@ -11,28 +11,32 @@ public class CargoDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-    
+
     /**
      * Construtor vazio.
      */
     public CargoDAO() {
     }
-    
+
     private Connection getConnection() throws SQLException {
         Connection conn;
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-    
+
+    /**
+     * Insere um cargo no banco de dados.
+     * @param cargo Cargo a ser inserido.
+     */
     private void insert(Cargo cargo) {
         try {
             String queryString = "INSERT INTO cargo(nome_cargo,"
                     + " permissao_cargos, permissao_carros,"
                     + " permissao_itinerarios, permissao_vendas,"
                     + " permissao_custos) VALUES(?, ?, ?, ?, ?, ?)";
-            
+
             connection = getConnection();
-            
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, cargo.getNomeCargo());
             pstmt.setBoolean(2, cargo.isPermissaoCargos());
@@ -56,26 +60,19 @@ public class CargoDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
-            
-            
         }
     }
-    
-    
+
     /**
      * Insere ou atualiza cargo no banco de dados.
-     * @param cargo Cargo a ser inserido.
+     * @param cargo Cargo a ser inserido ou atualizado.
      */
     public void save(Cargo cargo) {
-
         if (cargo.getCodigoCargo() == 0) {
             insert(cargo);
         } else {
             ResultSet resultSet = null;
-
             try {
-
                 String queryString = "SELECT COUNT(codigo_cargo) FROM cargo"
                         + " WHERE codigo_cargo = ?";
 
@@ -85,7 +82,8 @@ public class CargoDAO {
 
                 resultSet = pstmt.executeQuery();
                 resultSet.next();
-                //Transparencia marota
+
+                // Transparência marota
                 if (resultSet.getInt("count") != 0) {
                     update(cargo);
                 } else {
@@ -109,11 +107,10 @@ public class CargoDAO {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }
     }
-    
+
     /**
      * Remove um cargo do banco de dados.
      * @param codigoCargo Código do cargo a ser removido.
@@ -121,9 +118,9 @@ public class CargoDAO {
     public void delete(int codigoCargo) {
         try {
             String queryString = "DELETE FROM cargo WHERE codigo_cargo = ?";
-            
+
             connection = getConnection();
-            
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigoCargo);
             pstmt.executeUpdate();
@@ -144,7 +141,7 @@ public class CargoDAO {
             }
         }
     }
-    
+
     /**
      * Atualiza um cargo no banco de dados.
      * @param cargo Cargo a ser atualizado.
@@ -155,9 +152,9 @@ public class CargoDAO {
                     + " permissao_cargos = ?, permissao_carros = ?,"
                     + " permissao_itinerarios = ?, permissao_vendas = ?,"
                     + " permissao_custos = ? WHERE codigo_cargo = ?";
-            
+
             connection = getConnection();
-            
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, cargo.getNomeCargo());
             pstmt.setBoolean(2, cargo.isPermissaoCargos());
@@ -185,90 +182,38 @@ public class CargoDAO {
         }
     }
 
-        /**
-     * Retorna todos as tupas da entidade Cargo
-     * @param cargo Cargo a ser atualizado.
-     */
-
-public ArrayList<Cargo> selectAll() {
-    
-    ResultSet resultSet = null;
-    ArrayList<Cargo> cargos = new ArrayList<Cargo>();
-    
-    try {
-                        String queryString = "SELECT * FROM cargo ORDER BY nome_cargo";
-                        connection = getConnection();
-                        pstmt = connection.prepareStatement(queryString);
-                        resultSet = pstmt.executeQuery();
-                        while (resultSet.next()) {
-                            
-                            /*Para cada iteração do while é criado um novo cargo
-                             que terá seus atributos setados de acordo com os
-                             dados que estão vindo do banco de dados. O fato de
-                             a cada iteração ser feito um novo "new" não é
-                             problema, visto que o java faz coleta de lixo
-                             automaticamente.*/
-                            Cargo cargo = new Cargo();
-                            
-                            cargo.setCodigoCargo(resultSet.getInt("codigo_cargo"));
-                            cargo.setNomeCargo(resultSet.getString("nome_cargo"));
-                            cargo.setPermissaoCargos(resultSet.getBoolean("permissao_cargos"));
-                            cargo.setPermissaoCarros(resultSet.getBoolean("permissao_carros"));
-                            cargo.setPermissaoCustos(resultSet.getBoolean("permissao_custos"));
-                            cargo.setPermissaoItinerarios(resultSet.getBoolean("permissao_itinerarios"));
-                            cargo.setPermissaoVendas(resultSet.getBoolean("permissao_vendas"));
-                            
-                            /*Adiciona o cargo ao ArrayList que será retornado*/
-                            cargos.add(cargo);
-                        }
-                        
-                        
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                } finally {
-                        try {
-                                if (resultSet != null)
-                                        resultSet.close();
-                                if (pstmt != null)
-                                        pstmt.close();
-                                if (connection != null)
-                                        connection.close();
-                        } catch (SQLException e) {
-                                e.printStackTrace();
-                        } catch (Exception e) {
-                                e.printStackTrace();
-                        }
-
-                }
-                /*Retorna um ArrayList contendo todos os cargos cadastrados*/
-                return cargos;
-        }
-
-    public Cargo selectForId(int codigoCargo) {
-
+    public ArrayList<Cargo> selectAll() {
         ResultSet resultSet = null;
-        Cargo cargo = new Cargo();
+        ArrayList<Cargo> cargos = new ArrayList<Cargo>();
 
         try {
+            String queryString = "SELECT * FROM cargo ORDER BY nome_cargo";
 
-            String queryString = "SELECT * FROM cargo"
-                    + " WHERE codigo_cargo = ?";
             connection = getConnection();
-            pstmt = connection.prepareStatement(queryString);
-            pstmt.setInt(1, codigoCargo);
 
+            pstmt = connection.prepareStatement(queryString);
+            
             resultSet = pstmt.executeQuery();
 
-            resultSet.next();
+            while (resultSet.next()) {
+                /* Para cada iteração do while é criado um novo cargo, que terá
+                seus atributos setados de acordo com os dados que estão vindo do
+                banco de dados. O fato de a cada iteração ser feito um novo
+                "new" não é problema, visto que o Java faz coleta de lixo
+                automaticamente. */
+                Cargo cargo = new Cargo();
 
-            cargo.setCodigoCargo(resultSet.getInt("codigo_cargo"));
-            cargo.setNomeCargo(resultSet.getString("nome_cargo"));
-            cargo.setPermissaoCargos(resultSet.getBoolean("permissao_cargos"));
-            cargo.setPermissaoCarros(resultSet.getBoolean("permissao_carros"));
-            cargo.setPermissaoCustos(resultSet.getBoolean("permissao_custos"));
-            cargo.setPermissaoItinerarios(resultSet.getBoolean("permissao_itinerarios"));
-            cargo.setPermissaoVendas(resultSet.getBoolean("permissao_vendas"));
+                cargo.setCodigoCargo(resultSet.getInt("codigo_cargo"));
+                cargo.setNomeCargo(resultSet.getString("nome_cargo"));
+                cargo.setPermissaoCargos(resultSet.getBoolean("permissao_cargos"));
+                cargo.setPermissaoCarros(resultSet.getBoolean("permissao_carros"));
+                cargo.setPermissaoCustos(resultSet.getBoolean("permissao_custos"));
+                cargo.setPermissaoItinerarios(resultSet.getBoolean("permissao_itinerarios"));
+                cargo.setPermissaoVendas(resultSet.getBoolean("permissao_vendas"));
 
+                /* Adiciona o cargo ao ArrayList que será retornado. */
+                cargos.add(cargo);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -287,9 +232,52 @@ public ArrayList<Cargo> selectAll() {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
 
+        /* Retorna um ArrayList contendo todos os cargos cadastrados. */
+        return cargos;
+    }
+
+    public Cargo selectForId(int codigoCargo) {
+        ResultSet resultSet = null;
+        Cargo cargo = new Cargo();
+
+        try {
+            String queryString = "SELECT * FROM cargo WHERE codigo_cargo = ?";
+
+            connection = getConnection();
+            pstmt = connection.prepareStatement(queryString);
+            pstmt.setInt(1, codigoCargo);
+
+            resultSet = pstmt.executeQuery();
+            resultSet.next();
+
+            cargo.setCodigoCargo(resultSet.getInt("codigo_cargo"));
+            cargo.setNomeCargo(resultSet.getString("nome_cargo"));
+            cargo.setPermissaoCargos(resultSet.getBoolean("permissao_cargos"));
+            cargo.setPermissaoCarros(resultSet.getBoolean("permissao_carros"));
+            cargo.setPermissaoCustos(resultSet.getBoolean("permissao_custos"));
+            cargo.setPermissaoItinerarios(resultSet.getBoolean("permissao_itinerarios"));
+            cargo.setPermissaoVendas(resultSet.getBoolean("permissao_vendas"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return cargo;
     }
-
 }

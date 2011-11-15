@@ -22,8 +22,8 @@
                 <table border="1">
             <thead>
                 <tr>
-                    <th>Codigo</th>
-                    <th>Numero de Passageiros</th>
+                    <th>Código</th>
+                    <th>Número de Passageiros</th>
                     <th>Linha do Carro</th>
                     <th>Editar</th>
                     <th>Excluir</th>
