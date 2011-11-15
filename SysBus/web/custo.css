@@ -12,6 +12,7 @@
 }
 
 #menu {
+    float: left;
     width: 140px;
     font-family: Georgia,'Times New Roman',times,serif;
     font-size: 18px;
@@ -44,4 +45,27 @@
     border-right: 10px solid #d0f6ea;
     background-color: #a8e4da;
     color: black;
+}
+
+#form {
+    float: left;
+    margin-left: 40px;
+}
+
+#form p {
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+}
+
+#form form {
+    margin-top: 10px;
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-size: 16px;
+}
+
+#form label {
+    font-weight: bold;
 }
