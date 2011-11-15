@@ -16,9 +16,26 @@
             <form name="cadastroDemanda" action="DemandaServlet" method="post">
                 <label>Nome:</label><br/><input type="text" name="nomeDemanda"/><br/><br/>
                 <div>
-                    <c:forEach var="periodos" items="${Periodos}">
-                        <input type="checkbox" name="periodo" value="${periodos.inicioPeriodo}"/>${periodos.inicioPeriodo} às ${periodos.fimPeriodo}<br/>
-                    </c:forEach><br/>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Início do Período</th>
+                                <th>Fim do Período</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <c:forEach var="periodos" items="${Periodos}">
+                                <tr>
+                                    <td><input type="checkbox" name="periodo" value="${periodos.codigoPeriodo}"/></td>
+                                    <td>${periodos.inicioPeriodo}</td>
+                                    <td>${periodos.fimPeriodo}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+
                 </div>
                 <input type="submit" value="Salvar"/>
             </form>
