@@ -1,16 +1,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
+        <link rel=StyleSheet href="custo.css" type="text/css" media=screen/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Custo</title>
+        <title>SysBus: Gerenciamento de custo</title>
     </head>
     <body>
-        <form name="cadastroCusto" action="CustoServlet" method="post">
-            Preço do quilômetro: <input type="text" name="precoQuilometro" value="${Custo.precoQuilometro}"/><br/>
-            <input type="submit" value="Atualizar Custo"/>
-        </form>
-        <!-- Tentar fazer essa chamada no servlet de forma mais inteligente-->
-        <a href="/SysBus/index.jsp">Página Inicial</a>                
+        <div id="titulo">
+            <p>SysBus: Gerenciamento de custo</p>
+        </div>
+        <jsp:include page="menu.html" flush="true"/>
+        <div id="form">
+            <p>Inserção/Atualização</p>
+            <form name="cadastroCusto" action="CustoServlet" method="post">
+                <label>Preço do quilômetro:</label><br/><input type="text" name="precoQuilometro" value="${Custo.precoQuilometro}"/><br/><br/>
+                <input type="submit" value="Atualizar"/>
+            </form>
+        </div>
     </body>
 </html>
