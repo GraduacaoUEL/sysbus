@@ -28,7 +28,7 @@
         </div>
         <div id="tabela">
             <p>Colaboradores existentes</p>
-            <table border="1">
+            <table>
                 <thead>
                     <tr>
                         <th>Nome</th>
