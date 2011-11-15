@@ -96,7 +96,11 @@ public class PeriodoServlet extends HttpServlet {
         
         Periodo periodo = new Periodo();
     
+        try{
         periodo.setCodigoPeriodo(Integer.parseInt(request.getParameter("codigoPeriodo")));
+        }catch(NumberFormatException n){
+            periodo.setCodigoPeriodo(0);
+        }
         periodo.setInicioPeriodo(Time.valueOf(request.getParameter("inicioPeriodo")));
         periodo.setFimPeriodo(Time.valueOf(request.getParameter("fimPeriodo")));
         periodo.setFatorMultiplicacao(Float.parseFloat(request.getParameter("fatorMultiplicacao")));

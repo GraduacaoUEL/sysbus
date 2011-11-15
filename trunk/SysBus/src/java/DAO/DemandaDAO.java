@@ -1,6 +1,7 @@
 package DAO;
 
 import beans.Demanda;
+import beans.Periodo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,13 +31,39 @@ public class DemandaDAO {
      */
     public void insert(Demanda demanda) {
         try {
-            String queryString = "INSERT INTO demanda(nome_demanda) VALUES(?)";
             
+            /*
+             * Exemplo de expressão que será gerada
+             * 
+             * BEGIN; 
+             * INSERT INTO demanda(nome_demanda) VALUES('Teste4');
+             * INSERT INTO segue(numero_demanda, numero_periodo) VALUES((SELECT codigo_demanda FROM demanda WHERE nome_demanda = 'Teste4'), 1);
+             * INSERT INTO segue(numero_demanda, numero_periodo) VALUES((SELECT codigo_demanda FROM demanda WHERE nome_demanda = 'Teste4'), 3); 
+             * INSERT INTO segue(numero_demanda, numero_periodo) VALUES((SELECT codigo_demanda FROM demanda WHERE nome_demanda = 'Teste4'), 5); 
+             * INSERT INTO segue(numero_demanda, numero_periodo) VALUES((SELECT codigo_demanda FROM demanda WHERE nome_demanda = 'Teste4'), 6); 
+             * INSERT INTO segue(numero_demanda, numero_periodo) VALUES((SELECT codigo_demanda FROM demanda WHERE nome_demanda = 'Teste4'), 7); 
+             * COMMIT;
+             * 
+             */
+            String queryString = "BEGIN; ";
+            queryString += "INSERT INTO demanda(nome_demanda) VALUES('" + demanda.getNomeDemanda() + "'); ";
+                        
+            for(int i = 0; i < demanda.getPeriodosDemanda().size(); i++)
+                queryString += "INSERT INTO segue(numero_demanda, numero_periodo) "
+                        + "VALUES((SELECT codigo_demanda FROM demanda WHERE "
+                        + "nome_demanda = '" + demanda.getNomeDemanda() + "'),"
+                        + " "+ demanda.getPeriodosDemanda().get(i).getCodigoPeriodo() +"); ";
+            
+            queryString += "COMMIT;";
+            
+            //Debug para ver como ficou a expressão gerada
+            //System.out.println(queryString);
+                    
             connection = getConnection();
             
             pstmt = connection.prepareStatement(queryString);
-            pstmt.setString(1, demanda.getNomeDemanda());
             pstmt.executeUpdate();
+            System.out.println(queryString);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

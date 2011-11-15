@@ -1,12 +1,14 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Demanda implements Serializable {
 
     private int codigoDemanda;
     private String nomeDemanda;
-    
+    private ArrayList<Periodo> periodosDemanda =
+            new ArrayList<Periodo>();
     /**
      * Construtor vazio.
      */
@@ -43,5 +45,19 @@ public class Demanda implements Serializable {
      */
     public void setNomeDemanda(String nomeDemanda) {
         this.nomeDemanda = nomeDemanda;
+    }
+
+    /**
+     * @return the periodosDemanda
+     */
+    public ArrayList<Periodo> getPeriodosDemanda() {
+        return periodosDemanda;
+    }
+
+    /**
+     * @param periodosDemanda the periodosDemanda to set
+     */
+    public void setPeriodosDemanda(ArrayList<Periodo> periodosDemanda) {
+        this.periodosDemanda = periodosDemanda;
     }
 }
