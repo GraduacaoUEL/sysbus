@@ -280,4 +280,6 @@ public class CargoDAO {
         }
         return cargo;
     }
+
+    
 }

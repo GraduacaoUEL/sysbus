@@ -115,7 +115,13 @@ public class ColaboradorServlet extends HttpServlet {
         /* Pôr um try/catch. */
         Colaborador colaborador = new Colaborador();
 
-        colaborador.setCodigoColaborador(Integer.parseInt(request.getParameter("codigoColaborador")));
+        try{
+            colaborador.setCodigoColaborador(Integer.parseInt(request.getParameter("codigoColaborador")));
+        }catch(NumberFormatException n){
+            colaborador.setCodigoColaborador(0);
+        }
+        
+        
         colaborador.setNomeColaborador(request.getParameter("nomeColaborador"));
         colaborador.setLoginColaborador(request.getParameter("loginColaborador"));
         colaborador.setSenhaColaborador(request.getParameter("senhaColaborador"));
