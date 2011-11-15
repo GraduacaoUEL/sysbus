@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
-        <link rel=StyleSheet href="estilo.css" type="text/css" media=screen/>
+        <link rel=StyleSheet href="estiloDemanda.css" type="text/css" media=screen/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SysBus: Gerenciamento de demandas</title>
     </head>
@@ -15,17 +15,16 @@
             <p>Inserção/Atualização</p>
             <form name="cadastroDemanda" action="DemandaServlet" method="post">
                 <label>Nome:</label><br/><input type="text" name="nomeDemanda"/><br/><br/>
-                <div>
-                    <table border="1">
+                    <label>Períodos:</label><br/>
+                    <table>
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Início do Período</th>
-                                <th>Fim do Período</th>
+                                <th>Início do período</th>
+                                <th>Fim do período</th>
                             </tr>
                         </thead>
                         <tbody>
-
                             <c:forEach var="periodos" items="${Periodos}">
                                 <tr>
                                     <td><input type="checkbox" name="periodo" value="${periodos.codigoPeriodo}"/></td>
@@ -34,9 +33,7 @@
                                 </tr>
                             </c:forEach>
                         </tbody>
-                    </table>
-
-                </div>
+                    </table><br/>
                 <input type="submit" value="Salvar"/>
             </form>
         </div>

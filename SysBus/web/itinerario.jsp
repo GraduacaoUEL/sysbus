@@ -18,34 +18,30 @@
                 <input type="submit" value="Salvar"/>
             </form>
         </div>
-        
-                <div>
-                    <c:forEach var="periodos" items="${Periodos}">
-                        <table border="1">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Origem do Trecho</th>
-                                    <th>Destino do Trecho</th>
-                                    <th>Tempo do Trecho</th>
-                                    <th>Distancia do Trecho</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="checkbox" name="trecho" value="${trechos.codigoTrecho}"/></td>
-                                    <td>${trechos.origemTrecho}</td>
-                                    <td>${trechos.destinoTrecho}</td>
-                                    <td>${trechos.tempoTrecho}</td>
-                                    <td>${trechos.distanciaTrecho}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        ${trechos.origemTrecho}
-                        às ${periodos.fimPeriodo}<br/>
-                    </c:forEach><br/>
-                </div>
-        
+        <div>
+            <c:forEach var="periodos" items="${Periodos}">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Origem do Trecho</th>
+                            <th>Destino do Trecho</th>
+                            <th>Tempo do Trecho</th>
+                            <th>Distancia do Trecho</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" name="trecho" value="${trechos.codigoTrecho}"/></td>
+                            <td>${trechos.origemTrecho}</td>
+                            <td>${trechos.destinoTrecho}</td>
+                            <td>${trechos.tempoTrecho}</td>
+                            <td>${trechos.distanciaTrecho}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                ${trechos.origemTrecho} às ${periodos.fimPeriodo}<br/>
+            </c:forEach><br/>
+        </div>
     </body>
 </html>

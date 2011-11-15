@@ -82,11 +82,17 @@
     border-collapse: collapse;
 }
 
-#tabela table td, #tabela table th {
+#form table {
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-size: 16px;
+    border-collapse: collapse;
+}
+
+#tabela table td, #tabela table th, #form table td, #form table th {
     border: 1px solid #006699;
 }
 
-#tabela table th {
+#tabela table th, #form table th {
     padding-top: 5px;
     padding-bottom: 4px;
     padding-left: 3px;
