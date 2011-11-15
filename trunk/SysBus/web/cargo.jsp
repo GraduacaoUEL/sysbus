@@ -47,7 +47,8 @@
                 </c:forEach>
             </tbody>
         </table>
-        <!-- Tentar fazer essa chamada no servlet de forma mais inteligente-->
+        
+        <!-- Tentar fazer essa chamada no servlet de forma mais inteligente. -->
         <a href="/SysBus/index.jsp">Página Inicial</a>
     </body>
 </html>

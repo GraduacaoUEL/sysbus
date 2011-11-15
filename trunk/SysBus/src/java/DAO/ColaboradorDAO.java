@@ -12,6 +12,7 @@ public class ColaboradorDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
+    private ResultSet resultSet = null;
     
     /**
      * Construtor vazio.
