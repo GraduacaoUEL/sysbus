@@ -1,9 +1,12 @@
 package servlets;
 
 import DAO.ItinerarioDAO;
+import DAO.TrechoDAO;
 import beans.Itinerario;
+import beans.Trecho;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,6 +53,16 @@ public class ItinerarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        ArrayList<Trecho> trechos = new ArrayList<Trecho>();
+        TrechoDAO trechoDAO = new TrechoDAO();
+        trechos = trechoDAO.selectAll();
+        request.setAttribute("Trechos", trechos);
+        
+        ArrayList<Itinerario> itinerarios = new ArrayList<Itinerario>();
+        ItinerarioDAO itinerarioDAO = new ItinerarioDAO();
+        itinerarios = itinerarioDAO.selectAll();
+        request.setAttribute("Itinerarios", itinerarios);
+        
         request.getRequestDispatcher("/itinerario.jsp").forward(request, response);
 
     }
@@ -66,11 +79,30 @@ public class ItinerarioServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
 
+        ItinerarioDAO itinerarioDAO = new ItinerarioDAO();      
+        
         Itinerario itinerario = new Itinerario();
         
-        itinerario.setNomeItinerario(request.getParameter("nomeItinerario"));
+        try{
+            itinerario.setCodigoItinerario(Integer.parseInt(request.getParameter("codigoItinerario")));
+        } catch (NumberFormatException n){
+            itinerario.setCodigoItinerario(0);
+        }
         
-        ItinerarioDAO itinerarioDAO = new ItinerarioDAO();
+        
+        String trechoForm[] = request.getParameterValues("trecho");        
+
+        ArrayList<Trecho> trechosItinerario = 
+                new ArrayList<Trecho>();
+        
+        for(int i = 0; i < trechoForm.length; i++){
+            Trecho trecho = new Trecho();
+            trecho.setCodigoTrecho(Integer.parseInt(trechoForm[i]));
+            trechosItinerario.add(trecho);
+        }
+
+        itinerario.setNomeItinerario(request.getParameter("nomeItinerario"));
+        itinerario.setTrechosItinerario(trechosItinerario);
         
         itinerarioDAO.insert(itinerario);
         
