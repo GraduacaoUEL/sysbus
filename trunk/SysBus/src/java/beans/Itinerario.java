@@ -1,11 +1,14 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Itinerario implements Serializable {
 
     private int codigoItinerario;
     private String nomeItinerario;
+    private ArrayList<Trecho> trechosItinerario
+            = new ArrayList<Trecho>();
     
     /**
      * Construtor vazio.
@@ -43,5 +46,19 @@ public class Itinerario implements Serializable {
      */
     public void setNomeItinerario(String nomeItinerario) {
         this.nomeItinerario = nomeItinerario;
+    }
+
+    /**
+     * @return the trechosItinerario
+     */
+    public ArrayList<Trecho> getTrechosItinerario() {
+        return trechosItinerario;
+    }
+
+    /**
+     * @param trechosItinerario the trechosItinerario to set
+     */
+    public void setTrechosItinerario(ArrayList<Trecho> trechosItinerario) {
+        this.trechosItinerario = trechosItinerario;
     }
 }
