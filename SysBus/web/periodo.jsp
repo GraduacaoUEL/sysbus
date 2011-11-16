@@ -22,7 +22,7 @@
             </form>
         </div>
         <div id="tabela">
-            <p>Linhas existentes</p>
+            <p>Períodos existentes</p>
             <table>
                 <thead>
                     <tr>
