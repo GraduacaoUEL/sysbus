@@ -2,8 +2,10 @@ package servlets;
 
 import DAO.VendaDAO;
 import beans.Venda;
+import beans.VendaInnerJoinColaborador;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.sql.Timestamp;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,7 +52,30 @@ public class VendaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String opcao = request.getParameter("op");
+        Integer id;
+
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (NumberFormatException n) {
+            id = 0;
+        }
+
+        VendaDAO vendaDAO = new VendaDAO();
+
+        if ("excluir".equals(opcao)) {
+            vendaDAO.delete(id);
+        } else if ("editar".equals(opcao)) {
+            Venda vendaParaEdicao = new Venda();
+            vendaParaEdicao = vendaDAO.selectForId(id);
+
+            request.setAttribute("VendaEdicao", vendaParaEdicao);
+        }
+
+        ArrayList<VendaInnerJoinColaborador> vendas = new ArrayList<VendaInnerJoinColaborador>();
+        vendas = vendaDAO.selectAllWithJoin();
+        request.setAttribute("Vendas", vendas);
+        request.getRequestDispatcher("/venda.jsp").forward(request, response);
     }
 
     /** 
@@ -63,10 +88,9 @@ public class VendaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        
         Venda venda = new Venda();
         
+        venda.setCodigoVenda(Integer.parseInt((request.getParameter("codigoVenda").equals("") ? "0" : request.getParameter("codigoCargo"))));
         venda.setDataHoraVenda(Timestamp.valueOf(request.getParameter("dataHoraVenda")));
         venda.setTipoPagamento(request.getParameter("tipoPagamento"));
         venda.setValorVenda(Float.parseFloat(request.getParameter("valorVenda")));
@@ -77,7 +101,8 @@ public class VendaServlet extends HttpServlet {
         
         VendaDAO vendaDAO = new VendaDAO();
         
-        vendaDAO.insert(venda);
+        vendaDAO.save(venda);
+        doGet(request, response);
     }
 
     /** 

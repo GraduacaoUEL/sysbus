@@ -42,16 +42,16 @@
                 </thead>
                 <tbody>                
                     <c:forEach var="cargos" items="${Cargos}">
-                    <tr>
-                        <td><c:out value="${cargos.nomeCargo}"/></td>
-                        <td><c:out value="${cargos.permissaoCargos ? 'sim' : 'não'}"/></td>
-                        <td><c:out value="${cargos.permissaoCarros ? 'sim' : 'não'}"/></td>
-                        <td><c:out value="${cargos.permissaoItinerarios ? 'sim' : 'não'}"/></td>                    
-                        <td><c:out value="${cargos.permissaoVendas ? 'sim' : 'não'}"/></td>
-                        <td><c:out value="${cargos.permissaoCustos ? 'sim' : 'não'}"/></td>                    
-                        <td><a href="CargoServlet?op=editar&id=<c:out value="${cargos.codigoCargo}"/>">Editar</a></td>
-                        <td><a href="CargoServlet?op=excluir&id=<c:out value="${cargos.codigoCargo}"/>">Excluir</a></td>
-                    </tr>
+                        <tr>
+                            <td><c:out value="${cargos.nomeCargo}"/></td>
+                            <td><c:out value="${cargos.permissaoCargos ? 'sim' : 'não'}"/></td>
+                            <td><c:out value="${cargos.permissaoCarros ? 'sim' : 'não'}"/></td>
+                            <td><c:out value="${cargos.permissaoItinerarios ? 'sim' : 'não'}"/></td>
+                            <td><c:out value="${cargos.permissaoVendas ? 'sim' : 'não'}"/></td>
+                            <td><c:out value="${cargos.permissaoCustos ? 'sim' : 'não'}"/></td>
+                            <td><a href="CargoServlet?op=editar&id=<c:out value="${cargos.codigoCargo}"/>">Editar</a></td>
+                            <td><a href="CargoServlet?op=excluir&id=<c:out value="${cargos.codigoCargo}"/>">Excluir</a></td>
+                        </tr>
                     </c:forEach>
                 </tbody>
             </table>
