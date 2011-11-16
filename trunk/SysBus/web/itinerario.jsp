@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
-        <link rel=StyleSheet href="estilo.css" type="text/css" media=screen/>
+        <link rel=StyleSheet href="estiloDemandaItinerario.css" type="text/css" media=screen/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>SysBus: Gerenciamento de itinerários</title>
     </head>
@@ -15,38 +15,35 @@
             <p>Inserção/Atualização</p>
             <form name="cadastroItinerario" action="ItinerarioServlet" method="post">
                 <label>Nome:</label><br/><input type="text" name="nomeItinerario"/><br/><br/>
-
-                <div>
-                    <table border="1">
-                        <thead>
+                <label>Trechos:</label><br/>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Origem</th>
+                            <th>Destino</th>
+                            <th>Tempo</th>
+                            <th>Distância</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="trechos" items="${Trechos}">
                             <tr>
-                                <th></th>
-                                <th>Origem do Trecho</th>
-                                <th>Destino do Trecho</th>
-                                <th>Tempo do Trecho</th>
-                                <th>Distancia do Trecho</th>
+                                <td><input type="checkbox" name="trecho" value="${trechos.codigoTrecho}"/></td>
+                                <td>${trechos.origemTrecho}</td>
+                                <td>${trechos.destinoTrecho}</td>
+                                <td>${trechos.tempoTrecho}</td>
+                                <td>${trechos.distanciaTrecho}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-
-                            <c:forEach var="trechos" items="${Trechos}">
-                                <tr>
-                                    <td><input type="checkbox" name="trecho" value="${trechos.codigoTrecho}"/></td>
-                                    <td>${trechos.origemTrecho}</td>
-                                    <td>${trechos.destinoTrecho}</td>
-                                    <td>${trechos.tempoTrecho}</td>
-                                    <td>${trechos.distanciaTrecho}</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>                    
-                </div>
+                        </c:forEach>
+                    </tbody>
+                </table><br/>
                 <input type="submit" value="Salvar"/>
             </form>
         </div>
 
         <div id="tabela">
-            <p>Itinerarios existentes</p>
+            <p>Itinerários existentes</p>
             <table>
                 <thead>
                     <tr>
@@ -66,6 +63,5 @@
                 </tbody>
             </table>
         </div>
-
     </body>
 </html>
