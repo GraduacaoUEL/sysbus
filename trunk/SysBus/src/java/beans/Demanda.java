@@ -7,14 +7,14 @@ public class Demanda implements Serializable {
 
     private int codigoDemanda;
     private String nomeDemanda;
-    private ArrayList<Periodo> periodosDemanda =
-            new ArrayList<Periodo>();
+    private ArrayList<Periodo> periodosDemanda = new ArrayList<Periodo>();
+
     /**
      * Construtor vazio.
      */
     public Demanda() {
     }
-    
+
     /**
      * Retorna o código da demanda.
      * @return Código da demanda.
@@ -22,7 +22,7 @@ public class Demanda implements Serializable {
     public int getCodigoDemanda() {
         return codigoDemanda;
     }
-    
+
     /**
      * Atribui o código da demanda.
      * @param codigoDemanda Código da demanda.
@@ -30,7 +30,7 @@ public class Demanda implements Serializable {
     public void setCodigoDemanda(int codigoDemanda) {
         this.codigoDemanda = codigoDemanda;
     }
-    
+
     /**
      * Retorna o nome da demanda.
      * @return Nome da demanda.
@@ -38,7 +38,7 @@ public class Demanda implements Serializable {
     public String getNomeDemanda() {
         return nomeDemanda;
     }
-    
+
     /**
      * Atribui o nome da demanda.
      * @param nomeDemanda Nome da demanda.

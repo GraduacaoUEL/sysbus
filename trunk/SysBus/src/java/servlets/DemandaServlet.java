@@ -36,11 +36,11 @@ public class DemandaServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
              */
-        } finally {            
+        } finally {
             out.close();
         }
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
      * Handles the HTTP <code>GET</code> method.
@@ -53,17 +53,17 @@ public class DemandaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    
-        ArrayList<Periodo> periodos = new ArrayList<Periodo>();     
+
+        ArrayList<Periodo> periodos = new ArrayList<Periodo>();
         PeriodoDAO periodoDAO = new PeriodoDAO();
         periodos = periodoDAO.selectAll();
         request.setAttribute("Periodos", periodos);
-        
+
         ArrayList<Demanda> demandas = new ArrayList<Demanda>();
         DemandaDAO demandaDAO = new DemandaDAO();
         demandas = demandaDAO.selectAll();
         request.setAttribute("Demandas", demandas);
-        
+
         request.getRequestDispatcher("/demanda.jsp").forward(request, response);
     }
 
@@ -78,26 +78,26 @@ public class DemandaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-            
+
         DemandaDAO demandaDAO = new DemandaDAO();
-        
+
         Demanda demanda = new Demanda();
-        
-        try{
+
+        try {
             demanda.setCodigoDemanda(Integer.parseInt(request.getParameter("codigoDemanda")));
-        }catch(NumberFormatException n){
+        } catch (NumberFormatException n) {
             demanda.setCodigoDemanda(0);
         }
-        
+
         /*Carrega todos os periodos no bean Demanda*/
         //Captura todos os checkbox marcados no formulario
         String periodoForm[] = request.getParameterValues("periodo");
-        
+
         //Esse array irá guardar todos os períodos pertencentes à essa demanda.
-        ArrayList<Periodo> periodosDemanda = 
+        ArrayList<Periodo> periodosDemanda =
                 new ArrayList<Periodo>();
-        
-        for(int i = 0; i < periodoForm.length; i++){
+
+        for (int i = 0; i < periodoForm.length; i++) {
             Periodo periodo = new Periodo();
             periodo.setCodigoPeriodo(Integer.parseInt(periodoForm[i]));
             periodosDemanda.add(periodo);
@@ -105,9 +105,9 @@ public class DemandaServlet extends HttpServlet {
 
         demanda.setNomeDemanda(request.getParameter("nomeDemanda"));
         demanda.setPeriodosDemanda(periodosDemanda);
-        
+
         demandaDAO.insert(demanda);
-        
+
         doGet(request, response);
     }
 

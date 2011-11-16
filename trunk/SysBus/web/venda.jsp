@@ -34,9 +34,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Código</th>
                         <th>Data e hora</th>
-                        <th>Tipo de pagamento</th>
+                        <th>Tipo</th>
                         <th>Valor</th>
                         <th>Vendedor</th>
                         <th>Carro</th>
@@ -49,7 +48,6 @@
                 <tbody>
                     <c:forEach var="vendas" items="${Vendas}">
                         <tr>
-                            <td><c:out value="${vendas.codigoVenda}"/></td>
                             <td><c:out value="${vendas.dataHoraVenda}"/></td>
                             <td><c:out value="${vendas.tipoPagamento}"/></td>
                             <td><c:out value="${vendas.valorVenda}"/></td>

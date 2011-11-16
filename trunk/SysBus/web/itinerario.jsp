@@ -41,7 +41,6 @@
                 <input type="submit" value="Salvar"/>
             </form>
         </div>
-
         <div id="tabela">
             <p>Itinerários existentes</p>
             <table>
