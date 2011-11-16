@@ -90,8 +90,8 @@ public class DemandaServlet extends HttpServlet {
         }
         
         /*Carrega todos os periodos no bean Demanda*/
-        //Captura todos os checbox marcados no formulario
-        String periodoForm[] = request.getParameterValues("periodo[]");
+        //Captura todos os checkbox marcados no formulario
+        String periodoForm[] = request.getParameterValues("periodo");
         
         //Esse array irá guardar todos os períodos pertencentes à essa demanda.
         ArrayList<Periodo> periodosDemanda = 
