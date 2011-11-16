@@ -37,7 +37,7 @@ public class CarroServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
              */
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -54,43 +54,35 @@ public class CarroServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<Linha> linhas = new ArrayList<Linha>();    
+        ArrayList<Linha> linhas = new ArrayList<Linha>();
         LinhaDAO linhaDAO = new LinhaDAO();
         linhas = linhaDAO.selectAll();
         request.setAttribute("Linhas", linhas);
-        
+
         CarroDAO carroDAO = new CarroDAO();
         String opcao = request.getParameter("op");
         Integer id;
-        
-        //Debug
-        System.out.println("opcao: " + opcao);
-        
+
         try {
             id = Integer.parseInt(request.getParameter("id"));
         } catch (NumberFormatException n) {
             id = 0;
         }
         
-        //Debug
-        System.out.println("id: " + id);
-        if("excluir".equals(opcao))
-        {
+        if ("excluir".equals(opcao)) {
             carroDAO.delete(id);
-        }
-        else if("editar".equals(opcao))
-        {
+        } else if ("editar".equals(opcao)) {
             Carro carroParaEdicao = new Carro();
             carroParaEdicao = carroDAO.selectForId(id);
-            
+
             request.setAttribute("CarroEdicao", carroParaEdicao);
         }
 
-        ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();        
-        carros = carroDAO.selectAllWithJoin();        
+        ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
+        carros = carroDAO.selectAllWithJoin();
         request.setAttribute("Carros", carros);
-        
-        
+
+
         request.getRequestDispatcher("/carro.jsp").forward(request, response);
     }
 
@@ -104,17 +96,17 @@ public class CarroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         CarroDAO carroDAO = new CarroDAO();
         Carro carro = new Carro();
-        
+
         carro.setCodigoCarro(Integer.parseInt(request.getParameter("codigoCarro")));
         carro.setNumeroDePassageiros(Integer.parseInt(request.getParameter("numeroDePassageiros")));
         carro.setLinhaCarro(Integer.parseInt(request.getParameter("linhaCarro")));
-                
+
         carroDAO.save(carro);
-        
-    doGet(request, response);
+
+        doGet(request, response);
     }
 
     /** 

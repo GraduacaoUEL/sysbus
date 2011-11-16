@@ -267,9 +267,7 @@ public class CarroDAO {
             insert(carro);
         } else {
             ResultSet resultSet = null;
-
             try {
-
                 String queryString = "SELECT COUNT(codigo_carro) FROM carro"
                         + " WHERE codigo_carro = ?";
 
