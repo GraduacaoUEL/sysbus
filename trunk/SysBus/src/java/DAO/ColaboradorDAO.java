@@ -1,7 +1,7 @@
 package DAO;
 
 import beans.Colaborador;
-import beans.ColaboradorInnerJoinCargo;
+import beans.ColaboradorIJCargo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -175,10 +175,10 @@ public class ColaboradorDAO {
                 return colaboradores;
         }
     
-    public ColaboradorInnerJoinCargo selectWithJoin(String login) {
+    public ColaboradorIJCargo selectWithJoin(String login) {
 
         ResultSet resultSet = null;
-        ColaboradorInnerJoinCargo colaboradorInnerJoinCargo = new ColaboradorInnerJoinCargo();
+        ColaboradorIJCargo colaboradorInnerJoinCargo = new ColaboradorIJCargo();
 
         try {
             String queryString = "SELECT co.nome_colaborador, "
@@ -268,11 +268,11 @@ public class ColaboradorDAO {
         return colaborador;
     }
 
-    public ArrayList<ColaboradorInnerJoinCargo> selectAllWithJoin() {
+    public ArrayList<ColaboradorIJCargo> selectAllWithJoin() {
 
         ResultSet resultSet = null;
-        ArrayList<ColaboradorInnerJoinCargo> colaboradores =
-                new ArrayList<ColaboradorInnerJoinCargo>();
+        ArrayList<ColaboradorIJCargo> colaboradores =
+                new ArrayList<ColaboradorIJCargo>();
 
         try {
             String queryString = "SELECT co.codigo_colaborador, co.nome_colaborador, "
@@ -285,8 +285,8 @@ public class ColaboradorDAO {
             resultSet = pstmt.executeQuery();
             
             while(resultSet.next()){
-                ColaboradorInnerJoinCargo colaboradorInnerJoinCargo = 
-                        new ColaboradorInnerJoinCargo();
+                ColaboradorIJCargo colaboradorInnerJoinCargo = 
+                        new ColaboradorIJCargo();
                 colaboradorInnerJoinCargo.setCodigoColaborador(resultSet.getInt(1));
                 colaboradorInnerJoinCargo.setNomeColaborador(resultSet.getString(2));
                 colaboradorInnerJoinCargo.setLoginColaborador(resultSet.getString(3));

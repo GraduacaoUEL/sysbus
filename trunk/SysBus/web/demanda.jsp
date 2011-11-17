@@ -42,7 +42,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Código</th>
                         <th>Nome</th>
                         <th>Editar</th>
                         <th>Excluir</th>
@@ -51,7 +50,6 @@
                 <tbody>                
                     <c:forEach var="demandas" items="${Demandas}">
                         <tr>
-                            <td><c:out value="${demandas.codigoDemanda}"/></td>
                             <td><c:out value="${demandas.nomeDemanda}"/></td>
                             <td>TODO</td>
                             <td>TODO</td>

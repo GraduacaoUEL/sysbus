@@ -259,14 +259,14 @@ public class VendaDAO {
             while (resultSet.next()) {
                 VendaInnerJoinColaborador venda = new VendaInnerJoinColaborador();
 
-                venda.setCodigoVenda(resultSet.getInt("codigo_venda"));
-                venda.setDataHoraVenda(resultSet.getTimestamp("data_venda"));
-                venda.setTipoPagamento(resultSet.getString("tipo_pagamento"));
-                venda.setValorVenda(resultSet.getFloat("venda_venda"));
-                venda.setPassagemEntregue(resultSet.getBoolean("passagem_entregue"));
-                venda.setViaWeb(resultSet.getBoolean("via_web"));
-                venda.setVendedor(resultSet.getString("nome_colaborador"));
-                venda.setCarroVenda(resultSet.getInt("carro_venda"));
+                venda.setCodigoVenda(resultSet.getInt(1));
+                venda.setDataHoraVenda(resultSet.getTimestamp(2));
+                venda.setTipoPagamento(resultSet.getString(3));
+                venda.setValorVenda(resultSet.getFloat(4));
+                venda.setPassagemEntregue(resultSet.getBoolean(5));
+                venda.setViaWeb(resultSet.getBoolean(6));
+                venda.setVendedor(resultSet.getString(7));
+                venda.setCarroVenda(resultSet.getInt(8));
 
                 vendas.add(venda);
             }

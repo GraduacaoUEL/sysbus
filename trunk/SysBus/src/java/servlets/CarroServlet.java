@@ -3,7 +3,7 @@ package servlets;
 import DAO.CarroDAO;
 import DAO.LinhaDAO;
 import beans.Carro;
-import beans.CarroInnerJoinLinha;
+import beans.CarroIJLinha;
 import beans.Linha;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -78,7 +78,7 @@ public class CarroServlet extends HttpServlet {
             request.setAttribute("CarroEdicao", carroParaEdicao);
         }
 
-        ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
+        ArrayList<CarroIJLinha> carros = new ArrayList<CarroIJLinha>();
         carros = carroDAO.selectAllWithJoin();
         request.setAttribute("Carros", carros);
 
