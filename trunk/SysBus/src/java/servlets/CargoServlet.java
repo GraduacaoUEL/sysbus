@@ -38,7 +38,7 @@ public class CargoServlet extends HttpServlet {
 
             request.setAttribute("CargoEdicao", cargoParaEdicao);
         }
-
+        
         ArrayList<Cargo> cargos = new ArrayList<Cargo>();
         cargos = cargoDAO.selectAll();
         

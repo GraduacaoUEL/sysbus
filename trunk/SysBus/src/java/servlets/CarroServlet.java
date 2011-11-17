@@ -6,7 +6,6 @@ import beans.Carro;
 import beans.CarroIJLinha;
 import beans.Linha;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +25,7 @@ public class CarroServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String opcao = request.getParameter("op");
         Integer id;
+        
         ArrayList<Linha> linhas = new ArrayList<Linha>();
         LinhaDAO linhaDAO = new LinhaDAO();
         linhas = linhaDAO.selectAll();
@@ -63,9 +63,9 @@ public class CarroServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        
         CarroDAO carroDAO = new CarroDAO();
         Carro carro = new Carro();
 
@@ -77,13 +77,4 @@ public class CarroServlet extends HttpServlet {
 
         doGet(request, response);
     }
-
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 }
