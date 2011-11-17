@@ -16,34 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 public class CarroServlet extends HttpServlet {
 
     /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CarroServlet</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CarroServlet at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-             */
-        } finally {
-            out.close();
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -51,24 +23,22 @@ public class CarroServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String opcao = request.getParameter("op");
+        Integer id;
         ArrayList<Linha> linhas = new ArrayList<Linha>();
         LinhaDAO linhaDAO = new LinhaDAO();
         linhas = linhaDAO.selectAll();
-        request.setAttribute("Linhas", linhas);
-
         CarroDAO carroDAO = new CarroDAO();
-        String opcao = request.getParameter("op");
-        Integer id;
-
+        
+        request.setAttribute("Linhas", linhas);
+        
         try {
             id = Integer.parseInt(request.getParameter("id"));
         } catch (NumberFormatException n) {
             id = 0;
         }
-        
+
         if ("excluir".equals(opcao)) {
             carroDAO.delete(id);
         } else if ("editar".equals(opcao)) {
@@ -80,9 +50,8 @@ public class CarroServlet extends HttpServlet {
 
         ArrayList<CarroIJLinha> carros = new ArrayList<CarroIJLinha>();
         carros = carroDAO.selectAllWithJoin();
+        
         request.setAttribute("Carros", carros);
-
-
         request.getRequestDispatcher("/carro.jsp").forward(request, response);
     }
 
