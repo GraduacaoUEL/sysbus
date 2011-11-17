@@ -1,6 +1,7 @@
 package DAO;
 
 import beans.Linha;
+import beans.LinhaIJDemandaIJPercorreIJItinerario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
