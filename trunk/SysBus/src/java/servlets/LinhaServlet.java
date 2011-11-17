@@ -8,7 +8,6 @@ import beans.Itinerario;
 import beans.Linha;
 import beans.LinhaIJDemandaIJPercorreIJItinerario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Time;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -37,8 +36,7 @@ public class LinhaServlet extends HttpServlet {
         itinerarios = itinerarioDAO.selectAll();
         request.setAttribute("Itinerarios", itinerarios);
     
-        ArrayList<LinhaIJDemandaIJPercorreIJItinerario> linhas = 
-                new ArrayList<LinhaIJDemandaIJPercorreIJItinerario>();
+        ArrayList<LinhaIJDemandaIJPercorreIJItinerario> linhas = new ArrayList<LinhaIJDemandaIJPercorreIJItinerario>();
         LinhaDAO linhasDAO = new LinhaDAO();
         linhas = linhasDAO.selectAllWithJoin();
         request.setAttribute("Linhas", linhas);
@@ -61,6 +59,7 @@ public class LinhaServlet extends HttpServlet {
         linha.setNomeLinha(request.getParameter("nomeLinha"));
         linha.setHoraInicioLinha(Time.valueOf(request.getParameter("horaInicioLinha")));
         linha.setDemandaLinha(Integer.parseInt(request.getParameter("demandaLinha")));
+        linha.setItinerarioLinha(Integer.parseInt(request.getParameter("itinerarioLinha")));
         
         LinhaDAO linhaDAO = new LinhaDAO();
         linhaDAO.insert(linha);

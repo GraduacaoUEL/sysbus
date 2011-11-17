@@ -31,9 +31,17 @@ public class LinhaDAO {
      */
     public void insert(Linha linha) {
         try {
-            String queryString = "INSERT INTO linha(nome_linha,"
-                    + " hora_inicio_linha, demanda_linha) VALUES(?, ?, ?)";
-
+            String queryString = "BEGIN; ";
+            queryString += "INSERT INTO linha(nome_linha, "
+                    + "hora_inicio_linha, demanda_linha) VALUES('" + linha.getNomeLinha() + "', "
+                    + "'" + linha.getHoraInicioLinha() + "', '" + linha.getDemandaLinha() + "'); ";
+            queryString += "COMMIT; ";
+            
+            // Consertar aqui
+            queryString += "INSERT INTO percorre VALUES(" + linha.getCodigoLinha() + ", "
+                    + linha.getItinerarioLinha() + "); ";
+            queryString += "COMMIT;";            
+            
             connection = getConnection();
 
             pstmt = connection.prepareStatement(queryString);
@@ -132,13 +140,13 @@ public class LinhaDAO {
 
         try {
             String queryString = "SELECT * FROM linha";
-            
+
             connection = getConnection();
-            
+
             pstmt = connection.prepareStatement(queryString);
-            
+
             resultSet = pstmt.executeQuery();
-            
+
             while (resultSet.next()) {
                 Linha linha = new Linha();
 
@@ -173,8 +181,7 @@ public class LinhaDAO {
 
     public ArrayList<LinhaIJDemandaIJPercorreIJItinerario> selectAllWithJoin() {
         ResultSet resultSet = null;
-        ArrayList<LinhaIJDemandaIJPercorreIJItinerario> linhaIJDemandaIJPercorreIJItinerarios = 
-                new ArrayList<LinhaIJDemandaIJPercorreIJItinerario>();
+        ArrayList<LinhaIJDemandaIJPercorreIJItinerario> linhaIJDemandaIJPercorreIJItinerario = new ArrayList<LinhaIJDemandaIJPercorreIJItinerario>();
 
         try {
             String queryString = "BEGIN; "
@@ -182,9 +189,9 @@ public class LinhaDAO {
                     + "COMMIT; "
                     + "CREATE OR REPLACE VIEW ld_ij_percorre AS SELECT * FROM linha_ij_demanda AS ld INNER JOIN percorre AS p ON ld.codigo_linha = p.numero_linha; "
                     + "COMMIT; "
-                    + "CREATE OR REPLACE VIEW linha_ij_demanda_ij_percorre_ij_itinerario AS SELECT * FROM ld_ij_percorre AS ldp INNER JOIN itinerario AS it ON ldp.numero_itinerario_percorrido = it.codigo_itinerario ORDER BY ldp.nome_linha; "
+                    + "CREATE OR REPLACE VIEW ldp_ij_itinerario AS SELECT * FROM ld_ij_percorre AS ldp INNER JOIN itinerario AS it ON ldp.numero_itinerario_percorrido = it.codigo_itinerario ORDER BY ldp.nome_linha; "
                     + "COMMIT; "
-                    + "SELECT * FROM linha_ij_demanda_ij_percorre_ij_itinerario";
+                    + "SELECT * FROM ldp_ij_itinerario";
 
             System.out.println(queryString);
             connection = getConnection();
@@ -192,11 +199,10 @@ public class LinhaDAO {
             pstmt = connection.prepareStatement(queryString);
 
             resultSet = pstmt.executeQuery();
-            
+
             while (resultSet.next()) {
-                LinhaIJDemandaIJPercorreIJItinerario ldpi =
-                        new LinhaIJDemandaIJPercorreIJItinerario();
-                
+                LinhaIJDemandaIJPercorreIJItinerario ldpi = new LinhaIJDemandaIJPercorreIJItinerario();
+
                 ldpi.setCodigoLinha(resultSet.getInt(1));
                 ldpi.setNomeLinha(resultSet.getString(2));
                 ldpi.setHoraInicioLinha(resultSet.getTime(3));
@@ -207,6 +213,8 @@ public class LinhaDAO {
                 ldpi.setNumeroItinerarioPercorrido(resultSet.getInt(8));
                 ldpi.setCodigoItinerario(resultSet.getInt(9));
                 ldpi.setNomeItinerario(resultSet.getString(10));
+                
+                linhaIJDemandaIJPercorreIJItinerario.add(ldpi);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -227,7 +235,6 @@ public class LinhaDAO {
                 e.printStackTrace();
             }
         }
-        return linhaIJDemandaIJPercorreIJItinerarios;
+        return linhaIJDemandaIJPercorreIJItinerario;
     }
-    
 }

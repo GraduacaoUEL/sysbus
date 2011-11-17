@@ -3,6 +3,7 @@ package beans;
 import java.sql.Time;
 
 public class LinhaIJDemandaIJPercorreIJItinerario {
+
     private int codigoLinha;
     private String nomeLinha;
     private Time horaInicioLinha;
@@ -153,6 +154,4 @@ public class LinhaIJDemandaIJPercorreIJItinerario {
     public void setNomeItinerario(String nomeItinerario) {
         this.nomeItinerario = nomeItinerario;
     }
-    
-    
 }

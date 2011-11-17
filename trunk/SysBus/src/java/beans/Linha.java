@@ -9,6 +9,7 @@ public class Linha implements Serializable {
     private String nomeLinha;
     private Time horaInicioLinha;
     private int demandaLinha;
+    private int itinerarioLinha;
 
     /**
      * Construtor vazio.
@@ -78,5 +79,21 @@ public class Linha implements Serializable {
      */
     public void setDemandaLinha(int demandaLinha) {
         this.demandaLinha = demandaLinha;
+    }
+    
+    /**
+     * Retorna o itinerário da linha.
+     * @return Itinerário da linha.
+     */
+    public int getItinerarioLinha() {
+        return itinerarioLinha;
+    }
+
+    /**
+     * Atribui o itinerário da linha.
+     * @param itinerarioLinha Itinerário da linha.
+     */
+    public void setItinerarioLinha(int itinerarioLinha) {
+        this.itinerarioLinha = itinerarioLinha;
     }
 }
