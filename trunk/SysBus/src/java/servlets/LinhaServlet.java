@@ -56,6 +56,12 @@ public class LinhaServlet extends HttpServlet {
             throws ServletException, IOException {
         Linha linha = new Linha();
         
+        try{
+            linha.setCodigoLinha(Integer.parseInt(request.getParameter("codigoLinha")));
+        }catch(NumberFormatException n){
+            linha.setCodigoLinha(0);
+        }
+        
         linha.setNomeLinha(request.getParameter("nomeLinha"));
         linha.setHoraInicioLinha(Time.valueOf(request.getParameter("horaInicioLinha")));
         linha.setDemandaLinha(Integer.parseInt(request.getParameter("demandaLinha")));
