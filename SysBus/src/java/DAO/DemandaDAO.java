@@ -148,7 +148,7 @@ public class DemandaDAO {
     }
 
     /**
-     * Retorna todos as tupas da entidade Cargo
+     * Retorna todos as tuplas da entidade Cargo
      * @param cargo Cargo a ser atualizado.
      */
     public ArrayList<Demanda> selectAll() {

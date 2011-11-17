@@ -1,6 +1,6 @@
 package beans;
 
-public class ColaboradorInnerJoinCargo {
+public class ColaboradorIJCargo {
 
     private int codigoColaborador;
     private String nomeColaborador;

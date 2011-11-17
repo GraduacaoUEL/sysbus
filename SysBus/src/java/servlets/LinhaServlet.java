@@ -1,8 +1,10 @@
 package servlets;
 
 import DAO.DemandaDAO;
+import DAO.ItinerarioDAO;
 import DAO.LinhaDAO;
 import beans.Demanda;
+import beans.Itinerario;
 import beans.Linha;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -60,6 +62,11 @@ public class LinhaServlet extends HttpServlet {
         DemandaDAO demandaDAO = new DemandaDAO();
         demandas = demandaDAO.selectAll();
         request.setAttribute("Demandas", demandas);
+        
+        ArrayList<Itinerario> itinerarios = new ArrayList<Itinerario>();
+        ItinerarioDAO itinerarioDAO = new ItinerarioDAO();
+        itinerarios = itinerarioDAO.selectAll();
+        request.setAttribute("Itinerarios", itinerarios);
     
         ArrayList<Linha> linhas = new ArrayList<Linha>();
         LinhaDAO linhasDAO = new LinhaDAO();

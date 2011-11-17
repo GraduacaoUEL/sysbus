@@ -1,6 +1,6 @@
 package beans;
 
-public class CarroInnerJoinLinha {
+public class CarroIJLinha {
     private int codigoCarro;
     private int numeroDePassageiros;
     private String nomeLinha;

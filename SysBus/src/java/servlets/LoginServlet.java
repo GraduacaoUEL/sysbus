@@ -6,7 +6,7 @@ package servlets;
 
 import DAO.ColaboradorDAO;
 import beans.Colaborador;
-import beans.ColaboradorInnerJoinCargo;
+import beans.ColaboradorIJCargo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -91,7 +91,7 @@ public class LoginServlet extends HttpServlet {
         
     //Esse if/else não tem sentido, mas funciona só funciona assim
 //        if(senhaForm.toString().equals(senhaBanco.toString())){
-//            ColaboradorInnerJoinCargo colaboradorInnerJoinCargo = new ColaboradorInnerJoinCargo();
+//            ColaboradorIJCargo colaboradorInnerJoinCargo = new ColaboradorIJCargo();
 //            colaboradorInnerJoinCargo = colaboradorDAO.selectWithJoin(request.getParameter("login"));
 //            request.setAttribute("Colaborador", colaboradorInnerJoinCargo);
 //            

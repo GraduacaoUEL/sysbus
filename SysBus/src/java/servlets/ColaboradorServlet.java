@@ -4,7 +4,7 @@ import DAO.CargoDAO;
 import DAO.ColaboradorDAO;
 import beans.Cargo;
 import beans.Colaborador;
-import beans.ColaboradorInnerJoinCargo;
+import beans.ColaboradorIJCargo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -59,8 +59,8 @@ public class ColaboradorServlet extends HttpServlet {
         cargos = cargoDAO.selectAll();
         request.setAttribute("Cargos", cargos);
     
-        ArrayList<ColaboradorInnerJoinCargo> colaboradoresInnerJoinCargos = 
-                new ArrayList<ColaboradorInnerJoinCargo>();
+        ArrayList<ColaboradorIJCargo> colaboradoresInnerJoinCargos = 
+                new ArrayList<ColaboradorIJCargo>();
         
         ColaboradorDAO colaboradorDAO = new ColaboradorDAO();
         

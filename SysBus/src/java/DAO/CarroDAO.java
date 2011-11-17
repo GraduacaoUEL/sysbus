@@ -1,7 +1,7 @@
 package DAO;
 
 import beans.Carro;
-import beans.CarroInnerJoinLinha;
+import beans.CarroIJLinha;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -169,10 +169,10 @@ public class CarroDAO {
         return carros;
     }
 
-    public ArrayList<CarroInnerJoinLinha> selectAllWithJoin() {
+    public ArrayList<CarroIJLinha> selectAllWithJoin() {
 
         ResultSet resultSet = null;
-        ArrayList<CarroInnerJoinLinha> carros = new ArrayList<CarroInnerJoinLinha>();
+        ArrayList<CarroIJLinha> carros = new ArrayList<CarroIJLinha>();
 
         try {
             String queryString = "SELECT c.codigo_carro, "
@@ -185,7 +185,7 @@ public class CarroDAO {
             resultSet = pstmt.executeQuery();
             while (resultSet.next()) {
 
-                CarroInnerJoinLinha carro = new CarroInnerJoinLinha();
+                CarroIJLinha carro = new CarroIJLinha();
 
                 carro.setCodigoCarro(resultSet.getInt("codigo_carro"));
                 carro.setNumeroPassageiros(resultSet.getInt("numero_passageiros"));
