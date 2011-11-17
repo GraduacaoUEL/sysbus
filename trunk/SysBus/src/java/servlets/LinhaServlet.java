@@ -6,6 +6,7 @@ import DAO.LinhaDAO;
 import beans.Demanda;
 import beans.Itinerario;
 import beans.Linha;
+import beans.LinhaIJDemandaIJPercorreIJItinerario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Time;
@@ -36,9 +37,10 @@ public class LinhaServlet extends HttpServlet {
         itinerarios = itinerarioDAO.selectAll();
         request.setAttribute("Itinerarios", itinerarios);
     
-        ArrayList<Linha> linhas = new ArrayList<Linha>();
+        ArrayList<LinhaIJDemandaIJPercorreIJItinerario> linhas = 
+                new ArrayList<LinhaIJDemandaIJPercorreIJItinerario>();
         LinhaDAO linhasDAO = new LinhaDAO();
-        linhas = linhasDAO.selectAll();
+        linhas = linhasDAO.selectAllWithJoin();
         request.setAttribute("Linhas", linhas);
         
         request.getRequestDispatcher("/linha.jsp").forward(request, response);
