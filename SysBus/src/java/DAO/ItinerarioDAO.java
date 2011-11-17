@@ -28,35 +28,24 @@ public class ItinerarioDAO {
      * Insere um itinerário no banco de dados.
      * @param itinerario Itinerário a ser inserido.
      */
-/*
-
-BEGIN; 
-INSERT INTO itinerario(nome_itinerario) VALUES('Teste4');
-INSERT INTO possui(numero_itinerario, numero_trecho) VALUES((SELECT codigo_itinerario FROM itinerario WHERE nome_itinerario = 'Teste4'), 2);
-*/
-
     public void insert(Itinerario itinerario) {
         try {
-            
             String queryString = "BEGIN; ";
             queryString += "INSERT INTO itinerario(nome_itinerario) VALUES('" + itinerario.getNomeItinerario() + "'); ";
-                        
-            for(int i = 0; i < itinerario.getTrechosItinerario().size(); i++)
+
+            for (int i = 0; i < itinerario.getTrechosItinerario().size(); i++) {
                 queryString += "INSERT INTO possui(numero_itinerario, numero_trecho) "
                         + "VALUES((SELECT codigo_itinerario FROM itinerario WHERE "
-                        + "nome_itinerario = '" + itinerario.getNomeItinerario() + "'),"
-                        + " "+ itinerario.getTrechosItinerario().get(i).getCodigoTrecho() +"); ";
-            
+                        + "nome_itinerario = '" + itinerario.getNomeItinerario() + "'), "
+                        + itinerario.getTrechosItinerario().get(i).getCodigoTrecho() + "); ";
+            }
+
             queryString += "COMMIT;";
-            
-            //Debug para ver como ficou a expressão gerada
-            //System.out.println(queryString);
-                    
+
             connection = getConnection();
-            
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.executeUpdate();
-            System.out.println(queryString);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -145,17 +134,19 @@ INSERT INTO possui(numero_itinerario, numero_trecho) VALUES((SELECT codigo_itine
      * @param cargo Cargo a ser atualizado.
      */
     public ArrayList<Itinerario> selectAll() {
-
         ResultSet resultSet = null;
         ArrayList<Itinerario> itinerarios = new ArrayList<Itinerario>();
 
         try {
             String queryString = "SELECT * FROM itinerario";
-            connection = getConnection();
-            pstmt = connection.prepareStatement(queryString);
-            resultSet = pstmt.executeQuery();
-            while (resultSet.next()) {
 
+            connection = getConnection();
+
+            pstmt = connection.prepareStatement(queryString);
+
+            resultSet = pstmt.executeQuery();
+
+            while (resultSet.next()) {
                 Itinerario itinerario = new Itinerario();
 
                 itinerario.setCodigoItinerario(resultSet.getInt("codigo_itinerario"));
@@ -163,8 +154,6 @@ INSERT INTO possui(numero_itinerario, numero_trecho) VALUES((SELECT codigo_itine
 
                 itinerarios.add(itinerario);
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

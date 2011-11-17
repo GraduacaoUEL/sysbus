@@ -9,7 +9,7 @@ public class Linha implements Serializable {
     private String nomeLinha;
     private Time horaInicioLinha;
     private int demandaLinha;
-    
+
     /**
      * Construtor vazio.
      */
@@ -23,7 +23,7 @@ public class Linha implements Serializable {
     public int getCodigoLinha() {
         return codigoLinha;
     }
-    
+
     /**
      * Atribui o código da linha.
      * @param codigoLinha Código da linha.
@@ -39,7 +39,7 @@ public class Linha implements Serializable {
     public String getNomeLinha() {
         return nomeLinha;
     }
-    
+
     /**
      * Atribui o nome da linha.
      * @param nomeLinha Nome da linha.
@@ -47,7 +47,7 @@ public class Linha implements Serializable {
     public void setNomeLinha(String nomeLinha) {
         this.nomeLinha = nomeLinha;
     }
-    
+
     /**
      * Retorna a hora de início da linha no formato "hh:mm:ss".
      * @return Hora de início da linha.
@@ -55,7 +55,7 @@ public class Linha implements Serializable {
     public Time getHoraInicioLinha() {
         return horaInicioLinha;
     }
-    
+
     /**
      * Atribui a hora de início da linha no formato "hh:mm:ss".
      * @param horaInicioLinha Hora de início da linha.
@@ -63,7 +63,7 @@ public class Linha implements Serializable {
     public void setHoraInicioLinha(Time horaInicioLinha) {
         this.horaInicioLinha = horaInicioLinha;
     }
-    
+
     /**
      * Retorna o código da demanda à qual a linha está vinculada.
      * @return Código da demanda à qual a linha está vinculada.
@@ -71,7 +71,7 @@ public class Linha implements Serializable {
     public int getDemandaLinha() {
         return demandaLinha;
     }
-    
+
     /**
      * Atribui o código da demanda à qual a linha está vinculada.
      * @param demandaLinha Código da demanda à qual a linha está vinculada.

@@ -24,7 +24,6 @@
                 <input type="submit" value="Salvar"/>
             </form>
         </div>
-
         <div id="tabela">
             <p>Carros existentes</p>
             <table>
@@ -39,13 +38,13 @@
                 </thead>
                 <tbody>                
                     <c:forEach var="carros" items="${Carros}">
-                    <tr>
-                        <td><c:out value="${carros.codigoCarro}"/></td>
-                        <td><c:out value="${carros.numeroDePassageiros}"/></td>
-                        <td><c:out value="${carros.nomeLinha}"/></td>
-                        <td><a href="CarroServlet?op=editar&id=<c:out value="${carros.codigoCarro}"/>">Editar</a></td>
-                        <td><a href="CarroServlet?op=excluir&id=<c:out value="${carros.codigoCarro}"/>">Excluir</a></td>
-                    </tr>
+                        <tr>
+                            <td><c:out value="${carros.codigoCarro}"/></td>
+                            <td><c:out value="${carros.numeroDePassageiros}"/></td>
+                            <td><c:out value="${carros.nomeLinha}"/></td>
+                            <td><a href="CarroServlet?op=editar&id=<c:out value="${carros.codigoCarro}"/>">Editar</a></td>
+                            <td><a href="CarroServlet?op=excluir&id=<c:out value="${carros.codigoCarro}"/>">Excluir</a></td>
+                        </tr>
                     </c:forEach>
                 </tbody>
             </table>

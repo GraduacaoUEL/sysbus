@@ -13,7 +13,7 @@ public class ColaboradorDAO {
     private Connection connection = null;
     private PreparedStatement pstmt = null;
     private ResultSet resultSet = null;
-    
+
     /**
      * Construtor vazio.
      */
@@ -25,7 +25,7 @@ public class ColaboradorDAO {
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-    
+
     /**
      * Insere um colaborador no banco de dados.
      * @param colaborador Colaborador a ser inserido.
@@ -61,7 +61,7 @@ public class ColaboradorDAO {
             }
         }
     }
-    
+
     /**
      * Remove um colaborador do banco de dados.
      * @param codigoColaborador Código do colaborador a ser removido.
@@ -93,7 +93,7 @@ public class ColaboradorDAO {
             }
         }
     }
-    
+
     /**
      * Atualiza um colaborador no banco de dados.
      * @param colaborador Colaborador a ser atualizado.
@@ -130,53 +130,54 @@ public class ColaboradorDAO {
             }
         }
     }
-    
+
     public ArrayList<Colaborador> selectAll() {
-    
-    ResultSet resultSet = null;
-    ArrayList<Colaborador> colaboradores = new ArrayList<Colaborador>();
-    
-    try {
-                        String queryString = "SELECT * FROM colaborador";
-                        connection = getConnection();
-                        pstmt = connection.prepareStatement(queryString);
-                        resultSet = pstmt.executeQuery();
-                        while (resultSet.next()) {
-                            
-                            Colaborador colaborador = new Colaborador();
-                                
-                            colaborador.setCodigoColaborador(resultSet.getInt("codigo_colaborador"));
-                            colaborador.setNomeColaborador(resultSet.getString("nome_colaborador"));
-                            colaborador.setLoginColaborador(resultSet.getString("login_colaborador"));
-                            colaborador.setSenhaColaborador(resultSet.getString("senha_colaborador"));
-                            colaborador.setCargoColaborador(resultSet.getInt("cargo_colaborador"));
-                            
-                            colaboradores.add(colaborador);
-                        }
-                        
-                        
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                } finally {
-                        try {
-                                if (resultSet != null)
-                                        resultSet.close();
-                                if (pstmt != null)
-                                        pstmt.close();
-                                if (connection != null)
-                                        connection.close();
-                        } catch (SQLException e) {
-                                e.printStackTrace();
-                        } catch (Exception e) {
-                                e.printStackTrace();
-                        }
+        ResultSet resultSet = null;
+        ArrayList<Colaborador> colaboradores = new ArrayList<Colaborador>();
 
+        try {
+            String queryString = "SELECT * FROM colaborador";
+
+            connection = getConnection();
+
+            pstmt = connection.prepareStatement(queryString);
+
+            resultSet = pstmt.executeQuery();
+
+            while (resultSet.next()) {
+                Colaborador colaborador = new Colaborador();
+
+                colaborador.setCodigoColaborador(resultSet.getInt("codigo_colaborador"));
+                colaborador.setNomeColaborador(resultSet.getString("nome_colaborador"));
+                colaborador.setLoginColaborador(resultSet.getString("login_colaborador"));
+                colaborador.setSenhaColaborador(resultSet.getString("senha_colaborador"));
+                colaborador.setCargoColaborador(resultSet.getInt("cargo_colaborador"));
+
+                colaboradores.add(colaborador);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
                 }
-                return colaboradores;
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-    
-    public ColaboradorIJCargo selectWithJoin(String login) {
+        return colaboradores;
+    }
 
+    public ColaboradorIJCargo selectWithJoin(String login) {
         ResultSet resultSet = null;
         ColaboradorIJCargo colaboradorInnerJoinCargo = new ColaboradorIJCargo();
 
@@ -187,9 +188,12 @@ public class ColaboradorDAO {
                     + "ca.permissao_vendas, ca.permissao_custos FROM colaborador "
                     + "AS co INNER JOIN cargo AS ca ON "
                     + "co.cargo_colaborador = ca.codigo_cargo WHERE co.login_colaborador = ?";
+
             connection = getConnection();
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, login);
+
             resultSet = pstmt.executeQuery();
             resultSet.next();
 
@@ -201,7 +205,6 @@ public class ColaboradorDAO {
             colaboradorInnerJoinCargo.setPermissaoItinerarios(resultSet.getBoolean(4));
             colaboradorInnerJoinCargo.setPermissaoVendas(resultSet.getBoolean(4));
             colaboradorInnerJoinCargo.setPermissaoCustos(resultSet.getBoolean(4));
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -220,22 +223,23 @@ public class ColaboradorDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         return colaboradorInnerJoinCargo;
     }
 
     public Colaborador selectForLogin(String login) {
-
         Colaborador colaborador = new Colaborador();
         ResultSet resultSet = null;
 
         try {
             String queryString = "SELECT * FROM colaborador WHERE"
                     + " login_colaborador = ?";
+
             connection = getConnection();
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setString(1, login);
+
             resultSet = pstmt.executeQuery();
             resultSet.next();
 
@@ -244,7 +248,6 @@ public class ColaboradorDAO {
             colaborador.setLoginColaborador(resultSet.getString("login_colaborador"));
             colaborador.setSenhaColaborador(resultSet.getString("senha_colaborador"));
             colaborador.setCargoColaborador(resultSet.getInt("cargo_colaborador"));
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -263,16 +266,13 @@ public class ColaboradorDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         return colaborador;
     }
 
     public ArrayList<ColaboradorIJCargo> selectAllWithJoin() {
-
         ResultSet resultSet = null;
-        ArrayList<ColaboradorIJCargo> colaboradores =
-                new ArrayList<ColaboradorIJCargo>();
+        ArrayList<ColaboradorIJCargo> colaboradores = new ArrayList<ColaboradorIJCargo>();
 
         try {
             String queryString = "SELECT co.codigo_colaborador, co.nome_colaborador, "
@@ -280,18 +280,20 @@ public class ColaboradorDAO {
                     + "co INNER JOIN cargo AS ca ON "
                     + "co.cargo_colaborador = ca.codigo_cargo "
                     + "ORDER BY co.nome_colaborador";
+
             connection = getConnection();
+
             pstmt = connection.prepareStatement(queryString);
+
             resultSet = pstmt.executeQuery();
-            
-            while(resultSet.next()){
-                ColaboradorIJCargo colaboradorInnerJoinCargo = 
-                        new ColaboradorIJCargo();
+
+            while (resultSet.next()) {
+                ColaboradorIJCargo colaboradorInnerJoinCargo = new ColaboradorIJCargo();
                 colaboradorInnerJoinCargo.setCodigoColaborador(resultSet.getInt(1));
                 colaboradorInnerJoinCargo.setNomeColaborador(resultSet.getString(2));
                 colaboradorInnerJoinCargo.setLoginColaborador(resultSet.getString(3));
                 colaboradorInnerJoinCargo.setNomeCargo(resultSet.getString(4));
-            
+
                 colaboradores.add(colaboradorInnerJoinCargo);
             }
         } catch (SQLException e) {
@@ -312,26 +314,24 @@ public class ColaboradorDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         return colaboradores;
     }
 
     public Colaborador selectForId(int codigoColaborador) {
-
         ResultSet resultSet = null;
         Colaborador colaborador = new Colaborador();
 
         try {
-
             String queryString = "SELECT * FROM colaborador"
                     + " WHERE codigo_colaborador = ?";
+
             connection = getConnection();
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigoColaborador);
 
             resultSet = pstmt.executeQuery();
-
             resultSet.next();
 
             colaborador.setCodigoColaborador(resultSet.getInt("codigo_colaborador"));
@@ -339,7 +339,6 @@ public class ColaboradorDAO {
             colaborador.setLoginColaborador(resultSet.getString("login_colaborador"));
             colaborador.setSenhaColaborador(resultSet.getString("senha_colaborador"));
             colaborador.setCargoColaborador(resultSet.getInt("cargo_colaborador"));
-            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -358,30 +357,28 @@ public class ColaboradorDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         return colaborador;
     }
-    
-    public void save(Colaborador colaborador) {
 
+    public void save(Colaborador colaborador) {
         if (colaborador.getCodigoColaborador() == 0) {
             insert(colaborador);
         } else {
             ResultSet resultSet = null;
 
             try {
-
                 String queryString = "SELECT COUNT(codigo_colaborador) FROM "
                         + "colaborador WHERE codigo_colaborador = ?";
 
                 connection = getConnection();
+
                 pstmt = connection.prepareStatement(queryString);
                 pstmt.setInt(1, colaborador.getCodigoColaborador());
 
                 resultSet = pstmt.executeQuery();
                 resultSet.next();
-                //Transparencia marota
+
                 if (resultSet.getInt("count") != 0) {
                     update(colaborador);
                 } else {
@@ -405,9 +402,7 @@ public class ColaboradorDAO {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }
     }
-    
 }

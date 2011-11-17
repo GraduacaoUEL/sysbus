@@ -11,7 +11,7 @@ public class Trecho implements Serializable {
     private Time tempoTrecho;
     private float distanciaTrecho;
     private int custoTrecho;
-    
+
     /**
      * Construtor vazio.
      */
@@ -25,7 +25,7 @@ public class Trecho implements Serializable {
     public int getCodigoTrecho() {
         return codigoTrecho;
     }
-    
+
     /**
      * Atribui o código do trecho.
      * @param codigoTrecho Código do trecho.
@@ -33,7 +33,7 @@ public class Trecho implements Serializable {
     public void setCodigoTrecho(int codigoTrecho) {
         this.codigoTrecho = codigoTrecho;
     }
-    
+
     /**
      * Retorna a cidade de origem do trecho.
      * @return Cidade de origem do trecho.
@@ -41,7 +41,7 @@ public class Trecho implements Serializable {
     public String getOrigemTrecho() {
         return origemTrecho;
     }
-    
+
     /**
      * Atribui a cidade de origem do trecho.
      * @param origemTrecho Cidade de origem do trecho.
@@ -57,7 +57,7 @@ public class Trecho implements Serializable {
     public String getDestinoTrecho() {
         return destinoTrecho;
     }
-    
+
     /**
      * Atribui a cidade de destino do trecho.
      * @param destinoTrecho Cidade de destino do trecho.
@@ -73,7 +73,7 @@ public class Trecho implements Serializable {
     public Time getTempoTrecho() {
         return tempoTrecho;
     }
-    
+
     /**
      * Atribui o tempo gasto para percorrer o trecho no formato "hh:mm:ss".
      * @param tempoTrecho Tempo gasto para percorrer o trecho.
@@ -89,7 +89,7 @@ public class Trecho implements Serializable {
     public float getDistanciaTrecho() {
         return distanciaTrecho;
     }
-    
+
     /**
      * Atribui a distância da cidade de origem à cidade de destino em km.
      * @param distanciaTrecho Distância da cidade de origem à cidade de destino.
@@ -105,7 +105,7 @@ public class Trecho implements Serializable {
     public int getCustoTrecho() {
         return custoTrecho;
     }
-    
+
     /**
      * Atribui o custo para percorrer o trecho em R$.
      * @param custoTrecho Custo para percorrer o trecho.

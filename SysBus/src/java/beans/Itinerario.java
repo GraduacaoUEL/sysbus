@@ -7,9 +7,8 @@ public class Itinerario implements Serializable {
 
     private int codigoItinerario;
     private String nomeItinerario;
-    private ArrayList<Trecho> trechosItinerario
-            = new ArrayList<Trecho>();
-    
+    private ArrayList<Trecho> trechosItinerario = new ArrayList<Trecho>();
+
     /**
      * Construtor vazio.
      */
@@ -23,7 +22,7 @@ public class Itinerario implements Serializable {
     public int getCodigoItinerario() {
         return codigoItinerario;
     }
-    
+
     /**
      * Atribui o código do itinerário.
      * @param codigoItinerario Código do itinerário.
@@ -39,7 +38,7 @@ public class Itinerario implements Serializable {
     public String getNomeItinerario() {
         return nomeItinerario;
     }
-    
+
     /**
      * Atribui o nome do itinerário.
      * @param nomeItinerario Nome do itinerário.

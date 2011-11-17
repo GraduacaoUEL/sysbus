@@ -150,7 +150,6 @@ public class TrechoDAO {
             trecho.setDestinoTrecho(resultSet.getString("destino_trecho"));
             trecho.setTempoTrecho(resultSet.getTime("tempo_trecho"));
             trecho.setDistanciaTrecho(resultSet.getFloat("distancia_trecho"));
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -216,7 +215,6 @@ public class TrechoDAO {
                 e.printStackTrace();
             }
         }
-
         return trechos;
     }
 
@@ -225,18 +223,19 @@ public class TrechoDAO {
             insert(trecho);
         } else {
             ResultSet resultSet = null;
+            
             try {
                 String queryString = "SELECT COUNT(codigo_trecho) FROM trecho"
                         + " WHERE codigo_trecho = ?";
 
                 connection = getConnection();
+                
                 pstmt = connection.prepareStatement(queryString);
                 pstmt.setInt(1, trecho.getCodigoTrecho());
 
                 resultSet = pstmt.executeQuery();
                 resultSet.next();
-
-                // Transparência marota
+                
                 if (resultSet.getInt("count") != 0) {
                     update(trecho);
                 } else {

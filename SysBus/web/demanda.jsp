@@ -15,25 +15,25 @@
             <p>Inserção/Atualização</p>
             <form name="cadastroDemanda" action="DemandaServlet" method="post">
                 <label>Nome:</label><br/><input type="text" name="nomeDemanda"/><br/><br/>
-                    <label>Períodos:</label><br/>
-                    <table>
-                        <thead>
+                <label>Períodos:</label><br/>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Início do período</th>
+                            <th>Fim do período</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="periodos" items="${Periodos}">
                             <tr>
-                                <th></th>
-                                <th>Início do período</th>
-                                <th>Fim do período</th>
+                                <td><input type="checkbox" name="periodo" value="${periodos.codigoPeriodo}"/></td>
+                                <td>${periodos.inicioPeriodo}</td>
+                                <td>${periodos.fimPeriodo}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="periodos" items="${Periodos}">
-                                <tr>
-                                    <td><input type="checkbox" name="periodo" value="${periodos.codigoPeriodo}"/></td>
-                                    <td>${periodos.inicioPeriodo}</td>
-                                    <td>${periodos.fimPeriodo}</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table><br/>
+                        </c:forEach>
+                    </tbody>
+                </table><br/>
                 <input type="submit" value="Salvar"/>
             </form>
         </div>

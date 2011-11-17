@@ -72,6 +72,7 @@ public class CargoDAO {
             insert(cargo);
         } else {
             ResultSet resultSet = null;
+            
             try {
                 String queryString = "SELECT COUNT(codigo_cargo) FROM cargo"
                         + " WHERE codigo_cargo = ?";
@@ -82,8 +83,7 @@ public class CargoDAO {
 
                 resultSet = pstmt.executeQuery();
                 resultSet.next();
-
-                // Transparência marota
+                
                 if (resultSet.getInt("count") != 0) {
                     update(cargo);
                 } else {
@@ -192,15 +192,10 @@ public class CargoDAO {
             connection = getConnection();
 
             pstmt = connection.prepareStatement(queryString);
-            
+
             resultSet = pstmt.executeQuery();
 
             while (resultSet.next()) {
-                /* Para cada iteração do while é criado um novo cargo, que terá
-                seus atributos setados de acordo com os dados que estão vindo do
-                banco de dados. O fato de a cada iteração ser feito um novo
-                "new" não é problema, visto que o Java faz coleta de lixo
-                automaticamente. */
                 Cargo cargo = new Cargo();
 
                 cargo.setCodigoCargo(resultSet.getInt("codigo_cargo"));
@@ -210,8 +205,7 @@ public class CargoDAO {
                 cargo.setPermissaoCustos(resultSet.getBoolean("permissao_custos"));
                 cargo.setPermissaoItinerarios(resultSet.getBoolean("permissao_itinerarios"));
                 cargo.setPermissaoVendas(resultSet.getBoolean("permissao_vendas"));
-
-                /* Adiciona o cargo ao ArrayList que será retornado. */
+                
                 cargos.add(cargo);
             }
         } catch (SQLException e) {
@@ -233,8 +227,6 @@ public class CargoDAO {
                 e.printStackTrace();
             }
         }
-
-        /* Retorna um ArrayList contendo todos os cargos cadastrados. */
         return cargos;
     }
 
@@ -246,6 +238,7 @@ public class CargoDAO {
             String queryString = "SELECT * FROM cargo WHERE codigo_cargo = ?";
 
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigoCargo);
 
@@ -280,6 +273,4 @@ public class CargoDAO {
         }
         return cargo;
     }
-
-    
 }

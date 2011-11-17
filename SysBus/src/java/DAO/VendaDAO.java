@@ -1,7 +1,7 @@
 package DAO;
 
 import beans.Venda;
-import beans.VendaInnerJoinColaborador;
+import beans.VendaIJColaborador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -83,8 +83,7 @@ public class VendaDAO {
 
                 resultSet = pstmt.executeQuery();
                 resultSet.next();
-
-                // Transparência marota
+                
                 if (resultSet.getInt("count") != 0) {
                     update(venda);
                 } else {
@@ -197,11 +196,6 @@ public class VendaDAO {
             resultSet = pstmt.executeQuery();
 
             while (resultSet.next()) {
-                /* Para cada iteração do while é criado uma nova venda, que terá
-                seus atributos setados de acordo com os dados que estão vindo do
-                banco de dados. O fato de a cada iteração ser feito um novo
-                "new" não é problema, visto que o Java faz coleta de lixo
-                automaticamente. */
                 Venda venda = new Venda();
 
                 venda.setCodigoVenda(resultSet.getInt("codigo_venda"));
@@ -212,8 +206,7 @@ public class VendaDAO {
                 venda.setViaWeb(resultSet.getBoolean("via_web"));
                 venda.setVendedor(resultSet.getInt("vendedor"));
                 venda.setCarroVenda(resultSet.getInt("carro_venda"));
-
-                /* Adiciona a venda ao ArrayList que será retornado. */
+                
                 vendas.add(venda);
             }
         } catch (SQLException e) {
@@ -235,15 +228,13 @@ public class VendaDAO {
                 e.printStackTrace();
             }
         }
-
-        /* Retorna um ArrayList contendo todas as vendas cadastradas. */
+        
         return vendas;
     }
 
-    public ArrayList<VendaInnerJoinColaborador> selectAllWithJoin() {
-
+    public ArrayList<VendaIJColaborador> selectAllWithJoin() {
         ResultSet resultSet = null;
-        ArrayList<VendaInnerJoinColaborador> vendas = new ArrayList<VendaInnerJoinColaborador>();
+        ArrayList<VendaIJColaborador> vendas = new ArrayList<VendaIJColaborador>();
 
         try {
             String queryString = "SELECT v.codigo_venda, v.data_venda, "
@@ -253,11 +244,13 @@ public class VendaDAO {
                     + "c.codigo_colaborador ORDER BY v.data_venda";
 
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
+            
             resultSet = pstmt.executeQuery();
 
             while (resultSet.next()) {
-                VendaInnerJoinColaborador venda = new VendaInnerJoinColaborador();
+                VendaIJColaborador venda = new VendaIJColaborador();
 
                 venda.setCodigoVenda(resultSet.getInt(1));
                 venda.setDataHoraVenda(resultSet.getTimestamp(2));
@@ -300,6 +293,7 @@ public class VendaDAO {
             String queryString = "SELECT * FROM venda WHERE codigo_venda = ?";
 
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigoVenda);
 
@@ -332,7 +326,6 @@ public class VendaDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         return venda;
     }

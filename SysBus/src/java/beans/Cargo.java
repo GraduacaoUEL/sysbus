@@ -11,7 +11,7 @@ public class Cargo implements Serializable {
     private boolean permissaoItinerarios;
     private boolean permissaoVendas;
     private boolean permissaoCustos;
-    
+
     /**
      * Construtor vazio.
      */
@@ -25,16 +25,15 @@ public class Cargo implements Serializable {
     public int getCodigoCargo() {
         return codigoCargo;
     }
-    
+
     /**
      * Atribui o código do cargo.
      * @param codigoCargo Código do cargo.
      */
     public void setCodigoCargo(int codigoCargo) {
-        try{
-            
-        this.codigoCargo = codigoCargo;
-        } catch(NumberFormatException n){
+        try {
+            this.codigoCargo = codigoCargo;
+        } catch (NumberFormatException n) {
             this.codigoCargo = 0;
         }
     }
@@ -46,7 +45,7 @@ public class Cargo implements Serializable {
     public String getNomeCargo() {
         return nomeCargo;
     }
-    
+
     /**
      * Atribui o nome do cargo.
      * @param nomeCargo Nome do cargo.
@@ -62,7 +61,7 @@ public class Cargo implements Serializable {
     public boolean isPermissaoCargos() {
         return permissaoCargos;
     }
-    
+
     /**
      * Define se o cargo tem permissão para gerenciar cargos.
      * @param permissaoCargos <code>true</code> se o cargo tem permissão.
@@ -78,7 +77,7 @@ public class Cargo implements Serializable {
     public boolean isPermissaoCarros() {
         return permissaoCarros;
     }
-    
+
     /**
      * Define se o cargo tem permissão para gerenciar carros.
      * @param permissaoCarros <code>true</code> se o cargo tem permissão.
@@ -86,7 +85,7 @@ public class Cargo implements Serializable {
     public void setPermissaoCarros(boolean permissaoCarros) {
         this.permissaoCarros = permissaoCarros;
     }
-    
+
     /**
      * Retorna se o cargo tem permissão para gerenciar itinerários.
      * @return <code>true</code> se o cargo tem permissão.
@@ -94,7 +93,7 @@ public class Cargo implements Serializable {
     public boolean isPermissaoItinerarios() {
         return permissaoItinerarios;
     }
-    
+
     /**
      * Define se o cargo tem permissão para gerenciar itinerários.
      * @param permissaoItinerarios <code>true</code> se o cargo tem permissão.
@@ -110,7 +109,7 @@ public class Cargo implements Serializable {
     public boolean isPermissaoVendas() {
         return permissaoVendas;
     }
-    
+
     /**
      * Define se o cargo tem permissão para gerenciar vendas.
      * @param permissaoVendas <code>true</code> se o cargo tem permissão.
@@ -126,7 +125,7 @@ public class Cargo implements Serializable {
     public boolean isPermissaoCustos() {
         return permissaoCustos;
     }
-    
+
     /**
      * Define se o cargo tem permissão para gerenciar custos.
      * @param permissaoCustos <code>true</code> se o cargo tem permissão.

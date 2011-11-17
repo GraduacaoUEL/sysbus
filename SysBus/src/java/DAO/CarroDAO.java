@@ -125,17 +125,19 @@ public class CarroDAO {
     }
 
     public ArrayList<Carro> selectAll() {
-
         ResultSet resultSet = null;
         ArrayList<Carro> carros = new ArrayList<Carro>();
 
         try {
             String queryString = "SELECT * FROM carro";
-            connection = getConnection();
-            pstmt = connection.prepareStatement(queryString);
-            resultSet = pstmt.executeQuery();
-            while (resultSet.next()) {
 
+            connection = getConnection();
+
+            pstmt = connection.prepareStatement(queryString);
+
+            resultSet = pstmt.executeQuery();
+
+            while (resultSet.next()) {
                 Carro carro = new Carro();
 
                 carro.setCodigoCarro(resultSet.getInt("codigo_carro"));
@@ -144,8 +146,6 @@ public class CarroDAO {
 
                 carros.add(carro);
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -164,13 +164,11 @@ public class CarroDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         return carros;
     }
 
     public ArrayList<CarroIJLinha> selectAllWithJoin() {
-
         ResultSet resultSet = null;
         ArrayList<CarroIJLinha> carros = new ArrayList<CarroIJLinha>();
 
@@ -180,20 +178,22 @@ public class CarroDAO {
                     + "carro AS c INNER JOIN linha AS l ON "
                     + "c.linha_carro = l.codigo_linha ORDER BY "
                     + "c.codigo_carro";
-            connection = getConnection();
-            pstmt = connection.prepareStatement(queryString);
-            resultSet = pstmt.executeQuery();
-            while (resultSet.next()) {
 
+            connection = getConnection();
+
+            pstmt = connection.prepareStatement(queryString);
+
+            resultSet = pstmt.executeQuery();
+
+            while (resultSet.next()) {
                 CarroIJLinha carro = new CarroIJLinha();
 
                 carro.setCodigoCarro(resultSet.getInt("codigo_carro"));
                 carro.setNumeroPassageiros(resultSet.getInt("numero_passageiros"));
                 carro.setNomeLinha(resultSet.getString("nome_linha"));
+                
                 carros.add(carro);
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -212,32 +212,29 @@ public class CarroDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         return carros;
     }
 
     public Carro selectForId(int codigoCarro) {
-
         ResultSet resultSet = null;
         Carro carro = new Carro();
 
         try {
-
             String queryString = "SELECT * FROM carro"
                     + " WHERE codigo_carro = ?";
+
             connection = getConnection();
+
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigoCarro);
 
             resultSet = pstmt.executeQuery();
-
             resultSet.next();
 
             carro.setCodigoCarro(resultSet.getInt("codigo_carro"));
             carro.setLinhaCarro(resultSet.getInt("linha_carro"));
             carro.setNumeroDePassageiros(resultSet.getInt("numero_passageiros"));
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -256,28 +253,27 @@ public class CarroDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         return carro;
     }
 
     public void save(Carro carro) {
-
         if (carro.getCodigoCarro() == 0) {
             insert(carro);
         } else {
             ResultSet resultSet = null;
+            
             try {
                 String queryString = "SELECT COUNT(codigo_carro) FROM carro"
                         + " WHERE codigo_carro = ?";
 
                 connection = getConnection();
+
                 pstmt = connection.prepareStatement(queryString);
                 pstmt.setInt(1, carro.getCodigoCarro());
 
                 resultSet = pstmt.executeQuery();
                 resultSet.next();
-                //Transparencia marota
                 if (resultSet.getInt("count") != 0) {
                     update(carro);
                 } else {
@@ -301,7 +297,6 @@ public class CarroDAO {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }
     }

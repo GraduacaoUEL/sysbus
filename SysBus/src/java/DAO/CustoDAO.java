@@ -10,7 +10,7 @@ public class CustoDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-    
+
     /**
      * Construtor vazio.
      */
@@ -22,7 +22,7 @@ public class CustoDAO {
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-    
+
     /**
      * Insere um custo no banco de dados.
      * @param custo Custo a ser inserido.
@@ -54,7 +54,7 @@ public class CustoDAO {
             }
         }
     }
-    
+
     /**
      * Remove um custo do banco de dados.
      * @param codigoCusto Código do custo a ser removido.
@@ -85,7 +85,7 @@ public class CustoDAO {
             }
         }
     }
-    
+
     /**
      * Atualiza um custo no banco de dados.
      * @param custo Custo a ser atualizado.
@@ -118,40 +118,42 @@ public class CustoDAO {
             }
         }
     }
-    
-    public Custo selectCusto() {
-    
-    ResultSet resultSet = null;
-    Custo custo = new Custo();
-    
-    try {
-                        String queryString = "SELECT * FROM custo";
-                        connection = getConnection();
-                        pstmt = connection.prepareStatement(queryString);
-                        resultSet = pstmt.executeQuery();
-                        
-                        resultSet.next();
-                        
-                        custo.setCodigoCusto(resultSet.getInt("codigo_custo"));
-                        custo.setPrecoQuilometro(resultSet.getFloat("preco_quilometro"));
-                        
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                } finally {
-                        try {
-                                if (resultSet != null)
-                                        resultSet.close();
-                                if (pstmt != null)
-                                        pstmt.close();
-                                if (connection != null)
-                                        connection.close();
-                        } catch (SQLException e) {
-                                e.printStackTrace();
-                        } catch (Exception e) {
-                                e.printStackTrace();
-                        }
 
+    public Custo selectCusto() {
+        ResultSet resultSet = null;
+        Custo custo = new Custo();
+
+        try {
+            String queryString = "SELECT * FROM custo";
+
+            connection = getConnection();
+
+            pstmt = connection.prepareStatement(queryString);
+
+            resultSet = pstmt.executeQuery();
+            resultSet.next();
+
+            custo.setCodigoCusto(resultSet.getInt("codigo_custo"));
+            custo.setPrecoQuilometro(resultSet.getFloat("preco_quilometro"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
                 }
-                return custo;
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+        return custo;
+    }
 }

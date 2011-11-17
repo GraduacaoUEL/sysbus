@@ -6,7 +6,6 @@
     </head>
     <body>
         <h1>${Colaborador.nomeColaborador}</h1>
-
         <ul>
             ${Colaborador.permissaoCargos ? "<li><a href='CargoServlet'>Cargo</a></li>" : ""}            
             ${Colaborador.permissaoCarros ? "<li><a href='CarroServlet'>Carro</a></li>" : ""}
@@ -19,6 +18,5 @@
             ${Colaborador.permissaoItinerarios ? "<li><a href='trecho.jsp'>Trecho</a></li>" : ""}
             ${Colaborador.permissaoVendas ? "<li><a href='venda.jsp'>Venda no guichê</a></li>" : ""}
         </ul>
-
     </body>
 </html>
