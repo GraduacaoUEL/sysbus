@@ -170,4 +170,64 @@ public class LinhaDAO {
         }
         return linhas;
     }
+
+    public ArrayList<LinhaIJDemandaIJPercorreIJItinerario> selectAllWithJoin() {
+        ResultSet resultSet = null;
+        ArrayList<LinhaIJDemandaIJPercorreIJItinerario> linhaIJDemandaIJPercorreIJItinerarios = 
+                new ArrayList<LinhaIJDemandaIJPercorreIJItinerario>();
+
+        try {
+            String queryString = "BEGIN; "
+                    + "CREATE OR REPLACE VIEW linha_ij_demanda AS SELECT * FROM linha AS l INNER JOIN demanda AS d ON l.demanda_linha = d.codigo_demanda; "
+                    + "COMMIT; "
+                    + "CREATE OR REPLACE VIEW ld_ij_percorre AS SELECT * FROM linha_ij_demanda AS ld INNER JOIN percorre AS p ON ld.codigo_linha = p.numero_linha; "
+                    + "COMMIT; "
+                    + "CREATE OR REPLACE VIEW linha_ij_demanda_ij_percorre_ij_itinerario AS SELECT * FROM ldIJpercorre AS ldp INNER JOIN itinerario AS it ON ldp.codigo_linha = it.codigo_itinerario ORDER BY ldp.nome_linha; "
+                    + "COMMIT; "
+                    + "SELECT * FROM linha_ij_demanda_ij_percorre_ij_itinerario";
+
+            System.out.println(queryString);
+            connection = getConnection();
+
+            pstmt = connection.prepareStatement(queryString);
+
+            resultSet = pstmt.executeQuery();
+            
+            while (resultSet.next()) {
+                LinhaIJDemandaIJPercorreIJItinerario ldpi =
+                        new LinhaIJDemandaIJPercorreIJItinerario();
+                
+                ldpi.setCodigoLinha(resultSet.getInt(1));
+                ldpi.setNomeLinha(resultSet.getString(2));
+                ldpi.setHoraInicioLinha(resultSet.getTime(3));
+                ldpi.setDemandaLinha(resultSet.getInt(4));
+                ldpi.setCodigoDemanda(resultSet.getInt(5));
+                ldpi.setNomeDemanda(resultSet.getString(6));
+                ldpi.setNumeroLinha(resultSet.getInt(7));
+                ldpi.setNumeroItinerarioPercorrido(resultSet.getInt(8));
+                ldpi.setCodigoItinerario(resultSet.getInt(9));
+                ldpi.setNomeItinerario(resultSet.getString(10));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return linhaIJDemandaIJPercorreIJItinerarios;
+    }
+    
 }
