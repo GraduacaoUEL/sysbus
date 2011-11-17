@@ -24,7 +24,7 @@
                     </c:forEach>
                 </select><br/><br/>
 
-                <label>Itinerário:</label><br/><select name="demandaItinerario">
+                <label>Itinerário:</label><br/><select name="itinerarioLinha">
                     <c:forEach var="itinerarios" items="${Itinerarios}">
                         <option value ="<c:out value="${itinerarios.codigoItinerario}"/>">
                             <c:out value="${itinerarios.nomeItinerario}" />
@@ -54,8 +54,8 @@
                             <td><c:out value="${linhas.horaInicioLinha}"/></td>
                             <td><c:out value="${linhas.nomeDemanda}"/></td>
                             <td><c:out value="${linhas.nomeItinerario}"/></td>
-                            <td>TODO</td>
-                            <td>TODO</td>
+                            <td><a href="LinhaServlet?op=editar&id=<c:out value="${linhas.codigoLinha}"/>">Editar</a></td>
+                            <td><a href="LinhaServletServlet?op=excluir&id=<c:out value="${linhas.codigoLinha}"/>">Excluir</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

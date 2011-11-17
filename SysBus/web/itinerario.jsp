@@ -55,8 +55,8 @@
                     <c:forEach var="itinerarios" items="${Itinerarios}">
                         <tr>
                             <td><c:out value="${itinerarios.nomeItinerario}"/></td>
-                            <td>TODO</td>
-                            <td>TODO</td>
+                            <td><a href="ItinerarioServlet?op=editar&id=<c:out value="${itinerario.codigoItinerario}"/>">Editar</a></td>
+                            <td><a href="ItinerarioServlet?op=excluir&id=<c:out value="${itinerario.codigoItinerario}"/>">Excluir</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

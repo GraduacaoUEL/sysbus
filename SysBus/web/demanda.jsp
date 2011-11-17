@@ -51,8 +51,8 @@
                     <c:forEach var="demandas" items="${Demandas}">
                         <tr>
                             <td><c:out value="${demandas.nomeDemanda}"/></td>
-                            <td>TODO</td>
-                            <td>TODO</td>
+                            <td><a href="DemandaServlet?op=editar&id=<c:out value="${demandas.codigoDemanda}"/>">Editar</a></td>
+                            <td><a href="DemandaServlet?op=excluir&id=<c:out value="${demandas.codigoDemanda}"/>">Excluir</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
