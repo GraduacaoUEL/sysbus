@@ -182,7 +182,7 @@ public class LinhaDAO {
                     + "COMMIT; "
                     + "CREATE OR REPLACE VIEW ld_ij_percorre AS SELECT * FROM linha_ij_demanda AS ld INNER JOIN percorre AS p ON ld.codigo_linha = p.numero_linha; "
                     + "COMMIT; "
-                    + "CREATE OR REPLACE VIEW linha_ij_demanda_ij_percorre_ij_itinerario AS SELECT * FROM ldIJpercorre AS ldp INNER JOIN itinerario AS it ON ldp.codigo_linha = it.codigo_itinerario ORDER BY ldp.nome_linha; "
+                    + "CREATE OR REPLACE VIEW linha_ij_demanda_ij_percorre_ij_itinerario AS SELECT * FROM ld_ij_percorre AS ldp INNER JOIN itinerario AS it ON ldp.numero_itinerario_percorrido = it.codigo_itinerario ORDER BY ldp.nome_linha; "
                     + "COMMIT; "
                     + "SELECT * FROM linha_ij_demanda_ij_percorre_ij_itinerario";
 
