@@ -39,7 +39,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Código</th>
                         <th>Nome</th>
                         <th>Hora de início</th>
                         <th>Demanda</th>
@@ -54,7 +53,7 @@
                             <td><c:out value="${linhas.codigoLinha}"/></td>
                             <td><c:out value="${linhas.nomeLinha}"/></td>
                             <td><c:out value="${linhas.horaInicioLinha}"/></td>
-                            <td><c:out value="${linhas.demandaLinha}"/></td>
+                            <td><c:out value="${linhas.nome_demanda}"/></td>
                             <td>TODO</td>
                             <td>TODO</td>
                         </tr>
