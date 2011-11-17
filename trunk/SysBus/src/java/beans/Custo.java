@@ -6,7 +6,7 @@ public class Custo implements Serializable {
 
     private int codigoCusto;
     private float precoQuilometro;
-    
+
     /**
      * Construtor vazio.
      */
@@ -20,7 +20,7 @@ public class Custo implements Serializable {
     public int getCodigoCusto() {
         return codigoCusto;
     }
-    
+
     /**
      * Atribui o código do custo.
      * @param codigoCusto Código do custo.
@@ -36,7 +36,7 @@ public class Custo implements Serializable {
     public float getPrecoQuilometro() {
         return precoQuilometro;
     }
-    
+
     /**
      * Atribui o preço do quilômetro.
      * @param precoQuilometro Preço do quilômetro.

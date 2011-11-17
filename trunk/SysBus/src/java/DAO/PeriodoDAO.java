@@ -126,17 +126,19 @@ public class PeriodoDAO {
     }
 
     public ArrayList<Periodo> selectAll() {
-
         ResultSet resultSet = null;
         ArrayList<Periodo> periodos = new ArrayList<Periodo>();
 
         try {
             String queryString = "SELECT * FROM periodo";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
+            
             resultSet = pstmt.executeQuery();
+            
             while (resultSet.next()) {
-
                 Periodo periodo = new Periodo();
 
                 periodo.setCodigoPeriodo(resultSet.getInt("codigo_periodo"));
@@ -146,8 +148,6 @@ public class PeriodoDAO {
 
                 periodos.add(periodo);
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -166,33 +166,30 @@ public class PeriodoDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         return periodos;
     }
-    
-    public Periodo selectForId(int codigoPeriodo) {
 
+    public Periodo selectForId(int codigoPeriodo) {
         ResultSet resultSet = null;
         Periodo periodo = new Periodo();
 
         try {
-
             String queryString = "SELECT * FROM periodo"
                     + " WHERE codigo_periodo = ?";
+            
             connection = getConnection();
+            
             pstmt = connection.prepareStatement(queryString);
             pstmt.setInt(1, codigoPeriodo);
 
             resultSet = pstmt.executeQuery();
-
             resultSet.next();
-            
+
             periodo.setCodigoPeriodo(resultSet.getInt("codigo_periodo"));
             periodo.setInicioPeriodo(resultSet.getTime("inicio_periodo"));
             periodo.setFimPeriodo(resultSet.getTime("fim_periodo"));
             periodo.setFatorMultiplicacao(resultSet.getFloat("fator_multiplicacao"));
-            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -211,30 +208,28 @@ public class PeriodoDAO {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         return periodo;
-    }   
-    
-    public void save(Periodo periodo) {
+    }
 
+    public void save(Periodo periodo) {
         if (periodo.getCodigoPeriodo() == 0) {
             insert(periodo);
         } else {
             ResultSet resultSet = null;
 
             try {
-
                 String queryString = "SELECT COUNT(codigo_periodo) FROM "
                         + "periodo WHERE codigo_periodo = ?";
 
                 connection = getConnection();
+                
                 pstmt = connection.prepareStatement(queryString);
                 pstmt.setInt(1, periodo.getCodigoPeriodo());
 
                 resultSet = pstmt.executeQuery();
                 resultSet.next();
-                //Transparencia marota
+                
                 if (resultSet.getInt("count") != 0) {
                     update(periodo);
                 } else {
@@ -258,9 +253,7 @@ public class PeriodoDAO {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }
     }
-    
 }

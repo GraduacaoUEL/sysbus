@@ -11,7 +11,7 @@ public class LinhaDAO {
 
     private Connection connection = null;
     private PreparedStatement pstmt = null;
-    
+
     /**
      * Construtor vazio.
      */
@@ -23,7 +23,7 @@ public class LinhaDAO {
         conn = ConnectionFactory.getInstance().getConnection();
         return conn;
     }
-    
+
     /**
      * Insere uma linha no banco de dados.
      * @param linha Linha a ser inserida.
@@ -57,7 +57,7 @@ public class LinhaDAO {
             }
         }
     }
-    
+
     /**
      * Remove uma linha do banco de dados.
      * @param codigoLinha Código da linha a ser removida.
@@ -88,7 +88,7 @@ public class LinhaDAO {
             }
         }
     }
-    
+
     /**
      * Atualiza uma linha no banco de dados.
      * @param linha Linha a ser atualizada.
@@ -124,49 +124,49 @@ public class LinhaDAO {
             }
         }
     }
-    
-public ArrayList<Linha> selectAll() {
-    
-    ResultSet resultSet = null;
-    ArrayList<Linha> linhas = new ArrayList<Linha>();
-    
-    try {
-                        String queryString = "SELECT * FROM linha";
-                        connection = getConnection();
-                        pstmt = connection.prepareStatement(queryString);
-                        resultSet = pstmt.executeQuery();
-                        while (resultSet.next()) {
-                     
-                            Linha linha = new Linha();
-                            
-                            linha.setCodigoLinha(resultSet.getInt("codigo_linha"));
-                            linha.setNomeLinha(resultSet.getString("nome_linha"));
-                            linha.setHoraInicioLinha(resultSet.getTime("hora_inicio_linha"));
-                            linha.setDemandaLinha(resultSet.getInt("demanda_linha"));
-                            
-                            linhas.add(linha);
-                        }
-                        
-                        
-                } catch (SQLException e) {
-                        e.printStackTrace();
-                } finally {
-                        try {
-                                if (resultSet != null)
-                                        resultSet.close();
-                                if (pstmt != null)
-                                        pstmt.close();
-                                if (connection != null)
-                                        connection.close();
-                        } catch (SQLException e) {
-                                e.printStackTrace();
-                        } catch (Exception e) {
-                                e.printStackTrace();
-                        }
 
+    public ArrayList<Linha> selectAll() {
+        ResultSet resultSet = null;
+        ArrayList<Linha> linhas = new ArrayList<Linha>();
+
+        try {
+            String queryString = "SELECT * FROM linha";
+            
+            connection = getConnection();
+            
+            pstmt = connection.prepareStatement(queryString);
+            
+            resultSet = pstmt.executeQuery();
+            
+            while (resultSet.next()) {
+                Linha linha = new Linha();
+
+                linha.setCodigoLinha(resultSet.getInt("codigo_linha"));
+                linha.setNomeLinha(resultSet.getString("nome_linha"));
+                linha.setHoraInicioLinha(resultSet.getTime("hora_inicio_linha"));
+                linha.setDemandaLinha(resultSet.getInt("demanda_linha"));
+
+                linhas.add(linha);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
                 }
-                /*Retorna um ArrayList contendo todos os cargos cadastrados*/
-                return linhas;
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-    
+        return linhas;
+    }
 }

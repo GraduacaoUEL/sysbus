@@ -13,13 +13,13 @@ public class Venda implements Serializable {
     private boolean viaWeb;
     private int vendedor;
     private int carroVenda;
-    
+
     /**
      * Construtor vazio.
      */
     public Venda() {
     }
-    
+
     /**
      * Retorna o código da venda.
      * @return Código da venda.
@@ -27,7 +27,7 @@ public class Venda implements Serializable {
     public int getCodigoVenda() {
         return codigoVenda;
     }
-    
+
     /**
      * Atribui o código da venda.
      * @param codigoVenda Código da venda.
@@ -35,7 +35,7 @@ public class Venda implements Serializable {
     public void setCodigoVenda(int codigoVenda) {
         this.codigoVenda = codigoVenda;
     }
-    
+
     /**
      * Retorna a data e a hora da venda.
      * @return Data e hora da venda.
@@ -43,7 +43,7 @@ public class Venda implements Serializable {
     public Timestamp getDataHoraVenda() {
         return dataHoraVenda;
     }
-    
+
     /**
      * Atribui a data e a hora da venda.
      * @param dataHoraVenda Data e hora da venda.
@@ -51,7 +51,7 @@ public class Venda implements Serializable {
     public void setDataHoraVenda(Timestamp dataHoraVenda) {
         this.dataHoraVenda = dataHoraVenda;
     }
-    
+
     /**
      * Retorna o tipo de pagamento.
      * @return Tipo de pagamento.
@@ -59,7 +59,7 @@ public class Venda implements Serializable {
     public String getTipoPagamento() {
         return tipoPagamento;
     }
-    
+
     /**
      * Atribui o tipo de pagamento.
      * @param tipoPagamento Tipo de pagamento.
@@ -67,7 +67,7 @@ public class Venda implements Serializable {
     public void setTipoPagamento(String tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
     }
-    
+
     /**
      * Retorna o valor da venda.
      * @return Valor da venda.
@@ -75,7 +75,7 @@ public class Venda implements Serializable {
     public float getValorVenda() {
         return valorVenda;
     }
-    
+
     /**
      * Atribui o valor da venda.
      * @param valorVenda Valor da venda.
@@ -83,7 +83,7 @@ public class Venda implements Serializable {
     public void setValorVenda(float valorVenda) {
         this.valorVenda = valorVenda;
     }
-    
+
     /**
      * Retorna se a passagem foi entregue.
      * @return <code>true</code> se a passagem foi entregue.
@@ -91,7 +91,7 @@ public class Venda implements Serializable {
     public boolean isPassagemEntregue() {
         return passagemEntregue;
     }
-    
+
     /**
      * Define se a passagem foi entregue.
      * @param passagemEntregue <code>true</code> se a passagem foi entregue.
@@ -107,7 +107,7 @@ public class Venda implements Serializable {
     public boolean isViaWeb() {
         return viaWeb;
     }
-    
+
     /**
      * Define se a venda foi efetuada via web.
      * @param viaWeb <code>true</code> se a venda foi efetuada via web.
@@ -123,7 +123,7 @@ public class Venda implements Serializable {
     public int getVendedor() {
         return vendedor;
     }
-    
+
     /**
      * Atribui o código do vendedor responsável pela venda.
      * @param vendedor Código do vendedor responsável pela venda.
@@ -131,7 +131,7 @@ public class Venda implements Serializable {
     public void setVendedor(int vendedor) {
         this.vendedor = vendedor;
     }
-    
+
     /**
      * Retorna o código do carro que será usado na viagem.
      * @return Código do carro que será usado na viagem.
@@ -139,7 +139,7 @@ public class Venda implements Serializable {
     public int getCarroVenda() {
         return carroVenda;
     }
-    
+
     /**
      * Atribui o código do carro que será usado na viagem.
      * @param carroVenda Código do carro que será usado na viagem.

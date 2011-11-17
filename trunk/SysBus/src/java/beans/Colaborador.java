@@ -12,13 +12,13 @@ public class Colaborador implements Serializable {
     private String loginColaborador;
     private String senhaColaborador;
     private int cargoColaborador;
-    
+
     /**
      * Construtor vazio.
      */
     public Colaborador() {
     }
-    
+
     /**
      * Retorna o código do colaborador.
      * @return Código do colaborador.
@@ -26,7 +26,7 @@ public class Colaborador implements Serializable {
     public int getCodigoColaborador() {
         return codigoColaborador;
     }
-    
+
     /**
      * Atribui o código do colaborador.
      * @param codigoColaborador Código do colaborador.
@@ -42,7 +42,7 @@ public class Colaborador implements Serializable {
     public String getNomeColaborador() {
         return nomeColaborador;
     }
-    
+
     /**
      * Atribui o nome do colaborador.
      * @param nomeColaborador Nome do colaborador.
@@ -50,7 +50,7 @@ public class Colaborador implements Serializable {
     public void setNomeColaborador(String nomeColaborador) {
         this.nomeColaborador = nomeColaborador;
     }
-    
+
     /**
      * Retorna o login do colaborador.
      * @return Login do colaborador.
@@ -58,7 +58,7 @@ public class Colaborador implements Serializable {
     public String getLoginColaborador() {
         return loginColaborador;
     }
-    
+
     /**
      * Atribui o login do colaborador.
      * @param loginColaborador Login do colaborador.
@@ -86,7 +86,7 @@ public class Colaborador implements Serializable {
             this.senhaColaborador = new BigInteger(1, md.digest()).toString(16);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-        }        
+        }
     }
 
     /**
@@ -96,7 +96,7 @@ public class Colaborador implements Serializable {
     public int getCargoColaborador() {
         return cargoColaborador;
     }
-    
+
     /**
      * Atribui o código do cargo do colaborador.
      * @param cargoColaborador Código do cargo do colaborador.

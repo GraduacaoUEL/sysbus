@@ -137,6 +137,4 @@ public class ColaboradorIJCargo {
     public void setCodigoColaborador(int codigoColaborador) {
         this.codigoColaborador = codigoColaborador;
     }
-    
-    
 }

@@ -2,7 +2,7 @@ package servlets;
 
 import DAO.VendaDAO;
 import beans.Venda;
-import beans.VendaInnerJoinColaborador;
+import beans.VendaIJColaborador;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public class VendaServlet extends HttpServlet {
             request.setAttribute("VendaEdicao", vendaParaEdicao);
         }
 
-        ArrayList<VendaInnerJoinColaborador> vendas = new ArrayList<VendaInnerJoinColaborador>();
+        ArrayList<VendaIJColaborador> vendas = new ArrayList<VendaIJColaborador>();
         vendas = vendaDAO.selectAllWithJoin();
         request.setAttribute("Vendas", vendas);
         request.getRequestDispatcher("/venda.jsp").forward(request, response);

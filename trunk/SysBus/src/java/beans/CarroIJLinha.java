@@ -1,6 +1,7 @@
 package beans;
 
 public class CarroIJLinha {
+
     private int codigoCarro;
     private int numeroDePassageiros;
     private String nomeLinha;

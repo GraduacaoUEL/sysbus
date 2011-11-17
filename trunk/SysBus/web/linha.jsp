@@ -23,7 +23,7 @@
                         </option>
                     </c:forEach>
                 </select><br/><br/>
-                
+
                 <label>Itinerário:</label><br/><select name="demandaItinerario">
                     <c:forEach var="itinerarios" items="${Itinerarios}">
                         <option value ="<c:out value="${itinerarios.codigoItinerario}"/>">
@@ -31,7 +31,6 @@
                         </option>
                     </c:forEach>
                 </select><br/><br/>
-
                 <input type="submit" value="Salvar"/>
             </form>
         </div>

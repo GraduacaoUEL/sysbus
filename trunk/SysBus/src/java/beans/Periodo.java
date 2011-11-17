@@ -9,13 +9,13 @@ public class Periodo implements Serializable {
     private Time inicioPeriodo;
     private Time fimPeriodo;
     private float fatorMultiplicacao;
-    
+
     /**
      * Construtor vazio.
      */
     public Periodo() {
     }
-    
+
     /**
      * Retorna o código do período.
      * @return Código do período.
@@ -23,7 +23,7 @@ public class Periodo implements Serializable {
     public int getCodigoPeriodo() {
         return codigoPeriodo;
     }
-    
+
     /**
      * Atribui o código do período.
      * @param codigoPeriodo Código do período.
@@ -31,7 +31,7 @@ public class Periodo implements Serializable {
     public void setCodigoPeriodo(int codigoPeriodo) {
         this.codigoPeriodo = codigoPeriodo;
     }
-    
+
     /**
      * Retorna a hora de início do período no formato "hh:mm:ss".
      * @return Hora de início do período.
@@ -39,7 +39,7 @@ public class Periodo implements Serializable {
     public Time getInicioPeriodo() {
         return inicioPeriodo;
     }
-    
+
     /**
      * Atribui a hora de início do período no formato "hh:mm:ss".
      * @param inicioPeriodo Hora de início do período.
@@ -47,7 +47,7 @@ public class Periodo implements Serializable {
     public void setInicioPeriodo(Time inicioPeriodo) {
         this.inicioPeriodo = inicioPeriodo;
     }
-    
+
     /**
      * Retorna a hora de fim do período no formato "hh:mm:ss".
      * @return Hora de fim do período.
@@ -55,7 +55,7 @@ public class Periodo implements Serializable {
     public Time getFimPeriodo() {
         return fimPeriodo;
     }
-    
+
     /**
      * Atribui a hora de fim do período no formato "hh:mm:ss".
      * @param fimPeriodo Hora de fim do período.
@@ -71,7 +71,7 @@ public class Periodo implements Serializable {
     public float getFatorMultiplicacao() {
         return fatorMultiplicacao;
     }
-    
+
     /**
      * Atribui o fator de multiplicação.
      * @param fatorMultiplicacao Fator de multiplicação.
